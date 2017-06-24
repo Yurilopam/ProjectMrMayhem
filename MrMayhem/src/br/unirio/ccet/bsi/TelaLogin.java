@@ -144,6 +144,7 @@ public class TelaLogin extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoAutenticarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAutenticarActionPerformed
@@ -152,7 +153,7 @@ public class TelaLogin extends javax.swing.JFrame {
             campoSenhaUsuario.setText(null);
             fecharTelaLogin();
             
-            TelaAdmin telaAdmin = new TelaAdmin();
+            TelaPrincipalGerente telaAdmin = new TelaPrincipalGerente();
             telaAdmin.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(TelaLogin.this, "Usuário ou senha inválidos.");

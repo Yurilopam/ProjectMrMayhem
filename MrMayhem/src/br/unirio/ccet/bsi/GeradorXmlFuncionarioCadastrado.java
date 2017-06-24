@@ -5,9 +5,12 @@
  */
 package br.unirio.ccet.bsi;
 
+import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  *
@@ -28,5 +31,5 @@ public class GeradorXmlFuncionarioCadastrado {
             exc.printStackTrace();
         }
     }
-    
+
 }
