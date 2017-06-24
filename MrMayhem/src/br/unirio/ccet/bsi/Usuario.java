@@ -1,17 +1,20 @@
 package br.unirio.ccet.bsi;
 
+import java.io.Serializable;
+
 /**
  *
  * @author yuri
  */
-public abstract class Usuario {
+public abstract class Usuario implements Serializable{
 
     private int id;
     private String nome;
     private int telefone;
     private String endereço;
     private String email;
-
+    private String funcao;
+    
     public Usuario() {
 
     }
@@ -84,6 +87,20 @@ public abstract class Usuario {
      */
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    /**
+     * @return the funcao
+     */
+    public String getFuncao() {
+        return funcao;
+    }
+
+    /**
+     * @param funcao the funcao to set
+     */
+    public void setFuncao(String funcao) {
+        this.funcao = funcao;
     }
 
 }

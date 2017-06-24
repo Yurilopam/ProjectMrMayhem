@@ -9,6 +9,10 @@ package br.unirio.ccet.bsi;
  *
  * @author labccet
  */
-public class Atendente {
+public class Atendente extends FuncionarioLocal{
+    
+    public Atendente() {
+        super();
+    }
     
 }

@@ -5,8 +5,6 @@
  */
 package br.unirio.ccet.bsi;
 
-import java.awt.event.WindowEvent;
-
 /**
  *
  * @author Yuri Lopam
