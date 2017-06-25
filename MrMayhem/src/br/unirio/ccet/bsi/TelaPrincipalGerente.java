@@ -42,12 +42,15 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
+        jMenu9 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -131,8 +134,8 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/chart_bar.png"))); // NOI18N
-        jMenu4.setText("Estoque");
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/chart_bar.png"))); // NOI18N
+        jMenu3.setText("Produtos/Estoque");
 
         jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/chart_bar_add.png"))); // NOI18N
         jMenuItem9.setText("Cadastrar");
@@ -141,25 +144,37 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
                 jMenuItem9ActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem9);
+        jMenu3.add(jMenuItem9);
 
         jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/chart_bar_edit.png"))); // NOI18N
         jMenuItem10.setText("Alterar");
-        jMenu4.add(jMenuItem10);
+        jMenu3.add(jMenuItem10);
 
         jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/chart_bar_delete.png"))); // NOI18N
         jMenuItem11.setText("Excluir");
-        jMenu4.add(jMenuItem11);
+        jMenu3.add(jMenuItem11);
 
         jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/zoom.png"))); // NOI18N
         jMenuItem12.setText("Pesquisar");
-        jMenu4.add(jMenuItem12);
+        jMenu3.add(jMenuItem12);
 
+        jMenuBar1.add(jMenu3);
+
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/cart.png"))); // NOI18N
+        jMenu4.setText("Pedido de Vendas/Aluguéis");
         jMenuBar1.add(jMenu4);
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/information.png"))); // NOI18N
-        jMenu3.setText("Sobre");
-        jMenuBar1.add(jMenu3);
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/report.png"))); // NOI18N
+        jMenu5.setText("Relatórios");
+        jMenuBar1.add(jMenu5);
+
+        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/calendar.png"))); // NOI18N
+        jMenu6.setText("Agenda");
+        jMenuBar1.add(jMenu6);
+
+        jMenu9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/information.png"))); // NOI18N
+        jMenu9.setText("Sobre");
+        jMenuBar1.add(jMenu9);
 
         setJMenuBar(jMenuBar1);
 
@@ -256,6 +271,9 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
