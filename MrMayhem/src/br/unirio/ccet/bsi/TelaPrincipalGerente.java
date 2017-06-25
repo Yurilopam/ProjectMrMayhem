@@ -87,6 +87,11 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
 
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/user_delete.png"))); // NOI18N
         jMenuItem3.setText("Excluir");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/zoom.png"))); // NOI18N
@@ -200,6 +205,12 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
         jDesktopPane1.add(telaAlterarFuncionario);
         telaAlterarFuncionario.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        TelaExcluirFuncionario telaExcluirFuncionario = new TelaExcluirFuncionario();
+        jDesktopPane1.add(telaExcluirFuncionario);
+        telaExcluirFuncionario.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
     
     /**
      * @param args the command line arguments
