@@ -48,6 +48,7 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jMenuItem13 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
         jMenu9 = new javax.swing.JMenu();
@@ -122,14 +123,29 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
 
         jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/group_edit.png"))); // NOI18N
         jMenuItem6.setText("Alterar");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem6);
 
         jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/group_delete.png"))); // NOI18N
         jMenuItem7.setText("Excluir");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem7);
 
         jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/zoom.png"))); // NOI18N
         jMenuItem8.setText("Pesquisar");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem8);
 
         jMenuBar1.add(jMenu2);
@@ -148,20 +164,45 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
 
         jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/chart_bar_edit.png"))); // NOI18N
         jMenuItem10.setText("Alterar");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem10);
 
         jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/chart_bar_delete.png"))); // NOI18N
         jMenuItem11.setText("Excluir");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem11);
 
         jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/zoom.png"))); // NOI18N
         jMenuItem12.setText("Pesquisar");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem12);
 
         jMenuBar1.add(jMenu3);
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/cart.png"))); // NOI18N
         jMenu4.setText("Pedido de Vendas/Aluguéis");
+
+        jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/cart_add.png"))); // NOI18N
+        jMenuItem13.setText("Cadastrar Venda");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem13);
+
         jMenuBar1.add(jMenu4);
 
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/report.png"))); // NOI18N
@@ -206,7 +247,9 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        // TODO add your handling code here:
+        TelaCadastroProduto telaCadastroProduto = new TelaCadastroProduto();
+        jDesktopPane1.add(telaCadastroProduto);
+        telaCadastroProduto.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -226,6 +269,48 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
         jDesktopPane1.add(telaExcluirFuncionario);
         telaExcluirFuncionario.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        TelaAlterarProduto telaAlterarProduto = new TelaAlterarProduto();
+        jDesktopPane1.add(telaAlterarProduto);
+        telaAlterarProduto.setVisible(true);
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        TelaExcluirProduto telaExcluirProduto = new TelaExcluirProduto();
+        jDesktopPane1.add(telaExcluirProduto);
+        telaExcluirProduto.setVisible(true);
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        TelaAlterarCliente telaAlterarCliente = new TelaAlterarCliente();
+        jDesktopPane1.add(telaAlterarCliente);
+        telaAlterarCliente.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        TelaExcluirCliente telaExcluirCliente = new TelaExcluirCliente();
+        jDesktopPane1.add(telaExcluirCliente);
+        telaExcluirCliente.setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        TelaPesquisaFuncionario telaPesquisaFuncionario = new TelaPesquisaFuncionario();
+        jDesktopPane1.add(telaPesquisaFuncionario);
+        telaPesquisaFuncionario.setVisible(true);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        TelaPesquisaFuncionario telaPesquisaFuncionario = new TelaPesquisaFuncionario();
+        jDesktopPane1.add(telaPesquisaFuncionario);
+        telaPesquisaFuncionario.setVisible(true);
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        TelaCadastroVendas telaCadastroVendas = new TelaCadastroVendas();
+        jDesktopPane1.add(telaCadastroVendas);
+        telaCadastroVendas.setVisible(true);
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -279,6 +364,7 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
