@@ -157,9 +157,9 @@ public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
             }
         });
 
-        campoFuncaoFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SUPERVISOR\t", "ATENDENTE", "ENTREGADOR", "ALFAIATE" }));
+        campoFuncaoFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SUPERVISOR", "ATENDENTE", "ENTREGADOR", "ALFAIATE" }));
 
-        campoSalarioFuncionario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        campoSalarioFuncionario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
         try {
             campoDataAdmissaoFuncionario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -211,7 +211,7 @@ public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
 
         jLabel17.setText("Função:");
 
-        jLabel18.setText("Salário:");
+        jLabel18.setText("Salário: R$");
 
         jLabel19.setText("Data de admissão:");
 

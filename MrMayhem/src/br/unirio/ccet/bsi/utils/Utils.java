@@ -6,23 +6,28 @@
 
 package br.unirio.ccet.bsi.utils;
 
-import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
  *
- * @author LABCCET
+ * @author Yuri Lopam
  */
 public class Utils {
     
+    /**
+     * 
+     * @param nomeEntidade Variavel recebida para gerar o nome da pasta que sera criada
+     * @return o caminho da pasta onde o arquivo sera gravado
+     */
     public static String recuperarPath(String nomeEntidade){ 
         Path path = Paths.get(System.getProperty("user.home"), "Documents", "MrMayhem", nomeEntidade);
-        File pastaFuncionarios = new File(path.toString());
-        if (!pastaFuncionarios.exists()){
+        if (!Files.exists(path)){
             try {
-                pastaFuncionarios.mkdir();
-            } catch (SecurityException e){
+                Files.createDirectories(path);
+            } catch (IOException e){
                 System.out.println(e.getMessage());
             } 
         }

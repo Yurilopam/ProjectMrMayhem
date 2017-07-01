@@ -22,7 +22,7 @@ public class XmlFuncionarioCadastrado {
 
     public void GerarXmlFuncionarioLocal(FuncionarioLocal novoFuncionarioLocal) {
             //TODO criar um path genérico
-        String PATH = Utils.recuperarPath("funcionarios")+"\\"+novoFuncionarioLocal.getCpf()+".xml";
+        String PATH = Utils.recuperarPath("Funcionarios")+"\\"+novoFuncionarioLocal.getCpf()+".xml";
         
         try {
             XMLEncoder encoder;
@@ -37,7 +37,7 @@ public class XmlFuncionarioCadastrado {
     public FuncionarioLocal LerXmlFuncionarioLocal(String cpfFuncionarioLocal) {
         
         FuncionarioLocal funcionarioLocalCadastrado = null;
-        String PATH = Utils.recuperarPath("funcionarios")+"\\"+cpfFuncionarioLocal;
+        String PATH = Utils.recuperarPath("Funcionarios")+"\\"+cpfFuncionarioLocal;
         
         try {
             XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream(PATH)));

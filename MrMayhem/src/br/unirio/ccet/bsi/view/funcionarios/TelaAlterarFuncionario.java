@@ -6,6 +6,7 @@
 package br.unirio.ccet.bsi.view.funcionarios;
 
 import br.unirio.ccet.bsi.model.FuncionarioLocal;
+import br.unirio.ccet.bsi.utils.Utils;
 import br.unirio.ccet.bsi.utils.XmlFuncionarioCadastrado;
 import java.io.File;
 import javax.swing.JOptionPane;
@@ -496,7 +497,7 @@ public class TelaAlterarFuncionario extends javax.swing.JInternalFrame {
 
     private void botaoPesquisarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPesquisarFuncionarioActionPerformed
         XmlFuncionarioCadastrado xml = new XmlFuncionarioCadastrado();
-        File arquivos = new File("C:\\Users\\Yuri Lopam\\Documents\\GitHub\\ProjectMrMayhem\\MrMayhem\\funcionarios");
+        File arquivos = new File(Utils.recuperarPath("Funcionarios"));
         File[] cpfsFuncionarios = arquivos.listFiles();
         for (File cpfFuncionario : cpfsFuncionarios){
             if(cpfFuncionario.getName().equals(campoCpfFuncionario.getText()+".xml")){
