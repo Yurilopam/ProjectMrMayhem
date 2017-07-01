@@ -477,12 +477,12 @@ public class TelaExcluirFuncionario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_campoNomeFuncionarioActionPerformed
 
     private void botaoPesquisarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPesquisarFuncionarioActionPerformed
-        Xml xml = new Xml();
+        XmlFuncionarioCadastrado xml = new XmlFuncionarioCadastrado();
         File arquivos = new File("C:\\Users\\Yuri Lopam\\Documents\\GitHub\\ProjectMrMayhem\\MrMayhem\\funcionarios");
         File[] cpfsFuncionarios = arquivos.listFiles();
         for (File cpfFuncionario : cpfsFuncionarios){
             if(cpfFuncionario.getName().equals(campoCpfFuncionario.getText()+".xml")){
-                FuncionarioLocal dadosFuncionario = (FuncionarioLocal) xml.LerXml(cpfFuncionario.getName());
+                FuncionarioLocal dadosFuncionario = (FuncionarioLocal) xml.LerXmlFuncionarioLocal(cpfFuncionario.getName());
                 campoNomeFuncionario.setText(dadosFuncionario.getNome());
                 campoDataNascimentoFuncionario.setText(dadosFuncionario.getDataNascimento());
                 campoNacionalidadeFuncionario.setText(dadosFuncionario.getNacionalidade());

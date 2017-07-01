@@ -16,8 +16,8 @@ import java.nio.file.Paths;
  */
 public class Utils {
     
-    public static String recuperarPath(){ 
-        Path path = Paths.get(System.getProperty("user.home"), "Documents", "funcionarios");
+    public static String recuperarPath(String nomeEntidade){ 
+        Path path = Paths.get(System.getProperty("user.home"), "Documents", "MrMayhem", nomeEntidade);
         File pastaFuncionarios = new File(path.toString());
         if (!pastaFuncionarios.exists()){
             try {

@@ -82,11 +82,11 @@ public class TelaPesquisaFuncionario extends javax.swing.JInternalFrame {
 
     private void botaoPesquisarFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPesquisarFuncionariosActionPerformed
         DefaultTableModel dtmFuncionarios = (DefaultTableModel) jTable1.getModel();
-        Xml xml = new Xml();
-        File arquivos = new File(Utils.recuperarPath());
+        XmlFuncionarioCadastrado xml = new XmlFuncionarioCadastrado();
+        File arquivos = new File(Utils.recuperarPath("funcionarios"));
         String[] cpfsFuncionarios = arquivos.list();
         for (String cpfFuncionario : cpfsFuncionarios){
-            FuncionarioLocal dadosFuncionario = (FuncionarioLocal) xml.LerXml(cpfFuncionario);
+            FuncionarioLocal dadosFuncionario = (FuncionarioLocal) xml.LerXmlFuncionarioLocal(cpfFuncionario);
             Object[] dados = {dadosFuncionario.getNome(), dadosFuncionario.getCpf(), dadosFuncionario.getFuncao()};
             dtmFuncionarios.addRow(dados);
         }
