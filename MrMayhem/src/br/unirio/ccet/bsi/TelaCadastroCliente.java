@@ -352,7 +352,7 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
             novoFuncionarioLocal.setNome(campoNomeFuncionario.getText());
             XmlFuncionarioCadastrado xml = new XmlFuncionarioCadastrado();
             xml.GerarXmlFuncionarioLocal(novoFuncionarioLocal);
-            JOptionPane.showMessageDialog(TelaCadastroCliente.this, "Funcionário cadastrado com sucesso!");
+            JOptionPane.showMessageDialog(TelaCadastroCliente.this, "Cliente cadastrado com sucesso!");
             resetarCampos();
         }
     }//GEN-LAST:event_botaoCadastarFuncionarioActionPerformed
