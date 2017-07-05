@@ -79,16 +79,16 @@
                                   <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="campoNomeProduto" min="-2" pref="376" max="-2" attributes="0"/>
+                                          <Component id="campoNome" min="-2" pref="376" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="botaoPesquisarProduto" min="-2" max="-2" attributes="0"/>
+                                          <Component id="botaoPesquisar" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <Component id="campoTipoProduto" min="-2" pref="157" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="campoDataCadastroProduto" min="-2" pref="94" max="-2" attributes="0"/>
+                                          <Component id="campoDataCadastro" min="-2" pref="94" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -99,7 +99,7 @@
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="botaoExcluirProduto" min="-2" max="-2" attributes="0"/>
+                  <Component id="botaoExcluir" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="347" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -115,17 +115,17 @@
                           <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="campoNomeProduto" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="campoNome" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                               <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="botaoPesquisarProduto" min="-2" max="-2" attributes="0"/>
+                      <Component id="botaoPesquisar" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="campoTipoProduto" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="campoDataCadastroProduto" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="campoDataCadastro" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
@@ -136,19 +136,19 @@
                       <Component id="jScrollPane1" min="-2" pref="303" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="botaoExcluirProduto" min="-2" max="-2" attributes="0"/>
+                  <Component id="botaoExcluir" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="42" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="campoNomeProduto">
+        <Component class="javax.swing.JTextField" name="campoNome">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoNomeProdutoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoNomeActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="campoDataCadastroProduto">
+        <Component class="javax.swing.JFormattedTextField" name="campoDataCadastro">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="##/##/####" subtype="-1" type="5"/>
@@ -216,21 +216,21 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="java.awt.Button" name="botaoPesquisarProduto">
+        <Component class="java.awt.Button" name="botaoPesquisar">
           <Properties>
             <Property name="label" type="java.lang.String" value="Pesquisar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoPesquisarProdutoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoPesquisarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="java.awt.Button" name="botaoExcluirProduto">
+        <Component class="java.awt.Button" name="botaoExcluir">
           <Properties>
             <Property name="enabled" type="boolean" value="false"/>
             <Property name="label" type="java.lang.String" value="Excluir"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoExcluirProdutoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoExcluirActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

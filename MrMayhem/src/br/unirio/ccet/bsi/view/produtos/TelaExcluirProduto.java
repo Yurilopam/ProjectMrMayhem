@@ -6,7 +6,7 @@
 package br.unirio.ccet.bsi.view.produtos;
 
 import br.unirio.ccet.bsi.model.Produto;
-import br.unirio.ccet.bsi.utils.XmlProdutoCadastrado;
+import br.unirio.ccet.bsi.utils.XmlProduto;
 import java.io.File;
 import javax.swing.JOptionPane;
 import org.apache.commons.lang3.StringUtils;
@@ -34,8 +34,8 @@ public class TelaExcluirProduto extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        campoNomeProduto = new javax.swing.JTextField();
-        campoDataCadastroProduto = new javax.swing.JFormattedTextField();
+        campoNome = new javax.swing.JTextField();
+        campoDataCadastro = new javax.swing.JFormattedTextField();
         campoTipoProduto = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -45,8 +45,8 @@ public class TelaExcluirProduto extends javax.swing.JInternalFrame {
         jLabel15 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         campoDescricaoProduto = new javax.swing.JTextArea();
-        botaoPesquisarProduto = new java.awt.Button();
-        botaoExcluirProduto = new java.awt.Button();
+        botaoPesquisar = new java.awt.Button();
+        botaoExcluir = new java.awt.Button();
 
         setBackground(new java.awt.Color(2, 86, 112));
         setClosable(true);
@@ -54,14 +54,14 @@ public class TelaExcluirProduto extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        campoNomeProduto.addActionListener(new java.awt.event.ActionListener() {
+        campoNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoNomeProdutoActionPerformed(evt);
+                campoNomeActionPerformed(evt);
             }
         });
 
         try {
-            campoDataCadastroProduto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            campoDataCadastro.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -87,18 +87,18 @@ public class TelaExcluirProduto extends javax.swing.JInternalFrame {
         campoDescricaoProduto.setRows(5);
         jScrollPane1.setViewportView(campoDescricaoProduto);
 
-        botaoPesquisarProduto.setLabel("Pesquisar");
-        botaoPesquisarProduto.addActionListener(new java.awt.event.ActionListener() {
+        botaoPesquisar.setLabel("Pesquisar");
+        botaoPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoPesquisarProdutoActionPerformed(evt);
+                botaoPesquisarActionPerformed(evt);
             }
         });
 
-        botaoExcluirProduto.setEnabled(false);
-        botaoExcluirProduto.setLabel("Excluir");
-        botaoExcluirProduto.addActionListener(new java.awt.event.ActionListener() {
+        botaoExcluir.setEnabled(false);
+        botaoExcluir.setLabel("Excluir");
+        botaoExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoExcluirProdutoActionPerformed(evt);
+                botaoExcluirActionPerformed(evt);
             }
         });
 
@@ -126,19 +126,19 @@ public class TelaExcluirProduto extends javax.swing.JInternalFrame {
                                 .addGap(74, 74, 74)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(campoNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(botaoPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(botaoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(campoTipoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabel6)
                                         .addGap(18, 18, 18)
-                                        .addComponent(campoDataCadastroProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addComponent(campoDataCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(27, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(botaoExcluirProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(347, 347, 347))
         );
         jPanel1Layout.setVerticalGroup(
@@ -152,14 +152,14 @@ public class TelaExcluirProduto extends javax.swing.JInternalFrame {
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(campoNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)))
-                    .addComponent(botaoPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botaoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(campoTipoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(campoDataCadastroProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(campoDataCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel6))
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
@@ -167,7 +167,7 @@ public class TelaExcluirProduto extends javax.swing.JInternalFrame {
                     .addComponent(jLabel15)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
-                .addComponent(botaoExcluirProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
@@ -191,42 +191,42 @@ public class TelaExcluirProduto extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void campoNomeProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeProdutoActionPerformed
+    private void campoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoNomeProdutoActionPerformed
+    }//GEN-LAST:event_campoNomeActionPerformed
 
     private void campoTipoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTipoProdutoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoTipoProdutoActionPerformed
 
-    private void botaoPesquisarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPesquisarProdutoActionPerformed
-        XmlProdutoCadastrado xml = new XmlProdutoCadastrado();
+    private void botaoPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPesquisarActionPerformed
+        XmlProduto xml = new XmlProduto();
         File arquivos = new File("C:\\Users\\Yuri Lopam\\Documents\\GitHub\\ProjectMrMayhem\\MrMayhem\\produtos");
         File[] nomesProdutos = arquivos.listFiles();
         for (File nomeProduto : nomesProdutos){
-            if(nomeProduto.getName().equals(campoNomeProduto.getText()+".xml")){
-                Produto dadosProduto = xml.LerXmlProduto(nomeProduto.getName());
-                campoNomeProduto.setText(dadosProduto.getNomeProduto());
-                campoDataCadastroProduto.setText(dadosProduto.getDataCadastroProduto());
+            if(nomeProduto.getName().equals(campoNome.getText()+".xml")){
+                Produto dadosProduto = xml.LerXml(nomeProduto.getName());
+                campoNome.setText(dadosProduto.getNomeProduto());
+                campoDataCadastro.setText(dadosProduto.getDataCadastroProduto());
                 campoTipoProduto.setSelectedIndex(recuperarTipoProduto(dadosProduto));
                 campoDescricaoProduto.setText(dadosProduto.getDescricaoProduto());            
-                campoNomeProduto.setEditable(true);
+                campoNome.setEditable(true);
                 campoTipoProduto.setEditable(true);
                 campoDescricaoProduto.setEditable(true);
-                botaoExcluirProduto.setEnabled(true);
+                botaoExcluir.setEnabled(true);
             }
         }
-    }//GEN-LAST:event_botaoPesquisarProdutoActionPerformed
+    }//GEN-LAST:event_botaoPesquisarActionPerformed
 
-    private void botaoExcluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirProdutoActionPerformed
-        File produtoAExcluir = new File("C:\\Users\\Yuri Lopam\\Documents\\GitHub\\ProjectMrMayhem\\MrMayhem\\produtos\\"+campoNomeProduto.getText()+".xml");
+    private void botaoExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirActionPerformed
+        File produtoAExcluir = new File("C:\\Users\\Yuri Lopam\\Documents\\GitHub\\ProjectMrMayhem\\MrMayhem\\produtos\\"+campoNome.getText()+".xml");
             if(produtoAExcluir.delete()){
                 JOptionPane.showMessageDialog(TelaExcluirProduto.this, "O produto foi excluído com sucesso!");
             } else {
                 JOptionPane.showMessageDialog(TelaExcluirProduto.this, "Falha na operação de exclusão!");
             }
             resetarCampos();
-    }//GEN-LAST:event_botaoExcluirProdutoActionPerformed
+    }//GEN-LAST:event_botaoExcluirActionPerformed
 
     private int recuperarTipoProduto(Produto dadosProduto) {
         switch(dadosProduto.getTipoProduto()){
@@ -244,25 +244,25 @@ public class TelaExcluirProduto extends javax.swing.JInternalFrame {
     }
     
     private boolean formularioAlteracaoProdutoValidado() {
-        return !StringUtils.isEmpty(campoNomeProduto.getText())
-                && !StringUtils.isEmpty(campoDataCadastroProduto.getText())
+        return !StringUtils.isEmpty(campoNome.getText())
+                && !StringUtils.isEmpty(campoDataCadastro.getText())
                 && !StringUtils.isEmpty(campoTipoProduto.getSelectedItem().toString())
                 && !StringUtils.isEmpty(campoDescricaoProduto.getText());
     }
     
     private void resetarCampos() {
-        campoNomeProduto.setText(null);
-        campoDataCadastroProduto.setText(null);
+        campoNome.setText(null);
+        campoDataCadastro.setText(null);
         campoTipoProduto.setSelectedIndex(0);
         campoDescricaoProduto.setText(null);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button botaoExcluirProduto;
-    private java.awt.Button botaoPesquisarProduto;
-    private javax.swing.JFormattedTextField campoDataCadastroProduto;
+    private java.awt.Button botaoExcluir;
+    private java.awt.Button botaoPesquisar;
+    private javax.swing.JFormattedTextField campoDataCadastro;
     private javax.swing.JTextArea campoDescricaoProduto;
-    private javax.swing.JTextField campoNomeProduto;
+    private javax.swing.JTextField campoNome;
     private javax.swing.JComboBox<String> campoTipoProduto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;

@@ -60,7 +60,7 @@
               <Component id="jSeparator2" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="botaoAlterarFuncionario" min="-2" max="-2" attributes="0"/>
+                  <Component id="botaoAlterar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="360" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
@@ -72,7 +72,7 @@
                                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                                   <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="campoFuncaoFuncionario" min="-2" pref="115" max="-2" attributes="0"/>
+                                  <Component id="campoPagamento" min="-2" pref="115" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -82,18 +82,18 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="campoRuaFuncionario" min="-2" pref="546" max="-2" attributes="0"/>
+                                          <Component id="campoRua" min="-2" pref="546" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="campoNumeroFuncionario" min="-2" pref="111" max="-2" attributes="0"/>
+                                          <Component id="campoNumero" min="-2" pref="111" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="campoBairroFuncionario" min="-2" pref="245" max="-2" attributes="0"/>
+                                          <Component id="campoBairro" min="-2" pref="245" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="campoCepFuncionario" min="-2" pref="106" max="-2" attributes="0"/>
+                                          <Component id="campoCep" min="-2" pref="106" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -104,31 +104,31 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                                      <Component id="campoEstadoCivilFuncionario" min="-2" pref="157" max="-2" attributes="0"/>
+                                      <Component id="campoEstadoCivil" min="-2" pref="157" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                                       <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="campoTelefoneFuncionario" min="-2" pref="171" max="-2" attributes="0"/>
+                                      <Component id="campoTelefone" min="-2" pref="171" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Group type="102" attributes="0">
                                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="campoCpfFuncionario" max="32767" attributes="0"/>
+                                              <Component id="campoCpf" max="32767" attributes="0"/>
                                               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                                              <Component id="botaoPesquisarFuncionario" min="-2" max="-2" attributes="0"/>
+                                              <Component id="botaoPesquisar" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="campoNacionalidadeFuncionario" min="-2" pref="205" max="-2" attributes="0"/>
+                                              <Component id="campoNacionalidade" min="-2" pref="205" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
                                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="campoDataNascimentoFuncionario" min="-2" pref="168" max="-2" attributes="0"/>
+                                      <Component id="campoDataNascimento" min="-2" pref="168" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -136,7 +136,7 @@
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                                              <Component id="campoNomeFuncionario" min="-2" pref="226" max="-2" attributes="0"/>
+                                              <Component id="campoNome" min="-2" pref="226" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -144,11 +144,11 @@
                                           <Group type="102" attributes="0">
                                               <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="campoRgFuncionario" min="-2" pref="157" max="-2" attributes="0"/>
+                                              <Component id="campoRg" min="-2" pref="157" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                                               <Component id="jCheckBox1" min="-2" pref="177" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="campoEmailFuncionario" min="-2" pref="421" max="-2" attributes="0"/>
+                                          <Component id="campoEmail" min="-2" pref="421" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -171,39 +171,39 @@
                           <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="campoDataNascimentoFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="campoDataNascimento" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="campoCpfFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="campoCpf" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="botaoPesquisarFuncionario" min="-2" max="-2" attributes="0"/>
+                      <Component id="botaoPesquisar" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="campoNacionalidadeFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoNacionalidade" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="campoEmailFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="campoRgFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="campoRg" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jCheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="campoNomeFuncionario" alignment="1" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="campoNome" alignment="1" min="-2" pref="20" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="campoEstadoCivilFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoEstadoCivil" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="campoTelefoneFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoTelefone" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                   <Component id="jLabel10" min="-2" pref="14" max="-2" attributes="0"/>
@@ -212,16 +212,16 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="campoRuaFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoRua" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="campoNumeroFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoNumero" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="campoBairroFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoBairro" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="campoCepFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoCep" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                   <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
@@ -230,50 +230,50 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="campoFuncaoFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoPagamento" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="60" max="32767" attributes="0"/>
-                  <Component id="botaoAlterarFuncionario" min="-2" max="-2" attributes="0"/>
+                  <Component id="botaoAlterar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="campoNomeFuncionario">
+        <Component class="javax.swing.JTextField" name="campoNome">
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="campoDataNascimentoFuncionario">
+        <Component class="javax.swing.JFormattedTextField" name="campoDataNascimento">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="##/##/####" subtype="-1" type="5"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoNacionalidadeFuncionario">
+        <Component class="javax.swing.JTextField" name="campoNacionalidade">
         </Component>
-        <Component class="javax.swing.JTextField" name="campoEmailFuncionario">
+        <Component class="javax.swing.JTextField" name="campoEmail">
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="campoCpfFuncionario">
+        <Component class="javax.swing.JFormattedTextField" name="campoCpf">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="###.###.###-##" subtype="-1" type="5"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoCpfFuncionarioActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoCpfActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="campoRgFuncionario">
+        <Component class="javax.swing.JFormattedTextField" name="campoRg">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="##.###.###-#" subtype="-1" type="5"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoRgFuncionarioActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoRgActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JComboBox" name="campoEstadoCivilFuncionario">
+        <Component class="javax.swing.JComboBox" name="campoEstadoCivil">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="5">
@@ -289,41 +289,41 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="campoTelefoneFuncionario">
+        <Component class="javax.swing.JFormattedTextField" name="campoTelefone">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="(##) #####-####" subtype="-1" type="5"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoRuaFuncionario">
+        <Component class="javax.swing.JTextField" name="campoRua">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoRuaFuncionarioActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoRuaActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="campoNumeroFuncionario">
+        <Component class="javax.swing.JFormattedTextField" name="campoNumero">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
               <Format format="#0" subtype="-1" type="0"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoBairroFuncionario">
+        <Component class="javax.swing.JTextField" name="campoBairro">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoBairroFuncionarioActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoBairroActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="campoCepFuncionario">
+        <Component class="javax.swing.JFormattedTextField" name="campoCep">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="#####-###" subtype="-1" type="5"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoCepFuncionarioActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoCepActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JComboBox" name="campoFuncaoFuncionario">
+        <Component class="javax.swing.JComboBox" name="campoPagamento">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="2">
@@ -427,21 +427,21 @@
             <Property name="text" type="java.lang.String" value="Receber notifica&#xe7;&#xf5;es?"/>
           </Properties>
         </Component>
-        <Component class="java.awt.Button" name="botaoPesquisarFuncionario">
+        <Component class="java.awt.Button" name="botaoPesquisar">
           <Properties>
             <Property name="label" type="java.lang.String" value="Pesquisar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoPesquisarFuncionarioActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoPesquisarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="java.awt.Button" name="botaoAlterarFuncionario">
+        <Component class="java.awt.Button" name="botaoAlterar">
           <Properties>
             <Property name="enabled" type="boolean" value="false"/>
             <Property name="label" type="java.lang.String" value="Alterar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoAlterarFuncionarioActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoAlterarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

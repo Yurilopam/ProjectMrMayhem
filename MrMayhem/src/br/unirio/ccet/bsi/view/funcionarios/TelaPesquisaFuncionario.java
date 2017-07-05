@@ -7,7 +7,7 @@ package br.unirio.ccet.bsi.view.funcionarios;
 
 import br.unirio.ccet.bsi.model.FuncionarioLocal;
 import br.unirio.ccet.bsi.utils.Utils;
-import br.unirio.ccet.bsi.utils.XmlFuncionarioCadastrado;
+import br.unirio.ccet.bsi.utils.XmlFuncionario;
 import java.io.File;
 import javax.swing.table.DefaultTableModel;
 
@@ -35,7 +35,7 @@ public class TelaPesquisaFuncionario extends javax.swing.JInternalFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        botaoPesquisarFuncionarios = new java.awt.Button();
+        botaoPesquisar = new java.awt.Button();
 
         setClosable(true);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -50,10 +50,10 @@ public class TelaPesquisaFuncionario extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        botaoPesquisarFuncionarios.setLabel("Pesquisar");
-        botaoPesquisarFuncionarios.addActionListener(new java.awt.event.ActionListener() {
+        botaoPesquisar.setLabel("Pesquisar");
+        botaoPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoPesquisarFuncionariosActionPerformed(evt);
+                botaoPesquisarActionPerformed(evt);
             }
         });
 
@@ -67,7 +67,7 @@ public class TelaPesquisaFuncionario extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(359, 359, 359)
-                .addComponent(botaoPesquisarFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -76,30 +76,30 @@ public class TelaPesquisaFuncionario extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addComponent(botaoPesquisarFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(79, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botaoPesquisarFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPesquisarFuncionariosActionPerformed
+    private void botaoPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPesquisarActionPerformed
         DefaultTableModel dtmFuncionarios = (DefaultTableModel) jTable1.getModel();
-        XmlFuncionarioCadastrado xml = new XmlFuncionarioCadastrado();
+        XmlFuncionario xml = new XmlFuncionario();
         File arquivos = new File(Utils.recuperarPath("Funcionarios"));
         String[] cpfsFuncionarios = arquivos.list();
         for (String cpfFuncionario : cpfsFuncionarios){
-            FuncionarioLocal dadosFuncionario = (FuncionarioLocal) xml.LerXmlFuncionarioLocal(cpfFuncionario);
+            FuncionarioLocal dadosFuncionario = (FuncionarioLocal) xml.LerXml(cpfFuncionario);
             Object[] dados = {dadosFuncionario.getNome(), dadosFuncionario.getCpf(), dadosFuncionario.getFuncao()};
             dtmFuncionarios.addRow(dados);
         }
-        botaoPesquisarFuncionarios.setEnabled(false);
-    }//GEN-LAST:event_botaoPesquisarFuncionariosActionPerformed
+        botaoPesquisar.setEnabled(false);
+    }//GEN-LAST:event_botaoPesquisarActionPerformed
 
     DefaultTableModel dtmProdutos;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button botaoPesquisarFuncionarios;
+    private java.awt.Button botaoPesquisar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

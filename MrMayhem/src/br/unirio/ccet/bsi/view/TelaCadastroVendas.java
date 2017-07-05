@@ -6,7 +6,7 @@
 package br.unirio.ccet.bsi.view;
 
 import br.unirio.ccet.bsi.model.FuncionarioLocal;
-import br.unirio.ccet.bsi.utils.XmlFuncionarioCadastrado;
+import br.unirio.ccet.bsi.utils.XmlFuncionario;
 import javax.swing.JOptionPane;
 import org.apache.commons.lang3.StringUtils;
 
@@ -360,8 +360,8 @@ public class TelaCadastroVendas extends javax.swing.JInternalFrame {
             novoFuncionarioLocal.setBairro(campoBairroFuncionario.getText());
             novoFuncionarioLocal.setCep(campoCepFuncionario.getText());
             novoFuncionarioLocal.setFuncao(campoFuncaoFuncionario.getSelectedItem().toString());
-            XmlFuncionarioCadastrado xml = new XmlFuncionarioCadastrado();
-            xml.GerarXmlFuncionarioLocal(novoFuncionarioLocal);
+            XmlFuncionario xml = new XmlFuncionario();
+            xml.GerarXml(novoFuncionarioLocal);
             JOptionPane.showMessageDialog(TelaCadastroVendas.this, "Funcionário cadastrado com sucesso!");
             resetarCampos();
         }

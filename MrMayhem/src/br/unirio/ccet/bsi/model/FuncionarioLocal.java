@@ -1,7 +1,5 @@
 package br.unirio.ccet.bsi.model;
 
-import br.unirio.ccet.bsi.model.Usuario;
-
 /**
  *
  * @author yuri

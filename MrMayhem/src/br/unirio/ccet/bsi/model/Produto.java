@@ -3,6 +3,7 @@ package br.unirio.ccet.bsi.model;
 public class Produto {
     
     private String nomeProduto;
+    private String idProduto;
     private String dataCadastroProduto;
     private String tipoProduto;
     private String descricaoProduto;
@@ -13,6 +14,20 @@ public class Produto {
 
     public void setNomeProduto(String nomeProduto) {
         this.nomeProduto = nomeProduto;
+    }
+
+    /**
+     * @return the idProduto
+     */
+    public String getIdProduto() {
+        return idProduto;
+    }
+
+    /**
+     * @param idProduto the idProduto to set
+     */
+    public void setIdProduto(String idProduto) {
+        this.idProduto = idProduto;
     }
     
     public String getDataCadastroProduto() {
