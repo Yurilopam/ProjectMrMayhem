@@ -5,7 +5,7 @@
  */
 package br.unirio.ccet.bsi.view.funcionarios;
 
-import br.unirio.ccet.bsi.view.TelaCadastroVendas;
+import br.unirio.ccet.bsi.view.vendas.TelaCadastroVenda;
 import br.unirio.ccet.bsi.view.produtos.TelaAlterarProduto;
 import br.unirio.ccet.bsi.view.produtos.TelaCadastroProduto;
 import br.unirio.ccet.bsi.view.produtos.TelaExcluirProduto;
@@ -320,7 +320,7 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-        TelaCadastroVendas telaCadastroVendas = new TelaCadastroVendas();
+        TelaCadastroVenda telaCadastroVendas = new TelaCadastroVenda();
         jDesktopPane1.add(telaCadastroVendas);
         telaCadastroVendas.setVisible(true);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
