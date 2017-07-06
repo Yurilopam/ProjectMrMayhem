@@ -6,10 +6,26 @@ package br.unirio.ccet.bsi.model;
  */
 public class FuncionarioLocal extends Usuario{
     
+    private String funcao;
+    
     public FuncionarioLocal() {
         
         super();
         
+    }
+
+    /**
+     * @return the funcao
+     */
+    public String getFuncao() {
+        return funcao;
+    }
+
+    /**
+     * @param funcao the funcao to set
+     */
+    public void setFuncao(String funcao) {
+        this.funcao = funcao;
     }
     
     public void realizarVenda() {

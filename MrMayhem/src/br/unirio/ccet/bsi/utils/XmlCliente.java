@@ -6,7 +6,6 @@
 package br.unirio.ccet.bsi.utils;
 
 import br.unirio.ccet.bsi.model.Cliente;
-import br.unirio.ccet.bsi.model.FuncionarioLocal;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.BufferedInputStream;

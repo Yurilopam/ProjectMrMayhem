@@ -6,30 +6,41 @@ package br.unirio.ccet.bsi.model;
  */
 public class Cliente extends Usuario{
     
+    private String receberNotificacoes;
+    private String infoAdicional;
+    
     public Cliente() {
         
         super();
         
     }
-    
-    public void realizarVenda() {
-        
+
+    /**
+     * @return the receberNotificacoes
+     */
+    public String getReceberNotificacoes() {
+        return receberNotificacoes;
     }
-    
-    public void realizarAluguel() {
-        
+
+    /**
+     * @param receberNotificacoes the receberNotificacoes to set
+     */
+    public void setReceberNotificacoes(String receberNotificacoes) {
+        this.receberNotificacoes = receberNotificacoes;
     }
-    
-    public void manterCliente() {
-        
+
+    /**
+     * @return the infoAdicional
+     */
+    public String getInfoAdicional() {
+        return infoAdicional;
     }
-    
-    public void adicionarReservaExpressa() {
-        
+
+    /**
+     * @param infoAdicional the infoAdicional to set
+     */
+    public void setInfoAdicional(String infoAdicional) {
+        this.infoAdicional = infoAdicional;
     }
-    
-    public void visualizarFuncionario() {
-        
-    }
-    
+
 }

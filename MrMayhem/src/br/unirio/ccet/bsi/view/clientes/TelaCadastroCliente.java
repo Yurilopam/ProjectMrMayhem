@@ -6,9 +6,7 @@
 package br.unirio.ccet.bsi.view.clientes;
 
 import br.unirio.ccet.bsi.model.Cliente;
-import br.unirio.ccet.bsi.model.FuncionarioLocal;
 import br.unirio.ccet.bsi.utils.XmlCliente;
-import br.unirio.ccet.bsi.utils.XmlFuncionario;
 import javax.swing.JOptionPane;
 import org.apache.commons.lang3.StringUtils;
 
@@ -47,7 +45,9 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
         campoNumero = new javax.swing.JFormattedTextField();
         campoBairro = new javax.swing.JTextField();
         campoCep = new javax.swing.JFormattedTextField();
-        campoFuncao = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        campoInfoAdicional = new javax.swing.JTextArea();
+        campoDataCadastramento = new javax.swing.JFormattedTextField();
         botaoCadastar = new java.awt.Button();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -63,7 +63,7 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -137,7 +137,20 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
             }
         });
 
-        campoFuncao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DINHEIRO", "CARTÃO" }));
+        campoInfoAdicional.setColumns(20);
+        campoInfoAdicional.setRows(5);
+        jScrollPane1.setViewportView(campoInfoAdicional);
+
+        try {
+            campoDataCadastramento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        campoDataCadastramento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoDataCadastramentoActionPerformed(evt);
+            }
+        });
 
         botaoCadastar.setLabel("Cadastrar");
         botaoCadastar.addActionListener(new java.awt.event.ActionListener() {
@@ -172,9 +185,9 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
 
         jLabel14.setText("CEP:");
 
-        jLabel16.setText("Dados de pagamento");
+        jLabel16.setText("Informações adicionais");
 
-        jLabel17.setText("Método de pagamento");
+        jLabel19.setText("Data de cadastramento:");
 
         jLabel21.setText("Telefone:");
 
@@ -188,79 +201,81 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
             .addComponent(jSeparator2)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSeparator3))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator3)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(jLabel17)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel13))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(campoRua, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel12)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(campoNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(campoBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel14)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(campoCep, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel16)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel5))
+                                            .addComponent(jLabel11)
+                                            .addComponent(jLabel13))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(campoRua, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jLabel12)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(campoNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(campoBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jLabel14)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(campoCep, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel16)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(campoCpf)
-                                            .addComponent(campoEstadoCivil, 0, 157, Short.MAX_VALUE))
-                                        .addGap(38, 38, 38)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel8)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(campoRg, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel4)
+                                                    .addComponent(jLabel5))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(campoCpf)
+                                                    .addComponent(campoEstadoCivil, 0, 157, Short.MAX_VALUE))
+                                                .addGap(38, 38, 38)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                                        .addComponent(jLabel8)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(campoRg, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                                        .addComponent(jLabel21)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(campoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel21)
+                                                .addComponent(jLabel3)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(campoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addComponent(campoNacionalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jLabel7)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(campoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jLabel2)
+                                                .addGap(43, 43, 43)
+                                                .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jLabel6)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(campoDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(campoNacionalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(campoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(43, 43, 43)
-                                        .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(campoDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(343, 343, 343)
-                        .addComponent(botaoCadastar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(333, 333, 333)
+                                        .addComponent(botaoCadastar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel19)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(campoDataCadastramento, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,10 +331,12 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17)
-                    .addComponent(campoFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel19)
+                        .addComponent(campoDataCadastramento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(botaoCadastar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
@@ -349,17 +366,37 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_campoCpfActionPerformed
 
     private void botaoCadastarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastarActionPerformed
-        if (!StringUtils.isEmpty(campoNome.getText())
-                && !StringUtils.isEmpty(campoDataNascimento.getText())
-                && !StringUtils.isEmpty(campoNacionalidade.getText())) {
+        if (formularioCadastroValidado()) {
             Cliente novoCliente = new Cliente();
             novoCliente.setNome(campoNome.getText());
+            novoCliente.setDataNascimento(campoDataNascimento.getText());
+            novoCliente.setNacionalidade(campoNacionalidade.getText());
+            novoCliente.setEmail(campoEmail.getText());
+            novoCliente.setCpf(campoCpf.getText());
+            novoCliente.setRg(campoRg.getText());
+            notificacoesCliente(novoCliente);
+            novoCliente.setEstadoCivil(campoEstadoCivil.getSelectedItem().toString());
+            novoCliente.setTelefone(campoTelefone.getText());
+            novoCliente.setRua(campoRua.getText());
+            novoCliente.setNumero(campoNumero.getText());
+            novoCliente.setBairro(campoBairro.getText());
+            novoCliente.setCep(campoCep.getText());
+            novoCliente.setInfoAdicional(campoInfoAdicional.getText());
+            novoCliente.setDataCadastramento(campoDataCadastramento.getText());
             XmlCliente xml = new XmlCliente();
             xml.GerarXml(novoCliente);
             JOptionPane.showMessageDialog(TelaCadastroCliente.this, "Cliente cadastrado com sucesso!");
             resetarCampos();
         }
     }//GEN-LAST:event_botaoCadastarActionPerformed
+
+    private void notificacoesCliente(Cliente novoCliente) {
+        if (jCheckBox1.isSelected()) {
+            novoCliente.setReceberNotificacoes("SIM");
+        } else {
+            novoCliente.setReceberNotificacoes("NÃO");
+        }
+    }
 
     private void campoRgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoRgActionPerformed
         // TODO add your handling code here:
@@ -377,8 +414,49 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoCepActionPerformed
 
+    private void campoDataCadastramentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDataCadastramentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoDataCadastramentoActionPerformed
+
+    private boolean formularioCadastroValidado() {
+        return !StringUtils.isEmpty(campoNome.getText())
+                && !StringUtils.isEmpty(campoDataNascimento.getText())
+                && !StringUtils.isEmpty(campoNacionalidade.getText())
+                && !StringUtils.isEmpty(campoEmail.getText())
+                && !StringUtils.isEmpty(campoCpf.getText())
+                && !StringUtils.isEmpty(campoRg.getText())
+                && !StringUtils.isEmpty(campoEstadoCivil.getSelectedItem().toString())
+                && !StringUtils.isEmpty(campoTelefone.getText())
+                && !StringUtils.isEmpty(campoRua.getText())
+                && !StringUtils.isEmpty(campoNumero.getText())
+                && !StringUtils.isEmpty(campoBairro.getText())
+                && !StringUtils.isEmpty(campoCep.getText())
+                && !StringUtils.isEmpty(campoDataCadastramento.getText());
+    }
+    
     private void resetarCampos() {
         campoNome.setText(null);
+        campoDataNascimento.setText(null);
+        campoDataNascimento.setValue(null);
+        campoNacionalidade.setText(null);
+        campoEmail.setText(null);
+        campoCpf.setText(null);
+        campoCpf.setValue(null);
+        campoRg.setText(null);
+        campoRg.setValue(null);
+        jCheckBox1.setSelected(false);
+        campoEstadoCivil.setSelectedIndex(0);
+        campoTelefone.setText(null);
+        campoTelefone.setValue(null);
+        campoRua.setText(null);
+        campoNumero.setText(null);
+        campoNumero.setValue(null);
+        campoBairro.setText(null);
+        campoCep.setText(null);
+        campoCep.setValue(null);
+        campoInfoAdicional.setText(null);
+        campoDataCadastramento.setText(null);
+        campoDataCadastramento.setValue(null);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -386,10 +464,11 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField campoBairro;
     private javax.swing.JFormattedTextField campoCep;
     private javax.swing.JFormattedTextField campoCpf;
+    private javax.swing.JFormattedTextField campoDataCadastramento;
     private javax.swing.JFormattedTextField campoDataNascimento;
     private javax.swing.JTextField campoEmail;
     private javax.swing.JComboBox<String> campoEstadoCivil;
-    private javax.swing.JComboBox<String> campoFuncao;
+    private javax.swing.JTextArea campoInfoAdicional;
     private javax.swing.JTextField campoNacionalidade;
     private javax.swing.JTextField campoNome;
     private javax.swing.JFormattedTextField campoNumero;
@@ -404,7 +483,7 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
@@ -414,6 +493,7 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;

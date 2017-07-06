@@ -428,7 +428,7 @@ public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_campoDataAdmissaoActionPerformed
 
     private void botaoCadastarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastarActionPerformed
-        if (formularioCadastroFuncionarioValidado()) {
+        if (formularioCadastroValidado()) {
             FuncionarioLocal novoFuncionarioLocal = new FuncionarioLocal();
             novoFuncionarioLocal.setNome(campoNome.getText());
             novoFuncionarioLocal.setDataNascimento(campoDataNascimento.getText());
@@ -445,7 +445,7 @@ public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
             novoFuncionarioLocal.setCep(campoCep.getText());
             novoFuncionarioLocal.setFuncao(campoFuncao.getSelectedItem().toString());
             novoFuncionarioLocal.setSalario(campoSalario.getText());
-            novoFuncionarioLocal.setDataAdmissao(campoDataAdmissao.getText());
+            novoFuncionarioLocal.setDataCadastramento(campoDataAdmissao.getText());
             XmlFuncionario xml = new XmlFuncionario();
             xml.GerarXml(novoFuncionarioLocal);
             JOptionPane.showMessageDialog(TelaCadastroFuncionario.this, "Funcionário cadastrado com sucesso!");
@@ -457,7 +457,7 @@ public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoNomeActionPerformed
 
-    private boolean formularioCadastroFuncionarioValidado() {
+    private boolean formularioCadastroValidado() {
         return !StringUtils.isEmpty(campoNome.getText())
                 && !StringUtils.isEmpty(campoDataNascimento.getText())
                 && !StringUtils.isEmpty(campoNacionalidade.getText())
@@ -479,20 +479,29 @@ public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
     private void resetarCampos() {
         campoNome.setText(null);
         campoDataNascimento.setText(null);
+        campoDataNascimento.setValue(null);
         campoNacionalidade.setText(null);
         campoEmail.setText(null);
         campoCpf.setText(null);
+        campoCpf.setValue(null);
         campoRg.setText(null);
+        campoRg.setValue(null);
         campoCtps.setText(null);
+        campoCtps.setValue(null);
         campoEstadoCivil.setSelectedIndex(0);
         campoTelefone.setText(null);
+        campoTelefone.setValue(null);
         campoRua.setText(null);
         campoNumero.setText(null);
+        campoNumero.setValue(null);
         campoBairro.setText(null);
         campoCep.setText(null);
+        campoCep.setValue(null);
         campoFuncao.setSelectedIndex(0);
         campoSalario.setText(null);
+        campoSalario.setValue(null);
         campoDataAdmissao.setText(null);
+        campoDataAdmissao.setValue(null);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

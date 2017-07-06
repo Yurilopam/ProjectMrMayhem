@@ -12,10 +12,12 @@ import br.unirio.ccet.bsi.view.produtos.TelaExcluirProduto;
 import br.unirio.ccet.bsi.view.clientes.TelaCadastroCliente;
 import br.unirio.ccet.bsi.view.clientes.TelaExcluirCliente;
 import br.unirio.ccet.bsi.view.clientes.TelaAlterarCliente;
+import br.unirio.ccet.bsi.view.clientes.TelaPesquisaCliente;
 import br.unirio.ccet.bsi.view.funcionarios.TelaExcluirFuncionario;
 import br.unirio.ccet.bsi.view.funcionarios.TelaPesquisaFuncionario;
 import br.unirio.ccet.bsi.view.funcionarios.TelaCadastroFuncionario;
 import br.unirio.ccet.bsi.view.funcionarios.TelaAlterarFuncionario;
+import br.unirio.ccet.bsi.view.produtos.TelaPesquisaProduto;
 import javax.swing.JOptionPane;
 import org.apache.commons.lang3.StringUtils;
 
@@ -306,15 +308,15 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        TelaPesquisaFuncionario telaPesquisaFuncionario = new TelaPesquisaFuncionario();
-        jDesktopPane1.add(telaPesquisaFuncionario);
-        telaPesquisaFuncionario.setVisible(true);
+        TelaPesquisaCliente telaPesquisaCliente = new TelaPesquisaCliente();
+        jDesktopPane1.add(telaPesquisaCliente);
+        telaPesquisaCliente.setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        TelaPesquisaFuncionario telaPesquisaFuncionario = new TelaPesquisaFuncionario();
-        jDesktopPane1.add(telaPesquisaFuncionario);
-        telaPesquisaFuncionario.setVisible(true);
+        TelaPesquisaProduto telaPesquisaProduto = new TelaPesquisaProduto();
+        jDesktopPane1.add(telaPesquisaProduto);
+        telaPesquisaProduto.setVisible(true);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed

@@ -7,7 +7,6 @@ import java.io.Serializable;
  * @author yuri
  */
 public abstract class Usuario implements Serializable{
-
     
     private String nome;
     private String dataNascimento;
@@ -22,9 +21,8 @@ public abstract class Usuario implements Serializable{
     private String numero;
     private String bairro;
     private String cep;
-    private String funcao;
     private String salario;
-    private String dataAdmissao;
+    private String dataCadastramento;
     
     public Usuario() {
 
@@ -211,21 +209,7 @@ public abstract class Usuario implements Serializable{
     public void setCep(String cep) {
         this.cep = cep;
     }
-
-    /**
-     * @return the funcao
-     */
-    public String getFuncao() {
-        return funcao;
-    }
-
-    /**
-     * @param funcao the funcao to set
-     */
-    public void setFuncao(String funcao) {
-        this.funcao = funcao;
-    }
-
+    
     /**
      * @return the salario
      */
@@ -241,17 +225,17 @@ public abstract class Usuario implements Serializable{
     }
 
     /**
-     * @return the dataAdmissao
+     * @return the dataCadastramento
      */
-    public String getDataAdmissao() {
-        return dataAdmissao;
+    public String getDataCadastramento() {
+        return dataCadastramento;
     }
 
     /**
-     * @param dataAdmissao the dataAdmissao to set
+     * @param dataCadastramento the dataCadastramento to set
      */
-    public void setDataAdmissao(String dataAdmissao) {
-        this.dataAdmissao = dataAdmissao;
+    public void setDataCadastramento(String dataCadastramento) {
+        this.dataCadastramento = dataCadastramento;
     }
 
 }

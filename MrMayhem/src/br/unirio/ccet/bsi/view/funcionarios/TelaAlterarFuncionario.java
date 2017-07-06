@@ -100,6 +100,7 @@ public class TelaAlterarFuncionario extends javax.swing.JInternalFrame {
 
         campoEmail.setEditable(false);
 
+        campoCpf.setEditable(false);
         try {
             campoCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
@@ -123,7 +124,6 @@ public class TelaAlterarFuncionario extends javax.swing.JInternalFrame {
             }
         });
 
-        campoCtps.setEditable(false);
         try {
             campoCtps.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.#####.##-#")));
         } catch (java.text.ParseException ex) {
@@ -136,6 +136,7 @@ public class TelaAlterarFuncionario extends javax.swing.JInternalFrame {
         });
 
         campoEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SOLTEIRO(A)", "CASADO(A)", "DIVORCIADO(A)", "VIÚVO(A)", "SEPARADO(A)" }));
+        campoEstadoCivil.setEnabled(false);
 
         campoTelefone.setEditable(false);
         try {
@@ -173,10 +174,11 @@ public class TelaAlterarFuncionario extends javax.swing.JInternalFrame {
             }
         });
 
-        campoFuncao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SUPERVISOR\t", "ATENDENTE", "ENTREGADOR", "ALFAIATE" }));
+        campoFuncao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SUPERVISOR", "ATENDENTE", "ENTREGADOR", "ALFAIATE" }));
+        campoFuncao.setEnabled(false);
 
         campoSalario.setEditable(false);
-        campoSalario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        campoSalario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
         campoDataAdmissao.setEditable(false);
         try {
@@ -237,7 +239,7 @@ public class TelaAlterarFuncionario extends javax.swing.JInternalFrame {
 
         jLabel17.setText("Função:");
 
-        jLabel18.setText("Salário:");
+        jLabel18.setText("Salário: R$");
 
         jLabel19.setText("Data de admissão:");
 
@@ -247,6 +249,12 @@ public class TelaAlterarFuncionario extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator1)
+            .addComponent(jSeparator2)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(343, 343, 343)
+                .addComponent(botaoAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -259,7 +267,7 @@ public class TelaAlterarFuncionario extends javax.swing.JInternalFrame {
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(campoSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
+                        .addGap(41, 41, 41)
                         .addComponent(jLabel19)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(campoDataAdmissao, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -301,31 +309,28 @@ public class TelaAlterarFuncionario extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel5)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(campoEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel21)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(campoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(jLabel8)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(campoRg, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(31, 31, 31))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(campoEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel9)
+                                        .addComponent(jLabel4)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(campoCtps, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel21)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(campoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(campoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel9)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(campoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(42, 42, 42)
+                                        .addComponent(campoCtps, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(40, 40, 40)
                                         .addComponent(botaoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel2)
@@ -335,16 +340,8 @@ public class TelaAlterarFuncionario extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(campoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(343, 343, 343)
-                .addComponent(botaoAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jSeparator1)
-            .addComponent(jSeparator2)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSeparator3))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jSeparator3)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -356,10 +353,11 @@ public class TelaAlterarFuncionario extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(campoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(13, 13, 13)
+                            .addComponent(jLabel9)
+                            .addComponent(campoCtps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(campoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -369,10 +367,10 @@ public class TelaAlterarFuncionario extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(campoRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)
-                            .addComponent(campoCtps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
-                            .addComponent(campoNacionalidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(campoNacionalidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(campoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(13, 13, 13)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
@@ -402,13 +400,15 @@ public class TelaAlterarFuncionario extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel17)
-                            .addComponent(campoFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel18)
-                            .addComponent(jLabel19)
-                            .addComponent(campoDataAdmissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel18)
+                                .addComponent(campoSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel17)
+                                .addComponent(campoFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel19)
+                                .addComponent(campoDataAdmissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                         .addComponent(botaoAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30))
@@ -483,7 +483,7 @@ public class TelaAlterarFuncionario extends javax.swing.JInternalFrame {
             funcionarioLocalAlterado.setCep(campoCep.getText());
             funcionarioLocalAlterado.setFuncao(campoFuncao.getSelectedItem().toString());
             funcionarioLocalAlterado.setSalario(campoSalario.getText());
-            funcionarioLocalAlterado.setDataAdmissao(campoDataAdmissao.getText());
+            funcionarioLocalAlterado.setDataCadastramento(campoDataAdmissao.getText());
             XmlFuncionario xml = new XmlFuncionario();
             xml.GerarXml(funcionarioLocalAlterado);
             JOptionPane.showMessageDialog(TelaAlterarFuncionario.this, "Funcionário alterado com sucesso!");
@@ -498,10 +498,10 @@ public class TelaAlterarFuncionario extends javax.swing.JInternalFrame {
     private void botaoPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPesquisarActionPerformed
         XmlFuncionario xml = new XmlFuncionario();
         File arquivos = new File(Utils.recuperarPath("Funcionarios"));
-        File[] cpfsFuncionarios = arquivos.listFiles();
-        for (File cpfFuncionario : cpfsFuncionarios){
-            if(cpfFuncionario.getName().equals(campoCpf.getText()+".xml")){
-                FuncionarioLocal dadosFuncionario = (FuncionarioLocal) xml.LerXml(cpfFuncionario.getName());
+        File[] ctpsFuncionarios = arquivos.listFiles();
+        for (File ctpsFuncionario : ctpsFuncionarios){
+            if(ctpsFuncionario.getName().equals(campoCtps.getText()+".xml")){
+                FuncionarioLocal dadosFuncionario = xml.LerXml(ctpsFuncionario.getName());
                 campoNome.setText(dadosFuncionario.getNome());
                 campoDataNascimento.setText(dadosFuncionario.getDataNascimento());
                 campoNacionalidade.setText(dadosFuncionario.getNacionalidade());
@@ -517,7 +517,9 @@ public class TelaAlterarFuncionario extends javax.swing.JInternalFrame {
                 campoCep.setText(dadosFuncionario.getCep());
                 campoFuncao.setSelectedIndex(recuperarFuncao(dadosFuncionario));
                 campoSalario.setText(dadosFuncionario.getSalario());
-                campoDataAdmissao.setText(dadosFuncionario.getDataAdmissao());
+                campoDataAdmissao.setText(dadosFuncionario.getDataCadastramento());
+                campoEstadoCivil.setEnabled(true);
+                campoFuncao.setEnabled(true);
                 campoNome.setEditable(true);
                 campoEmail.setEditable(true);
                 campoTelefone.setEditable(true);
@@ -581,21 +583,40 @@ public class TelaAlterarFuncionario extends javax.swing.JInternalFrame {
     private void resetarCampos() {
         campoNome.setText(null);
         campoDataNascimento.setText(null);
+        campoDataNascimento.setValue(null);
         campoNacionalidade.setText(null);
         campoEmail.setText(null);
         campoCpf.setText(null);
+        campoCpf.setValue(null);
         campoRg.setText(null);
+        campoRg.setValue(null);
         campoCtps.setText(null);
+        campoCtps.setValue(null);
         campoEstadoCivil.setSelectedIndex(0);
         campoTelefone.setText(null);
+        campoTelefone.setValue(null);
         campoRua.setText(null);
         campoNumero.setText(null);
+        campoNumero.setValue(null);
         campoBairro.setText(null);
         campoCep.setText(null);
+        campoCep.setValue(null);
         campoFuncao.setSelectedIndex(0);
         campoSalario.setText(null);
+        campoSalario.setValue(null);
         campoDataAdmissao.setText(null);
+        campoDataAdmissao.setValue(null);
         botaoAlterar.setEnabled(false);
+        campoEstadoCivil.setEnabled(false);
+        campoFuncao.setEnabled(false);
+        campoNome.setEditable(false);
+        campoEmail.setEditable(false);
+        campoTelefone.setEditable(false);
+        campoRua.setEditable(false);
+        campoNumero.setEditable(false);
+        campoBairro.setEditable(false);
+        campoCep.setEditable(false);
+        campoSalario.setEditable(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

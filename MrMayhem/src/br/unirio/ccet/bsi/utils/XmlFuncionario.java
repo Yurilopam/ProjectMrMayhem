@@ -21,7 +21,7 @@ import java.io.FileOutputStream;
 public class XmlFuncionario {    
 
     public void GerarXml(FuncionarioLocal novoFuncionarioLocal) {
-        String PATH = Utils.recuperarPath("Funcionarios")+"\\"+novoFuncionarioLocal.getCpf()+".xml";
+        String PATH = Utils.recuperarPath("Funcionarios")+"\\"+novoFuncionarioLocal.getCtps()+".xml";
         
         try {
             XMLEncoder encoder;

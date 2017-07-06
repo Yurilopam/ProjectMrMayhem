@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.unirio.ccet.bsi.view.funcionarios;
+package br.unirio.ccet.bsi.view.produtos;
 
-import br.unirio.ccet.bsi.model.FuncionarioLocal;
+import br.unirio.ccet.bsi.model.Produto;
 import br.unirio.ccet.bsi.utils.Utils;
-import br.unirio.ccet.bsi.utils.XmlFuncionario;
+import br.unirio.ccet.bsi.utils.XmlProduto;
 import java.io.File;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,12 +15,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Yuri Lopam
  */
-public class TelaPesquisaFuncionario extends javax.swing.JInternalFrame {
+public class TelaPesquisaProduto extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form TelaPesquisaFuncionario
      */
-    public TelaPesquisaFuncionario() {
+    public TelaPesquisaProduto() {
         initComponents();
     }
 
@@ -45,11 +45,11 @@ public class TelaPesquisaFuncionario extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Nome", "CTPS", "Função", "Salário", "Data de cadastramento"
+                "Código", "Nome", "Tipo", "Data de cadastramento"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -92,15 +92,14 @@ public class TelaPesquisaFuncionario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPesquisarActionPerformed
-        DefaultTableModel dtmFuncionarios = (DefaultTableModel) jTable1.getModel();
-        XmlFuncionario xml = new XmlFuncionario();
-        File arquivos = new File(Utils.recuperarPath("Funcionarios"));
-        String[] cpfsFuncionarios = arquivos.list();
-        for (String cpfFuncionario : cpfsFuncionarios){
-            FuncionarioLocal dadosFuncionario = xml.LerXml(cpfFuncionario);
-            Object[] dados = {dadosFuncionario.getNome(), dadosFuncionario.getCtps(), dadosFuncionario.getFuncao(), 
-                dadosFuncionario.getSalario(), dadosFuncionario.getDataCadastramento()};
-            dtmFuncionarios.addRow(dados);
+        DefaultTableModel dtmProdutos = (DefaultTableModel) jTable1.getModel();
+        XmlProduto xml = new XmlProduto();
+        File arquivos = new File(Utils.recuperarPath("Produtos"));
+        String[] codProdutos = arquivos.list();
+        for (String codProduto : codProdutos){
+            Produto dadosProduto = xml.LerXml(codProduto);
+            Object[] dados = {dadosProduto.getCodigo(), dadosProduto.getNome(), dadosProduto.getTipo(), dadosProduto.getDataCadastramento()};
+            dtmProdutos.addRow(dados);
         }
         botaoPesquisar.setEnabled(false);
     }//GEN-LAST:event_botaoPesquisarActionPerformed

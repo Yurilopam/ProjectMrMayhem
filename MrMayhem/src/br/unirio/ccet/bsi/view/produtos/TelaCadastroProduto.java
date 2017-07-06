@@ -34,11 +34,13 @@ public class TelaCadastroProduto extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         campoNome = new javax.swing.JTextField();
-        campoDataCadastro = new javax.swing.JFormattedTextField();
+        campoDataCadastramento = new javax.swing.JFormattedTextField();
         campoTipoProduto = new javax.swing.JComboBox<>();
+        campoCodigo = new javax.swing.JFormattedTextField();
         botaoCadastar = new java.awt.Button();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -59,7 +61,7 @@ public class TelaCadastroProduto extends javax.swing.JInternalFrame {
         });
 
         try {
-            campoDataCadastro.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            campoDataCadastramento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -71,6 +73,12 @@ public class TelaCadastroProduto extends javax.swing.JInternalFrame {
             }
         });
 
+        try {
+            campoCodigo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         botaoCadastar.setLabel("Cadastrar");
         botaoCadastar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,6 +89,8 @@ public class TelaCadastroProduto extends javax.swing.JInternalFrame {
         jLabel1.setText("Cadastrar Produto");
 
         jLabel2.setText("Nome:");
+
+        jLabel3.setText("Código do produto:");
 
         jLabel5.setText("Tipo:");
 
@@ -109,23 +119,31 @@ public class TelaCadastroProduto extends javax.swing.JInternalFrame {
                                 .addComponent(jScrollPane1))
                             .addComponent(jLabel2)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(74, 74, 74)
+                                .addContainerGap()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(campoTipoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(74, 74, 74)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(campoTipoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(60, 60, 60)
-                                        .addComponent(jLabel6)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(campoDataCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(343, 343, 343)
-                        .addComponent(botaoCadastar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(48, Short.MAX_VALUE))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jLabel6)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(campoDataCadastramento, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jLabel3)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(campoCodigo))))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(343, 343, 343)
+                                .addComponent(botaoCadastar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(5, 5, 5)))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,14 +155,17 @@ public class TelaCadastroProduto extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(campoDataCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(campoDataCadastramento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel6))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(campoTipoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(campoTipoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3)
+                        .addComponent(campoCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,12 +201,13 @@ public class TelaCadastroProduto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_campoNomeActionPerformed
 
     private void botaoCadastarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastarActionPerformed
-        if (formularioCadastroProdutoValidado()) {
+        if (formularioCadastroValidado()) {
             Produto novoProduto = new Produto();
-            novoProduto.setNomeProduto(campoNome.getText());
-            novoProduto.setDataCadastroProduto(campoDataCadastro.getText());
-            novoProduto.setTipoProduto(campoTipoProduto.getSelectedItem().toString());
-            novoProduto.setDescricaoProduto(campoDescricaoProduto.getText());
+            novoProduto.setNome(campoNome.getText());
+            novoProduto.setDataCadastramento(campoDataCadastramento.getText());
+            novoProduto.setTipo(campoTipoProduto.getSelectedItem().toString());
+            novoProduto.setCodigo(campoCodigo.getText());
+            novoProduto.setDescricao(campoDescricaoProduto.getText());
             XmlProduto xml = new XmlProduto();
             xml.GerarXml(novoProduto);
             JOptionPane.showMessageDialog(TelaCadastroProduto.this, "Produto cadastrado com sucesso!");
@@ -197,29 +219,35 @@ public class TelaCadastroProduto extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoTipoProdutoActionPerformed
 
-    private boolean formularioCadastroProdutoValidado() {
+    private boolean formularioCadastroValidado() {
         return !StringUtils.isEmpty(campoNome.getText())
-                && !StringUtils.isEmpty(campoDataCadastro.getText())
+                && !StringUtils.isEmpty(campoDataCadastramento.getText())
                 && !StringUtils.isEmpty(campoTipoProduto.getSelectedItem().toString())
+                && !StringUtils.isEmpty(campoCodigo.getText())
                 && !StringUtils.isEmpty(campoDescricaoProduto.getText());
     }
     
     private void resetarCampos() {
         campoNome.setText(null);
-        campoDataCadastro.setText(null);
+        campoDataCadastramento.setText(null);
+        campoDataCadastramento.setValue(null);
         campoTipoProduto.setSelectedIndex(0);
+        campoCodigo.setText(null);
+        campoCodigo.setValue(null);
         campoDescricaoProduto.setText(null);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button botaoCadastar;
-    private javax.swing.JFormattedTextField campoDataCadastro;
+    private javax.swing.JFormattedTextField campoCodigo;
+    private javax.swing.JFormattedTextField campoDataCadastramento;
     private javax.swing.JTextArea campoDescricaoProduto;
     private javax.swing.JTextField campoNome;
     private javax.swing.JComboBox<String> campoTipoProduto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;

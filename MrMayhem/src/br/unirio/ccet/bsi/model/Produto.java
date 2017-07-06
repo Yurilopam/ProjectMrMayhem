@@ -1,57 +1,81 @@
 package br.unirio.ccet.bsi.model;
 
 public class Produto {
-    
-    private String nomeProduto;
-    private String idProduto;
-    private String dataCadastroProduto;
-    private String tipoProduto;
-    private String descricaoProduto;
-    
-    public String getNomeProduto() {
-        return nomeProduto;
-    }
 
-    public void setNomeProduto(String nomeProduto) {
-        this.nomeProduto = nomeProduto;
+    private String nome;
+    private String codigo;
+    private String dataCadastramento;
+    private String tipo;
+    private String descricao;
+    
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
     }
 
     /**
-     * @return the idProduto
+     * @param nome the nome to set
      */
-    public String getIdProduto() {
-        return idProduto;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     /**
-     * @param idProduto the idProduto to set
+     * @return the codigo
      */
-    public void setIdProduto(String idProduto) {
-        this.idProduto = idProduto;
-    }
-    
-    public String getDataCadastroProduto() {
-        return dataCadastroProduto;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setDataCadastroProduto(String dataCadastroProduto) {
-        this.dataCadastroProduto = dataCadastroProduto;
-    }
-    
-    public String getTipoProduto() {
-        return tipoProduto;
-    }
-
-    public void setTipoProduto(String tipoProduto) {
-        this.tipoProduto = tipoProduto;
-    }
-    
-    public String getDescricaoProduto() {
-        return descricaoProduto;
+    /**
+     * @param codigo the codigo to set
+     */
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
-    public void setDescricaoProduto(String descricaoProduto) {
-        this.descricaoProduto = descricaoProduto;
+    /**
+     * @return the dataCadastramento
+     */
+    public String getDataCadastramento() {
+        return dataCadastramento;
+    }
+
+    /**
+     * @param dataCadastramento the dataCadastramento to set
+     */
+    public void setDataCadastramento(String dataCadastramento) {
+        this.dataCadastramento = dataCadastramento;
+    }
+
+    /**
+     * @return the tipo
+     */
+    public String getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    /**
+     * @return the descricao
+     */
+    public String getDescricao() {
+        return descricao;
+    }
+
+    /**
+     * @param descricao the descricao to set
+     */
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
     
 }

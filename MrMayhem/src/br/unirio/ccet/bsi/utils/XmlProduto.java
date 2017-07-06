@@ -21,7 +21,7 @@ import java.io.FileOutputStream;
 public class XmlProduto {    
     
     public void GerarXml(Produto novoProduto) {
-        String PATH = Utils.recuperarPath("Produtos")+"\\"+novoProduto.getIdProduto()+".xml";
+        String PATH = Utils.recuperarPath("Produtos")+"\\"+novoProduto.getCodigo()+".xml";
         
         try {
             XMLEncoder encoder;
