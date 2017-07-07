@@ -7,6 +7,8 @@ public class Produto {
     private String dataCadastramento;
     private String tipo;
     private String descricao;
+    private String valor;
+    private String quantidade;
     
     /**
      * @return the nome
@@ -76,6 +78,34 @@ public class Produto {
      */
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    /**
+     * @return the valor
+     */
+    public String getValor() {
+        return valor;
+    }
+
+    /**
+     * @param valor the valor to set
+     */
+    public void setValor(String valor) {
+        this.valor = valor;
+    }
+
+    /**
+     * @return the quantidade
+     */
+    public String getQuantidade() {
+        return quantidade;
+    }
+
+    /**
+     * @param quantidade the quantidade to set
+     */
+    public void setQuantidade(String quantidade) {
+        this.quantidade = quantidade;
     }
     
 }

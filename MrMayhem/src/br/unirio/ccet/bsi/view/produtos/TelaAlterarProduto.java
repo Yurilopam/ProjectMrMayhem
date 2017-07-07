@@ -51,6 +51,8 @@ public class TelaAlterarProduto extends javax.swing.JInternalFrame {
         botaoPesquisar = new java.awt.Button();
         botaoAlterar = new java.awt.Button();
         botaoLimparPesquisa = new java.awt.Button();
+        jLabel4 = new javax.swing.JLabel();
+        campoPreco = new javax.swing.JFormattedTextField();
 
         setBackground(new java.awt.Color(2, 86, 112));
         setClosable(true);
@@ -125,6 +127,11 @@ public class TelaAlterarProduto extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel4.setText("Preço: R$");
+
+        campoPreco.setEditable(false);
+        campoPreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -133,8 +140,17 @@ public class TelaAlterarProduto extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(campoPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botaoAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -158,15 +174,8 @@ public class TelaAlterarProduto extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel15)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(27, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(botaoAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(340, 340, 340))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,9 +205,13 @@ public class TelaAlterarProduto extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addComponent(botaoAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(botaoAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(campoPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -235,8 +248,10 @@ public class TelaAlterarProduto extends javax.swing.JInternalFrame {
                 campoDataCadastro.setText(dadosProduto.getDataCadastramento());
                 campoNome.setText(dadosProduto.getNome());
                 campoTipoProduto.setSelectedIndex(recuperarTipoProduto(dadosProduto));
-                campoDescricaoProduto.setText(dadosProduto.getDescricao());            
+                campoDescricaoProduto.setText(dadosProduto.getDescricao());
                 campoDescricaoProduto.setEditable(true);
+                campoPreco.setText(dadosProduto.getValor());
+                campoPreco.setEditable(true);
                 campoCodigo.setEditable(false);
                 botaoAlterar.setEnabled(true);
             }
@@ -261,11 +276,12 @@ public class TelaAlterarProduto extends javax.swing.JInternalFrame {
     private void botaoAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlterarActionPerformed
         if (formularioAlteracaoValidado()) {
             Produto produtoAlterado = new Produto();
-            produtoAlterado.setNome(campoCodigo.getText());
+            produtoAlterado.setNome(campoNome.getText());
             produtoAlterado.setCodigo(campoCodigo.getText());
             produtoAlterado.setDataCadastramento(campoDataCadastro.getText());
             produtoAlterado.setDescricao(campoDescricaoProduto.getText());
             produtoAlterado.setTipo(campoTipoProduto.getSelectedItem().toString());
+            produtoAlterado.setValor(campoPreco.getText());
             XmlProduto xml = new XmlProduto();
             xml.GerarXml(produtoAlterado);
             JOptionPane.showMessageDialog(TelaAlterarProduto.this, "Produto alterado com sucesso!");
@@ -283,18 +299,23 @@ public class TelaAlterarProduto extends javax.swing.JInternalFrame {
 
     private boolean formularioAlteracaoValidado() {
         return !StringUtils.isEmpty(campoCodigo.getText())
-                && !StringUtils.isEmpty(campoDescricaoProduto.getText());
+                && !StringUtils.isEmpty(campoDescricaoProduto.getText())
+                && !StringUtils.isEmpty(campoPreco.getText());
     }
     
     private void resetarCampos() {
         campoCodigo.setText(null);
         campoCodigo.setValue(null);
+        campoCodigo.setEditable(true);
         campoNome.setText(null);
         campoDataCadastro.setText(null);
         campoDataCadastro.setValue(null);
         campoTipoProduto.setSelectedIndex(0);
         campoDescricaoProduto.setText(null);
         campoDescricaoProduto.setEditable(false);
+        campoPreco.setText(null);
+        campoPreco.setValue(null);
+        campoPreco.setEditable(false);
         botaoAlterar.setEnabled(false);
     }
     
@@ -308,6 +329,9 @@ public class TelaAlterarProduto extends javax.swing.JInternalFrame {
         campoTipoProduto.setSelectedIndex(0);
         campoDescricaoProduto.setText(null);
         campoDescricaoProduto.setEditable(false);
+        campoPreco.setText(null);
+        campoPreco.setValue(null);
+        campoPreco.setEditable(false);
         botaoAlterar.setEnabled(false);
     }
 
@@ -319,11 +343,13 @@ public class TelaAlterarProduto extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField campoDataCadastro;
     private javax.swing.JTextArea campoDescricaoProduto;
     private javax.swing.JTextField campoNome;
+    private javax.swing.JFormattedTextField campoPreco;
     private javax.swing.JComboBox<String> campoTipoProduto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;

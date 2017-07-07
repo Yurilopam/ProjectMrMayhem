@@ -6,8 +6,14 @@
 package br.unirio.ccet.bsi.view.vendas;
 
 import br.unirio.ccet.bsi.model.FuncionarioLocal;
+import br.unirio.ccet.bsi.model.Produto;
+import br.unirio.ccet.bsi.utils.Utils;
 import br.unirio.ccet.bsi.utils.XmlFuncionario;
+import br.unirio.ccet.bsi.utils.XmlProduto;
+import java.io.File;
+import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -32,36 +38,37 @@ public class TelaCadastroVenda extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        botoesFormaDePagamento = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         campoNumeroPedido = new javax.swing.JTextField();
         campoDataPedido = new javax.swing.JFormattedTextField();
         campoCpfComprador = new javax.swing.JFormattedTextField();
-        campoFuncaoFuncionario = new javax.swing.JComboBox<>();
+        campoDataEntrega = new javax.swing.JFormattedTextField();
+        campoCodigoProduto = new javax.swing.JFormattedTextField();
+        campoTipoEntrega = new javax.swing.JComboBox<>();
         botaoCadastarFuncionario = new java.awt.Button();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jLabel7 = new javax.swing.JLabel();
-        campoDataNascimentoFuncionario1 = new javax.swing.JFormattedTextField();
+        botaoadicionarALista = new java.awt.Button();
+        radioCartaoCredito = new javax.swing.JRadioButton();
+        radioDinheiro = new javax.swing.JRadioButton();
         jPanel2 = new javax.swing.JPanel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jLabel3 = new javax.swing.JLabel();
+        campoPrecoTotal = new javax.swing.JFormattedTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        button1 = new java.awt.Button();
-        jLabel10 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        campoObservacoes = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        jLabel17 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        campoQuantidadeProduto = new javax.swing.JFormattedTextField();
 
         setBackground(new java.awt.Color(2, 86, 112));
         setClosable(true);
@@ -92,10 +99,22 @@ public class TelaCadastroVenda extends javax.swing.JInternalFrame {
             }
         });
 
-        campoFuncaoFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Em Mãos", "Em Domicílio" }));
-        campoFuncaoFuncionario.addActionListener(new java.awt.event.ActionListener() {
+        try {
+            campoDataEntrega.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            campoCodigoProduto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        campoTipoEntrega.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Em Domicílio", "Em Mãos" }));
+        campoTipoEntrega.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoFuncaoFuncionarioActionPerformed(evt);
+                campoTipoEntregaActionPerformed(evt);
             }
         });
 
@@ -106,27 +125,37 @@ public class TelaCadastroVenda extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setText("Cadastrar Venda");
+        botaoadicionarALista.setLabel("Adicionar à lista");
+        botaoadicionarALista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoadicionarAListaActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setText("Número do Pedido:");
+        botoesFormaDePagamento.add(radioCartaoCredito);
+        radioCartaoCredito.setText("Cartão de crédito");
+        radioCartaoCredito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioCartaoCreditoActionPerformed(evt);
+            }
+        });
 
-        jLabel4.setText("CPF Comprador:");
+        botoesFormaDePagamento.add(radioDinheiro);
+        radioDinheiro.setText("Dinheiro");
+        radioDinheiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioDinheiroActionPerformed(evt);
+            }
+        });
 
-        jLabel6.setText("Data do Pedido:");
-
-        jLabel17.setText("Entrega:");
-
-        jLabel7.setText("Data da Entrega:");
-
-        try {
-            campoDataNascimentoFuncionario1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        jFormattedTextField1.setEditable(false);
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        jFormattedTextField1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        campoPrecoTotal.setEditable(false);
+        campoPrecoTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        campoPrecoTotal.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        campoPrecoTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoPrecoTotalActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -134,25 +163,23 @@ public class TelaCadastroVenda extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                .addComponent(campoPrecoTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                .addComponent(campoPrecoTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
                 .addContainerGap())
         );
-
-        jLabel3.setText("Preço Total: R$");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Código", "Nome", "Quantidade", "Valor"
+                "Código", "Nome", "Quantidade", "Valor Unitário"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -165,28 +192,33 @@ public class TelaCadastroVenda extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        campoObservacoes.setColumns(20);
+        campoObservacoes.setRows(5);
+        jScrollPane2.setViewportView(campoObservacoes);
+
+        jLabel1.setText("Cadastrar Venda");
+
+        jLabel2.setText("Número do Pedido:");
+
+        jLabel3.setText("Preço Total: R$");
+
+        jLabel4.setText("CPF Comprador:");
+
         jLabel5.setText("Código do produto:");
+
+        jLabel6.setText("Data do Pedido:");
+
+        jLabel7.setText("Data da Entrega:");
 
         jLabel8.setText("Quantidade do Produto:");
 
-        button1.setLabel("Adicionar à lista");
-        button1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
-            }
-        });
-
         jLabel10.setText("Observações:");
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
 
         jLabel11.setText("Forma de pagamento:");
 
-        jRadioButton1.setText("Cartão de crédito");
+        jLabel17.setText("Entrega:");
 
-        jRadioButton2.setText("Dinheiro");
+        campoQuantidadeProduto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -198,27 +230,27 @@ public class TelaCadastroVenda extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 754, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 6, Short.MAX_VALUE))
+                        .addGap(0, 8, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(campoQuantidadeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(botaoadicionarALista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(87, 87, 87)
-                                .addComponent(jRadioButton1)
+                                .addComponent(radioCartaoCredito)
                                 .addGap(18, 18, 18)
-                                .addComponent(jRadioButton2))
+                                .addComponent(radioDinheiro))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel5)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(248, 248, 248)
+                                        .addComponent(campoCodigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(251, 251, 251)
                                         .addComponent(jLabel11))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,7 +265,7 @@ public class TelaCadastroVenda extends javax.swing.JInternalFrame {
                                                 .addGap(61, 61, 61)
                                                 .addComponent(jLabel17)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(campoFuncaoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(campoTipoEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel6)
@@ -241,25 +273,22 @@ public class TelaCadastroVenda extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(campoDataPedido, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-                                    .addComponent(campoDataNascimentoFuncionario1))))
+                                    .addComponent(campoDataEntrega))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(botaoCadastarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(59, 59, 59))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoCadastarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(264, 264, 264))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -282,26 +311,26 @@ public class TelaCadastroVenda extends javax.swing.JInternalFrame {
                             .addComponent(jLabel4)
                             .addComponent(campoCpfComprador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel17)
-                            .addComponent(campoFuncaoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoDataNascimentoFuncionario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoTipoEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoDataEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11))
+                            .addComponent(jLabel11)
+                            .addComponent(campoCodigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel8)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(campoQuantidadeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(botaoadicionarALista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jRadioButton1)
-                        .addComponent(jRadioButton2)))
+                        .addComponent(radioCartaoCredito)
+                        .addComponent(radioDinheiro)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                .addGap(46, 46, 46)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel10)
@@ -313,9 +342,9 @@ public class TelaCadastroVenda extends javax.swing.JInternalFrame {
                                 .addGap(28, 28, 28)
                                 .addComponent(jLabel3))))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addGap(21, 21, 21)
                 .addComponent(botaoCadastarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
+                .addGap(43, 43, 43))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -339,12 +368,12 @@ public class TelaCadastroVenda extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCadastarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastarFuncionarioActionPerformed
-        if (formularioCadastroFuncionarioValidado()) {
+        if (formularioCadastroValidado()) {
             FuncionarioLocal novoFuncionarioLocal = new FuncionarioLocal();
             novoFuncionarioLocal.setNome(campoNumeroPedido.getText());
             novoFuncionarioLocal.setDataNascimento(campoDataPedido.getText());
             novoFuncionarioLocal.setCpf(campoCpfComprador.getText());
-            novoFuncionarioLocal.setFuncao(campoFuncaoFuncionario.getSelectedItem().toString());
+            novoFuncionarioLocal.setFuncao(campoTipoEntrega.getSelectedItem().toString());
             XmlFuncionario xml = new XmlFuncionario();
             xml.GerarXml(novoFuncionarioLocal);
             JOptionPane.showMessageDialog(TelaCadastroVenda.this, "Funcionário cadastrado com sucesso!");
@@ -352,9 +381,15 @@ public class TelaCadastroVenda extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_botaoCadastarFuncionarioActionPerformed
 
-    private void campoFuncaoFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoFuncaoFuncionarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoFuncaoFuncionarioActionPerformed
+    private void campoTipoEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTipoEntregaActionPerformed
+        if (campoTipoEntrega.getSelectedItem().toString().equals("Em Mãos")) {
+            campoDataEntrega.setEnabled(false);
+            campoDataEntrega.setText(null);
+            campoDataEntrega.setValue(null);
+        } else {
+            campoDataEntrega.setEnabled(true);
+        }
+    }//GEN-LAST:event_campoTipoEntregaActionPerformed
 
     private void campoCpfCompradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCpfCompradorActionPerformed
         // TODO add your handling code here:
@@ -364,33 +399,75 @@ public class TelaCadastroVenda extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoNumeroPedidoActionPerformed
 
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_button1ActionPerformed
+    private void botaoadicionarAListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoadicionarAListaActionPerformed
+        if (campoCodigoProduto.getValue() != null && !campoCodigoProduto.getValue().toString().equals("") 
+                && campoQuantidadeProduto.getValue() != null && !campoCodigoProduto.getValue().toString().equals("") ){
+            DefaultTableModel dtmListaProdutos = (DefaultTableModel) jTable1.getModel();
+            XmlProduto xml = new XmlProduto();
+            File arquivos = new File(Utils.recuperarPath("Produtos"));
+            String[] codProdutos = arquivos.list();
+            for (String codProduto : codProdutos) {
+                Produto dadosProduto = xml.LerXml(codProduto);
+                if (dadosProduto.getCodigo().equals(campoCodigoProduto.getText())){
+                    Object[] dados = {dadosProduto.getCodigo(), dadosProduto.getNome(), campoQuantidadeProduto.getValue().toString(), dadosProduto.getValor()};
+                    dtmListaProdutos.addRow(dados);
+                }
+            }
+            int totalDeLinhas = dtmListaProdutos.getRowCount();
+            Double valorTotal = 0.0;
+            for (int i = 0; i < totalDeLinhas; i++) {
+                String valorDoProdutoEmString = dtmListaProdutos.getValueAt(i, 3).toString();
+                String valorDoProdutoEmStringReplaced = valorDoProdutoEmString.replace(",", ".");
+                String quantidadeDoProdutoEmString = dtmListaProdutos.getValueAt(i, 2).toString();
+                valorTotal += Double.valueOf(valorDoProdutoEmStringReplaced) * Integer.valueOf(quantidadeDoProdutoEmString);
+            }
+            DecimalFormat df = new DecimalFormat("#0.00"); 
+            campoPrecoTotal.setText(df.format(valorTotal));
+        } else {
+            JOptionPane.showMessageDialog(TelaCadastroVenda.this, "Os campos Código e Quantidade do produto devem ser preenchidos.");
+        }
+    }//GEN-LAST:event_botaoadicionarAListaActionPerformed
 
-    private boolean formularioCadastroFuncionarioValidado() {
+    private void radioCartaoCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioCartaoCreditoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioCartaoCreditoActionPerformed
+
+    private void radioDinheiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioDinheiroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioDinheiroActionPerformed
+
+    private void campoPrecoTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoPrecoTotalActionPerformed
+        DefaultTableModel dtmListaProdutos = (DefaultTableModel) jTable1.getModel();
+        
+    }//GEN-LAST:event_campoPrecoTotalActionPerformed
+
+    private boolean formularioCadastroValidado() {
         return !StringUtils.isEmpty(campoNumeroPedido.getText())
                 && !StringUtils.isEmpty(campoDataPedido.getText())
                 && !StringUtils.isEmpty(campoCpfComprador.getText())
-                && !StringUtils.isEmpty(campoFuncaoFuncionario.getSelectedItem().toString());
+                && !StringUtils.isEmpty(campoTipoEntrega.getSelectedItem().toString());
     }
     
     private void resetarCampos() {
         campoNumeroPedido.setText(null);
         campoDataPedido.setText(null);
         campoCpfComprador.setText(null);
-        campoFuncaoFuncionario.setSelectedIndex(0);
+        campoTipoEntrega.setSelectedIndex(0);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button botaoCadastarFuncionario;
-    private java.awt.Button button1;
+    private java.awt.Button botaoadicionarALista;
+    private javax.swing.ButtonGroup botoesFormaDePagamento;
+    private javax.swing.JFormattedTextField campoCodigoProduto;
     private javax.swing.JFormattedTextField campoCpfComprador;
-    private javax.swing.JFormattedTextField campoDataNascimentoFuncionario1;
+    private javax.swing.JFormattedTextField campoDataEntrega;
     private javax.swing.JFormattedTextField campoDataPedido;
-    private javax.swing.JComboBox<String> campoFuncaoFuncionario;
     private javax.swing.JTextField campoNumeroPedido;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JTextArea campoObservacoes;
+    private javax.swing.JFormattedTextField campoPrecoTotal;
+    private javax.swing.JFormattedTextField campoQuantidadeProduto;
+    private javax.swing.JComboBox<String> campoTipoEntrega;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -404,15 +481,12 @@ public class TelaCadastroVenda extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JRadioButton radioCartaoCredito;
+    private javax.swing.JRadioButton radioDinheiro;
     // End of variables declaration//GEN-END:variables
 
 }
