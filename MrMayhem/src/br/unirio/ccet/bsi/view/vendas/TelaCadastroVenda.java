@@ -437,8 +437,6 @@ public class TelaCadastroVenda extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_radioDinheiroActionPerformed
 
     private void campoPrecoTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoPrecoTotalActionPerformed
-        DefaultTableModel dtmListaProdutos = (DefaultTableModel) jTable1.getModel();
-        
     }//GEN-LAST:event_campoPrecoTotalActionPerformed
 
     private boolean formularioCadastroValidado() {
