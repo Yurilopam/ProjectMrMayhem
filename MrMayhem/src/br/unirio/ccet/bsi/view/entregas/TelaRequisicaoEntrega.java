@@ -5,13 +5,14 @@
  */
 package br.unirio.ccet.bsi.view.entregas;
 
-import br.unirio.ccet.bsi.view.produtos.*;
-import br.unirio.ccet.bsi.model.Produto;
+import br.unirio.ccet.bsi.model.Entrega;
+import br.unirio.ccet.bsi.utils.Enums;
 import br.unirio.ccet.bsi.utils.Utils;
-import br.unirio.ccet.bsi.utils.XmlProduto;
+import br.unirio.ccet.bsi.utils.XmlEntrega;
+import br.unirio.ccet.bsi.view.produtos.TelaAlterarProduto;
 import java.io.File;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  *
@@ -36,24 +37,24 @@ public class TelaRequisicaoEntrega extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        campoNome = new javax.swing.JTextField();
-        campoDataCadastramento = new javax.swing.JFormattedTextField();
-        campoTipoProduto = new javax.swing.JComboBox<>();
-        campoCodigo = new javax.swing.JFormattedTextField();
-        campoPreco = new javax.swing.JFormattedTextField();
-        campoQuantidadeInicial = new javax.swing.JFormattedTextField();
-        botaoCadastar = new java.awt.Button();
+        campoNumeroEntrega = new javax.swing.JFormattedTextField();
+        campoNomeCliente = new javax.swing.JTextField();
+        campoCep = new javax.swing.JFormattedTextField();
+        campoNumero = new javax.swing.JFormattedTextField();
+        campoEstatusEntrega = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        campoObservacoes = new javax.swing.JTextArea();
+        botaoProcurarEntrega = new java.awt.Button();
+        botaoLimparBusca = new java.awt.Button();
+        botaoAtualizarStatusEntrega = new java.awt.Button();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel15 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        campoDescricaoProduto = new javax.swing.JTextArea();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(2, 86, 112));
         setClosable(true);
@@ -61,61 +62,76 @@ public class TelaRequisicaoEntrega extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        campoNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoNomeActionPerformed(evt);
-            }
-        });
-
         try {
-            campoDataCadastramento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            campoNumeroEntrega.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
-        campoTipoProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CINTO", "TERNO", "MEIA", "SAPATO" }));
-        campoTipoProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTipoProdutoActionPerformed(evt);
-            }
-        });
+        campoNomeCliente.setEditable(false);
 
+        campoCep.setEditable(false);
         try {
-            campoCodigo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########")));
+            campoCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-
-        campoPreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-
-        campoQuantidadeInicial.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-
-        botaoCadastar.setLabel("Cadastrar");
-        botaoCadastar.addActionListener(new java.awt.event.ActionListener() {
+        campoCep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoCadastarActionPerformed(evt);
+                campoCepActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Cadastrar Produto");
+        campoNumero.setEditable(false);
+        campoNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
-        jLabel2.setText("Nome:");
+        campoEstatusEntrega.setModel(new DefaultComboBoxModel(Enums.Status.values()));
+        campoEstatusEntrega.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoEstatusEntregaActionPerformed(evt);
+            }
+        });
 
-        jLabel3.setText("Código do produto:");
+        campoObservacoes.setEditable(false);
+        campoObservacoes.setColumns(20);
+        campoObservacoes.setRows(5);
+        jScrollPane1.setViewportView(campoObservacoes);
 
-        jLabel5.setText("Tipo:");
+        botaoProcurarEntrega.setLabel("Procurar entrega");
+        botaoProcurarEntrega.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoProcurarEntregaActionPerformed(evt);
+            }
+        });
 
-        jLabel6.setText("Data de Cadastro:");
+        botaoLimparBusca.setLabel("Limpar busca");
+        botaoLimparBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoLimparBuscaActionPerformed(evt);
+            }
+        });
 
-        jLabel15.setText("Descrição:");
+        botaoAtualizarStatusEntrega.setEnabled(false);
+        botaoAtualizarStatusEntrega.setLabel("Atualizar estatus da entrega");
+        botaoAtualizarStatusEntrega.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoAtualizarStatusEntregaActionPerformed(evt);
+            }
+        });
 
-        campoDescricaoProduto.setColumns(20);
-        campoDescricaoProduto.setRows(5);
-        jScrollPane1.setViewportView(campoDescricaoProduto);
+        jLabel1.setText("Entregas");
 
-        jLabel4.setText("Preço: R$");
+        jLabel2.setText("Número da entrega:");
 
-        jLabel7.setText("Quantidade:");
+        jLabel3.setText("Nome do cliente:");
+
+        jLabel4.setText("CEP da entrega:");
+
+        jLabel12.setText("Número da residência:");
+
+        jLabel5.setText("Estatus da entrega:");
+
+        jLabel6.setText("Observações:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -123,83 +139,89 @@ public class TelaRequisicaoEntrega extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(74, 74, 74)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(campoTipoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(60, 60, 60)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(campoDataCadastramento, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel3)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(campoCodigo)))))
-                        .addGap(5, 5, 5))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
+                                        .addComponent(campoNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(campoCep, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel12)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(campoNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(109, 109, 109)
+                                        .addComponent(campoEstatusEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel5)
+                                        .addGap(18, 18, 18))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(campoPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(53, 53, 53)
-                                .addComponent(jLabel7)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(botaoAtualizarStatusEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(campoNumeroEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(botaoProcurarEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(botaoLimparBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(212, 212, 212))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoQuantidadeInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botaoCadastar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)))))
-                .addContainerGap(43, Short.MAX_VALUE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(campoDataCadastramento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel6))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(campoTipoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3)
-                        .addComponent(campoCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(botaoProcurarEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(campoNumeroEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(botaoLimparBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(campoNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(campoCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12)
+                    .addComponent(campoEstatusEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(campoPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel7)
-                        .addComponent(campoQuantidadeInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(botaoCadastar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botaoAtualizarStatusEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -222,103 +244,116 @@ public class TelaRequisicaoEntrega extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void campoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeActionPerformed
+    private void campoCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCepActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoNomeActionPerformed
+    }//GEN-LAST:event_campoCepActionPerformed
 
-    private void botaoCadastarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastarActionPerformed
-        if (formularioCadastroValidado()) {
-            Produto novoProduto = new Produto();
-            novoProduto.setNome(campoNome.getText());
-            novoProduto.setDataCadastramento(campoDataCadastramento.getText());
-            novoProduto.setTipo(campoTipoProduto.getSelectedItem().toString());
-            novoProduto.setCodigo(campoCodigo.getText());
-            novoProduto.setDescricao(campoDescricaoProduto.getText());
-            novoProduto.setValor(campoPreco.getText());
-            novoProduto.setQuantidade(campoQuantidadeInicial.getText());
-            XmlProduto xml = new XmlProduto();
-            xml.GerarXml(novoProduto);
-            JOptionPane.showMessageDialog(TelaRequisicaoEntrega.this, "Produto cadastrado com sucesso!");
-            resetarCampos();
-        } else {
-            JOptionPane.showMessageDialog(TelaRequisicaoEntrega.this, "Por favor preencha todos os campos do formulário parada finalizar o seu cadastro.");
-        }
-    }//GEN-LAST:event_botaoCadastarActionPerformed
+    private void campoEstatusEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoEstatusEntregaActionPerformed
+    }//GEN-LAST:event_campoEstatusEntregaActionPerformed
 
-    private void campoTipoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTipoProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoTipoProdutoActionPerformed
+    private void botaoProcurarEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoProcurarEntregaActionPerformed
+        XmlEntrega xml = new XmlEntrega();
+        File arquivos = new File(Utils.recuperarPath("Entregas"));
+        File[] numsPedidos = arquivos.listFiles();
+        for (File numPedido : numsPedidos){
+            if (numPedido.getName().equals(campoNumeroEntrega.getText()+".xml")){
+                Entrega dadosEntrega = xml.LerXml(numPedido.getName());
+                campoNomeCliente.setText(dadosEntrega.getNomeComprador());
+                campoCep.setText(dadosEntrega.getCepDestinatario());
+                campoNumero.setText(dadosEntrega.getNumeroCasaDestinatario());
+                campoEstatusEntrega.setSelectedIndex(recuperarEstatusEntrega(dadosEntrega));
+                campoObservacoes.setText(dadosEntrega.getObservacoes());
+                campoNumeroEntrega.setEnabled(false);
+                campoObservacoes.setEditable(true);
+                botaoAtualizarStatusEntrega.setEnabled(true);
+            }
+        }
+    }//GEN-LAST:event_botaoProcurarEntregaActionPerformed
 
-    private boolean formularioCadastroValidado() {
-        boolean formularioValidado = false;
-        if (!StringUtils.isEmpty(campoNome.getText())
-                && campoDataCadastramento.getValue() != null && !campoDataCadastramento.getValue().toString().equals("")
-                && campoCodigo.getValue() != null && !campoCodigo.getValue().toString().equals("")
-                && campoPreco.getValue() != null && !campoPreco.getValue().toString().equals("")
-                && campoQuantidadeInicial.getValue() != null && !campoQuantidadeInicial.getValue().toString().equals("")
-                && !StringUtils.isEmpty(campoTipoProduto.getSelectedItem().toString())
-                && !StringUtils.isEmpty(campoCodigo.getText())
-                && !StringUtils.isEmpty(campoDescricaoProduto.getText())
-                && verificarCodigoProdutoCadastrado()){
-            
-        }
-        return formularioValidado;
-    }
-    
-    private boolean verificarCodigoProdutoCadastrado(){
-        boolean validacao;
-        int contadorCadastros = 0;
-        XmlProduto xml = new XmlProduto();
-        File arquivos = new File(Utils.recuperarPath("Produtos"));
-        String[] codsProdutos = arquivos.list();
-        for (String codProduto : codsProdutos) {
-            Produto dadosProduto = xml.LerXml(codProduto);
-            if (dadosProduto.getCodigo().equals(campoCodigo.getText()))
-                contadorCadastros++;
-        }
-        if (contadorCadastros == 0) {
-            validacao = true;
-        } else {
-            JOptionPane.showMessageDialog(TelaRequisicaoEntrega.this, "Cõdigo do produto já consta na base de dados.");
-            validacao = false;
-        }
-        return validacao;
-    }
-    
-    private void resetarCampos() {
-        campoNome.setText(null);
-        campoDataCadastramento.setText(null);
-        campoDataCadastramento.setValue(null);
-        campoTipoProduto.setSelectedIndex(0);
-        campoCodigo.setText(null);
-        campoCodigo.setValue(null);
-        campoDescricaoProduto.setText(null);
-        campoPreco.setText(null);
-        campoPreco.setValue(null);
-        campoQuantidadeInicial.setText(null);
-        campoQuantidadeInicial.setValue(null);
-    }
+    private void botaoLimparBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLimparBuscaActionPerformed
+        limparPesquisa();
+    }//GEN-LAST:event_botaoLimparBuscaActionPerformed
+
+    private void botaoAtualizarStatusEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtualizarStatusEntregaActionPerformed
+        Entrega entregaAtualizada = new Entrega();
+        entregaAtualizada.setNumeroPedido(campoNumeroEntrega.getText());
+        entregaAtualizada.setNomeComprador(campoNomeCliente.getText());
+        entregaAtualizada.setCepDestinatario(campoCep.getText());
+        entregaAtualizada.setNumeroCasaDestinatario(campoNumero.getText());
+        entregaAtualizada.setStatus((Enums.Status) campoEstatusEntrega.getSelectedItem());
+        entregaAtualizada.setObservacoes(campoObservacoes.getText());
+        XmlEntrega xml = new XmlEntrega();
+        xml.GerarXml(entregaAtualizada);
+        JOptionPane.showMessageDialog(TelaRequisicaoEntrega.this, "Entrega atualizada com sucesso!");
+        resetarCampos();
+    }//GEN-LAST:event_botaoAtualizarStatusEntregaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button botaoCadastar;
-    private javax.swing.JFormattedTextField campoCodigo;
-    private javax.swing.JFormattedTextField campoDataCadastramento;
-    private javax.swing.JTextArea campoDescricaoProduto;
-    private javax.swing.JTextField campoNome;
-    private javax.swing.JFormattedTextField campoPreco;
-    private javax.swing.JFormattedTextField campoQuantidadeInicial;
-    private javax.swing.JComboBox<String> campoTipoProduto;
+    private java.awt.Button botaoAtualizarStatusEntrega;
+    private java.awt.Button botaoLimparBusca;
+    private java.awt.Button botaoProcurarEntrega;
+    private javax.swing.JFormattedTextField campoCep;
+    private javax.swing.JComboBox<String> campoEstatusEntrega;
+    private javax.swing.JTextField campoNomeCliente;
+    private javax.swing.JFormattedTextField campoNumero;
+    private javax.swing.JFormattedTextField campoNumeroEntrega;
+    private javax.swing.JTextArea campoObservacoes;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
+
+    private int recuperarEstatusEntrega(Entrega dadosEntrega) {
+        switch (dadosEntrega.getStatus()) {
+            case PENDENTE:
+                return 0;
+            case ACEITO:
+                return 1;
+            case RECUSADO:
+                return 2;
+            case ENTREGUE:
+                return 3;
+            default:
+                break;
+        }
+        return -1;
+    }
+
+    private void limparPesquisa() {
+        campoNumeroEntrega.setText(null);
+        campoNumeroEntrega.setValue(null);
+        campoNumeroEntrega.setEnabled(true);
+        campoNomeCliente.setText(null);
+        campoCep.setText(null);
+        campoCep.setValue(null);
+        campoNumero.setText(null);
+        campoNumero.setValue(null);
+        campoEstatusEntrega.setSelectedIndex(0);
+        campoObservacoes.setText(null);
+        campoObservacoes.setEditable(false);
+        botaoAtualizarStatusEntrega.setEnabled(false);
+    }
+
+    private void resetarCampos() {
+        campoNumeroEntrega.setText(null);
+        campoNumeroEntrega.setValue(null);
+        campoNumeroEntrega.setEnabled(true);
+        campoNomeCliente.setText(null);
+        campoCep.setText(null);
+        campoCep.setValue(null);
+        campoNumero.setText(null);
+        campoNumero.setValue(null);
+        campoEstatusEntrega.setSelectedIndex(0);
+        campoObservacoes.setText(null);
+        campoObservacoes.setEditable(false);
+        botaoAtualizarStatusEntrega.setEnabled(false);
+    }
 
 }

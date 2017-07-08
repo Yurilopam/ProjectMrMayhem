@@ -9,6 +9,7 @@ public class Entrega extends Pedido{
     private String bairroDestinatario;
     private String cepDestinatario;
     private String telefoneDestinatario;
+    private String observacoes;
     private Enums.Status status;
 
     public Entrega() {
@@ -83,6 +84,20 @@ public class Entrega extends Pedido{
      */
     public void setTelefoneDestinatario(String telefoneDestinatario) {
         this.telefoneDestinatario = telefoneDestinatario;
+    }
+
+    /**
+     * @return the observacoes
+     */
+    public String getObservacoes() {
+        return observacoes;
+    }
+
+    /**
+     * @param observacoes the observacoes to set
+     */
+    public void setObservacoes(String observacoes) {
+        this.observacoes = observacoes;
     }
 
     /**

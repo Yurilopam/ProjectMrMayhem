@@ -13,13 +13,9 @@ import br.unirio.ccet.bsi.view.clientes.TelaCadastroCliente;
 import br.unirio.ccet.bsi.view.clientes.TelaExcluirCliente;
 import br.unirio.ccet.bsi.view.clientes.TelaAlterarCliente;
 import br.unirio.ccet.bsi.view.clientes.TelaPesquisaCliente;
-import br.unirio.ccet.bsi.view.funcionarios.TelaExcluirFuncionario;
-import br.unirio.ccet.bsi.view.funcionarios.TelaPesquisaFuncionario;
-import br.unirio.ccet.bsi.view.funcionarios.TelaCadastroFuncionario;
-import br.unirio.ccet.bsi.view.funcionarios.TelaAlterarFuncionario;
+import br.unirio.ccet.bsi.view.entregas.TelaRequisicaoEntrega;
+import br.unirio.ccet.bsi.view.entregas.TelaVerificarEntregas;
 import br.unirio.ccet.bsi.view.produtos.TelaPesquisaProduto;
-import javax.swing.JOptionPane;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  *
@@ -27,11 +23,8 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class TelaPrincipalGerente extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaAdmin
-     */
     public TelaPrincipalGerente() {
-        initComponents();
+        initComponents();        
     }
 
     /**
@@ -65,9 +58,11 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("MrMayhem");
         setResizable(false);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
@@ -227,9 +222,23 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/calendar.png"))); // NOI18N
         jMenu6.setText("Agenda");
 
-        jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/car.png"))); // NOI18N
+        jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/lorry.png"))); // NOI18N
         jMenuItem14.setText("Verificar Entregas");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem14);
+
+        jMenuItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/lorry_go.png"))); // NOI18N
+        jMenuItem15.setText("Alterar Estatus da Entrega");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem15);
 
         jMenuBar1.add(jMenu6);
 
@@ -331,45 +340,19 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
         jDesktopPane1.add(telaCadastroVendas);
         telaCadastroVendas.setVisible(true);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        TelaVerificarEntregas telaVerificarEntregas = new TelaVerificarEntregas();
+        jDesktopPane1.add(telaVerificarEntregas);
+        telaVerificarEntregas.setVisible(true);
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        TelaRequisicaoEntrega telaRequisicaoEntrega = new TelaRequisicaoEntrega();
+        jDesktopPane1.add(telaRequisicaoEntrega);
+        telaRequisicaoEntrega.setVisible(true);
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
     
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipalGerente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipalGerente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipalGerente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipalGerente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaPrincipalGerente().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
@@ -386,6 +369,7 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

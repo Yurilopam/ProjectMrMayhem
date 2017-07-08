@@ -36,7 +36,7 @@ public class XmlEntrega {
     public Entrega LerXml(String numeroPedido) {
         
         Entrega funcionarioLocalCadastrado = null;
-        String PATH = Utils.recuperarPath("Entrega")+"\\"+numeroPedido;
+        String PATH = Utils.recuperarPath("Entregas")+"\\"+numeroPedido;
         
         try {
             XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream(PATH)));

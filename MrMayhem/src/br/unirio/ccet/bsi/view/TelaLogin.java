@@ -6,6 +6,7 @@
 package br.unirio.ccet.bsi.view;
 
 import br.unirio.ccet.bsi.controller.Login;
+import br.unirio.ccet.bsi.view.funcionarios.TelaPrincipalEntregador;
 import br.unirio.ccet.bsi.view.funcionarios.TelaPrincipalGerente;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
@@ -150,16 +151,26 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void botaoAutenticarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAutenticarActionPerformed
         if (Login.autenticar(campoIdUsuario.getText(), campoSenhaUsuario.getText())) {
-            campoIdUsuario.setText(null);
-            campoSenhaUsuario.setText(null);
             fecharTelaLogin();
-            
-            TelaPrincipalGerente telaAdmin = new TelaPrincipalGerente();
-            telaAdmin.setVisible(true);
+            redirecionarTelas(campoIdUsuario.getText());     
         } else {
             JOptionPane.showMessageDialog(TelaLogin.this, "Usuário ou senha inválidos.");
         }
     }//GEN-LAST:event_botaoAutenticarActionPerformed
+    
+    private void redirecionarTelas(String idUsuario) {
+        if (idUsuario.equals("admin")){
+            campoIdUsuario.setText(null);
+            campoSenhaUsuario.setText(null);
+            TelaPrincipalGerente telaPrincipalGerente = new TelaPrincipalGerente();
+            telaPrincipalGerente.setVisible(true);
+        } else if (idUsuario.equals("entregador")){
+            campoIdUsuario.setText(null);
+            campoSenhaUsuario.setText(null);
+            TelaPrincipalEntregador telaPrincipalEntregador = new TelaPrincipalEntregador();
+            telaPrincipalEntregador.setVisible(true);
+        }
+    }
     
     private void fecharTelaLogin() {
         WindowEvent fecharTela = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);    
@@ -218,4 +229,5 @@ public class TelaLogin extends javax.swing.JFrame {
     private java.awt.Label labelSenha;
     private java.awt.Label labelUsuario;
     // End of variables declaration//GEN-END:variables
+
 }

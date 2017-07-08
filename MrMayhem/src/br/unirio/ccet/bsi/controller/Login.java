@@ -17,7 +17,7 @@ public class Login {
         Login.idUsuario = idUsuario;
         if (idUsuario.equals("admin") && senhaUsuario.equals("admin")) {
             return true;
-        } else if (idUsuario.equals("001") && senhaUsuario.equals("pudim")) {
+        } else if (idUsuario.equals("entregador") && senhaUsuario.equals("1234")) {
             return true;
         }
         return false;

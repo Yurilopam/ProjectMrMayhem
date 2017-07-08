@@ -6,6 +6,7 @@
 package br.unirio.ccet.bsi.view.funcionarios;
 
 import br.unirio.ccet.bsi.model.Funcionario;
+import br.unirio.ccet.bsi.utils.Mail;
 import br.unirio.ccet.bsi.utils.Utils;
 import br.unirio.ccet.bsi.utils.XmlFuncionario;
 import java.io.File;
@@ -103,6 +104,8 @@ public class TelaPesquisaFuncionario extends javax.swing.JInternalFrame {
             dtmFuncionarios.addRow(dados);
         }
         botaoPesquisar.setEnabled(false);
+        Mail mail = new Mail();
+        mail.enviarEmail("supervisormrmayhem@gmail.com", "1wdvfe@3", "yurilopam@gmail.com", "Testando Email", "Teste de email do projeto de PCS");
     }//GEN-LAST:event_botaoPesquisarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

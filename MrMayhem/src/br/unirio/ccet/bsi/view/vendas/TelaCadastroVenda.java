@@ -403,6 +403,7 @@ public class TelaCadastroVenda extends javax.swing.JInternalFrame {
                 if (dadosCliente.getCpf().equals(novaVenda.getCpfComprador())){
                     novaEntrega.setNumeroPedido(novaVenda.getNumeroPedido());
                     novaEntrega.setCpfComprador(novaVenda.getCpfComprador());
+                    novaEntrega.setNomeComprador(dadosCliente.getNome());
                     novaEntrega.setRuaDestinatario(dadosCliente.getRua());
                     novaEntrega.setNumeroCasaDestinatario(dadosCliente.getNumero());
                     novaEntrega.setBairroDestinatario(dadosCliente.getBairro());

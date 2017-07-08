@@ -5,10 +5,9 @@
  */
 package br.unirio.ccet.bsi.view.entregas;
 
-import br.unirio.ccet.bsi.view.produtos.*;
-import br.unirio.ccet.bsi.model.Produto;
+import br.unirio.ccet.bsi.model.Entrega;
 import br.unirio.ccet.bsi.utils.Utils;
-import br.unirio.ccet.bsi.utils.XmlProduto;
+import br.unirio.ccet.bsi.utils.XmlEntrega;
 import java.io.File;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,12 +15,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Yuri Lopam
  */
-public class TelaPesquisarEntregas extends javax.swing.JInternalFrame {
+public class TelaVerificarEntregas extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form TelaPesquisaFuncionario
      */
-    public TelaPesquisarEntregas() {
+    public TelaVerificarEntregas() {
         initComponents();
     }
 
@@ -46,15 +45,20 @@ public class TelaPesquisarEntregas extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Código", "Nome", "Tipo", "Data de cadastramento"
+                "Número da entrega", "Nome do cliente", "CEP", "Número da residência", "Estatus da entrega", "Data da entrega"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -94,20 +98,28 @@ public class TelaPesquisarEntregas extends javax.swing.JInternalFrame {
 
     private void botaoPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPesquisarActionPerformed
         DefaultTableModel dtmProdutos = (DefaultTableModel) jTable1.getModel();
-        XmlProduto xml = new XmlProduto();
-        File arquivos = new File(Utils.recuperarPath("Produtos"));
-        String[] codProdutos = arquivos.list();
-        for (String codProduto : codProdutos){
-            Produto dadosProduto = xml.LerXml(codProduto);
-            Object[] dados = {dadosProduto.getCodigo(), dadosProduto.getNome(), dadosProduto.getTipo(), dadosProduto.getDataCadastramento()};
+        XmlEntrega xml = new XmlEntrega();
+        File arquivos = new File(Utils.recuperarPath("Entregas"));
+        String[] numsPedidos = arquivos.list();
+        for (String numPedido : numsPedidos){
+            Entrega dadosEntrega = xml.LerXml(numPedido);
+            Object[] dados = {dadosEntrega.getNumeroPedido(), dadosEntrega.getNomeComprador(), 
+                dadosEntrega.getCepDestinatario(), dadosEntrega.getNumeroCasaDestinatario(),
+                dadosEntrega.getStatus(), dadosEntrega.getDataEntrega()};
             dtmProdutos.addRow(dados);
         }
         botaoPesquisar.setEnabled(false);
     }//GEN-LAST:event_botaoPesquisarActionPerformed
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+    }//GEN-LAST:event_jTable1MouseClicked
+
+        
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button botaoPesquisar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
 }
