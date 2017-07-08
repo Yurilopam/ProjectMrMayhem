@@ -6,7 +6,9 @@
 package br.unirio.ccet.bsi.view.produtos;
 
 import br.unirio.ccet.bsi.model.Produto;
+import br.unirio.ccet.bsi.utils.Utils;
 import br.unirio.ccet.bsi.utils.XmlProduto;
+import java.io.File;
 import javax.swing.JOptionPane;
 import org.apache.commons.lang3.StringUtils;
 
@@ -247,14 +249,39 @@ public class TelaCadastroProduto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_campoTipoProdutoActionPerformed
 
     private boolean formularioCadastroValidado() {
-        return !StringUtils.isEmpty(campoNome.getText())
+        boolean formularioValidado = false;
+        if (!StringUtils.isEmpty(campoNome.getText())
                 && campoDataCadastramento.getValue() != null && !campoDataCadastramento.getValue().toString().equals("")
                 && campoCodigo.getValue() != null && !campoCodigo.getValue().toString().equals("")
                 && campoPreco.getValue() != null && !campoPreco.getValue().toString().equals("")
                 && campoQuantidadeInicial.getValue() != null && !campoQuantidadeInicial.getValue().toString().equals("")
                 && !StringUtils.isEmpty(campoTipoProduto.getSelectedItem().toString())
                 && !StringUtils.isEmpty(campoCodigo.getText())
-                && !StringUtils.isEmpty(campoDescricaoProduto.getText());
+                && !StringUtils.isEmpty(campoDescricaoProduto.getText())
+                && verificarCodigoProdutoCadastrado()){
+            
+        }
+        return formularioValidado;
+    }
+    
+    private boolean verificarCodigoProdutoCadastrado(){
+        boolean validacao;
+        int contadorCadastros = 0;
+        XmlProduto xml = new XmlProduto();
+        File arquivos = new File(Utils.recuperarPath("Produtos"));
+        String[] codsProdutos = arquivos.list();
+        for (String codProduto : codsProdutos) {
+            Produto dadosProduto = xml.LerXml(codProduto);
+            if (dadosProduto.getCodigo().equals(campoCodigo.getText()))
+                contadorCadastros++;
+        }
+        if (contadorCadastros == 0) {
+            validacao = true;
+        } else {
+            JOptionPane.showMessageDialog(TelaCadastroProduto.this, "Cõdigo do produto já consta na base de dados.");
+            validacao = false;
+        }
+        return validacao;
     }
     
     private void resetarCampos() {
