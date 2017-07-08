@@ -1,72 +1,16 @@
 package br.unirio.ccet.bsi.model;
 
-public class Venda {
+public class Venda extends Pedido{
 
-    private String numeroPedido;
-    private String cpfComprador;
-    private String dataPedido;
-    private String dataEntrega;
     private String observacoes;
     private String precoTotal;
     private String formaPagamento;
     private String vendedor;
+
+    public Venda() {
+        super();
+    }
     
-    /**
-     * @return the numeroPedido
-     */
-    public String getNumeroPedido() {
-        return numeroPedido;
-    }
-
-    /**
-     * @param numeroPedido the numeroPedido to set
-     */
-    public void setNumeroPedido(String numeroPedido) {
-        this.numeroPedido = numeroPedido;
-    }
-
-    /**
-     * @return the cpfComprador
-     */
-    public String getCpfComprador() {
-        return cpfComprador;
-    }
-
-    /**
-     * @param cpfComprador the cpfComprador to set
-     */
-    public void setCpfComprador(String cpfComprador) {
-        this.cpfComprador = cpfComprador;
-    }
-
-    /**
-     * @return the dataPedido
-     */
-    public String getDataPedido() {
-        return dataPedido;
-    }
-
-    /**
-     * @param dataPedido the dataPedido to set
-     */
-    public void setDataPedido(String dataPedido) {
-        this.dataPedido = dataPedido;
-    }
-
-    /**
-     * @return the dataEntrega
-     */
-    public String getDataEntrega() {
-        return dataEntrega;
-    }
-
-    /**
-     * @param dataEntrega the dataEntrega to set
-     */
-    public void setDataEntrega(String dataEntrega) {
-        this.dataEntrega = dataEntrega;
-    }
-
     /**
      * @return the observacoes
      */

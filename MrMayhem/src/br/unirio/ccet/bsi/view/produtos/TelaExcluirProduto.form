@@ -185,14 +185,8 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="campoTipoProduto">
           <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="5">
-                <StringItem index="0" value="CINTO"/>
-                <StringItem index="1" value="TERNO"/>
-                <StringItem index="2" value="MEIA"/>
-                <StringItem index="3" value="SAPATO"/>
-                <StringItem index="4" value="GRAVATA"/>
-              </StringArray>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new DefaultComboBoxModel(Enums.TiposDeProduto.values())" type="code"/>
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>

@@ -5,10 +5,12 @@
  */
 package br.unirio.ccet.bsi.view.funcionarios;
 
-import br.unirio.ccet.bsi.model.FuncionarioLocal;
+import br.unirio.ccet.bsi.model.Funcionario;
+import br.unirio.ccet.bsi.utils.Enums;
 import br.unirio.ccet.bsi.utils.Utils;
 import br.unirio.ccet.bsi.utils.XmlFuncionario;
 import java.io.File;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -134,7 +136,7 @@ public class TelaExcluirFuncionario extends javax.swing.JInternalFrame {
             }
         });
 
-        campoEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SOLTEIRO(A)", "CASADO(A)", "DIVORCIADO(A)", "VIÚVO(A)", "SEPARADO(A)" }));
+        campoEstadoCivil.setModel(new DefaultComboBoxModel(Enums.EstadoCivil.values()));
         campoEstadoCivil.setEnabled(false);
 
         campoTelefone.setEditable(false);
@@ -173,7 +175,7 @@ public class TelaExcluirFuncionario extends javax.swing.JInternalFrame {
             }
         });
 
-        campoFuncao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SUPERVISOR", "ATENDENTE", "ENTREGADOR", "ALFAIATE" }));
+        campoFuncao.setModel(new DefaultComboBoxModel(Enums.TiposDeFuncionario.values()));
         campoFuncao.setEnabled(false);
 
         campoSalario.setEditable(false);
@@ -482,7 +484,7 @@ public class TelaExcluirFuncionario extends javax.swing.JInternalFrame {
         File[] ctpsFuncionarios = arquivos.listFiles();
         for (File ctpsFuncinoario : ctpsFuncionarios){
             if(ctpsFuncinoario.getName().equals(campoCtps.getText()+".xml")){
-                FuncionarioLocal dadosFuncionario = xml.LerXml(ctpsFuncinoario.getName());
+                Funcionario dadosFuncionario = xml.LerXml(ctpsFuncinoario.getName());
                 campoNome.setText(dadosFuncionario.getNome());
                 campoDataNascimento.setText(dadosFuncionario.getDataNascimento());
                 campoNacionalidade.setText(dadosFuncionario.getNacionalidade());
@@ -504,7 +506,7 @@ public class TelaExcluirFuncionario extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_botaoPesquisarActionPerformed
     
-    private int recuperarEstadoCivil(FuncionarioLocal dadosFuncionario) {
+    private int recuperarEstadoCivil(Funcionario dadosFuncionario) {
         switch(dadosFuncionario.getEstadoCivil()){
             case "SOLTEIRO(A)":
                 return 0;
@@ -519,7 +521,7 @@ public class TelaExcluirFuncionario extends javax.swing.JInternalFrame {
         } return -1;
     }
     
-    private int recuperarFuncao(FuncionarioLocal dadosFuncionario) {
+    private int recuperarFuncao(Funcionario dadosFuncionario) {
         switch(dadosFuncionario.getFuncao()){
             case "SUPERVISOR":
                 return 0;

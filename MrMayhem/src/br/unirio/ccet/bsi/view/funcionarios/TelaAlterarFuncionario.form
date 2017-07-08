@@ -322,14 +322,8 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="campoEstadoCivil">
           <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="5">
-                <StringItem index="0" value="SOLTEIRO(A)"/>
-                <StringItem index="1" value="CASADO(A)"/>
-                <StringItem index="2" value="DIVORCIADO(A)"/>
-                <StringItem index="3" value="VI&#xda;VO(A)"/>
-                <StringItem index="4" value="SEPARADO(A)"/>
-              </StringArray>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new DefaultComboBoxModel(Enums.EstadoCivil.values())" type="code"/>
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
@@ -382,13 +376,8 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="campoFuncao">
           <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="SUPERVISOR"/>
-                <StringItem index="1" value="ATENDENTE"/>
-                <StringItem index="2" value="ENTREGADOR"/>
-                <StringItem index="3" value="ALFAIATE"/>
-              </StringArray>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new DefaultComboBoxModel(Enums.TiposDeFuncionario.values())" type="code"/>
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>

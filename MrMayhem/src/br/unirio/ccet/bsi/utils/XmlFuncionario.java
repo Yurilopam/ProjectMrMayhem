@@ -5,7 +5,7 @@
  */
 package br.unirio.ccet.bsi.utils;
 
-import br.unirio.ccet.bsi.model.FuncionarioLocal;
+import br.unirio.ccet.bsi.model.Funcionario;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.BufferedInputStream;
@@ -20,27 +20,27 @@ import java.io.FileOutputStream;
  */
 public class XmlFuncionario {    
 
-    public void GerarXml(FuncionarioLocal novoFuncionarioLocal) {
-        String PATH = Utils.recuperarPath("Funcionarios")+"\\"+novoFuncionarioLocal.getCtps()+".xml";
+    public void GerarXml(Funcionario novoFuncionario) {
+        String PATH = Utils.recuperarPath("Funcionarios")+"\\"+novoFuncionario.getCtps()+".xml";
         
         try {
             XMLEncoder encoder;
             encoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(PATH)));
-            encoder.writeObject(novoFuncionarioLocal);
+            encoder.writeObject(novoFuncionario);
             encoder.close();
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
     }
     
-    public FuncionarioLocal LerXml(String cpfFuncionarioLocal) {
+    public Funcionario LerXml(String cpfFuncionario) {
         
-        FuncionarioLocal funcionarioLocalCadastrado = null;
-        String PATH = Utils.recuperarPath("Funcionarios")+"\\"+cpfFuncionarioLocal;
+        Funcionario funcionarioLocalCadastrado = null;
+        String PATH = Utils.recuperarPath("Funcionarios")+"\\"+cpfFuncionario;
         
         try {
             XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream(PATH)));
-            funcionarioLocalCadastrado = (FuncionarioLocal) decoder.readObject();        
+            funcionarioLocalCadastrado = (Funcionario) decoder.readObject();        
             decoder.close();            
             return funcionarioLocalCadastrado;
         } catch (FileNotFoundException e) {

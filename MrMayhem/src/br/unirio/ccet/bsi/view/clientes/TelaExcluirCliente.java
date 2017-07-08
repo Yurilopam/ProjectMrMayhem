@@ -6,10 +6,12 @@
 package br.unirio.ccet.bsi.view.clientes;
 
 import br.unirio.ccet.bsi.model.Cliente;
+import br.unirio.ccet.bsi.utils.Enums;
 import br.unirio.ccet.bsi.utils.Utils;
 import br.unirio.ccet.bsi.utils.XmlCliente;
 import javax.swing.JOptionPane;
 import java.io.File;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -114,7 +116,7 @@ public class TelaExcluirCliente extends javax.swing.JInternalFrame {
             }
         });
 
-        campoEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SOLTEIRO(A)", "CASADO(A)", "DIVORCIADO(A)", "VIÚVO(A)", "SEPARADO(A)" }));
+        campoEstadoCivil.setModel(new DefaultComboBoxModel(Enums.EstadoCivil.values()));
         campoEstadoCivil.setEnabled(false);
 
         campoTelefone.setEditable(false);

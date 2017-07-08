@@ -6,9 +6,11 @@
 package br.unirio.ccet.bsi.view.produtos;
 
 import br.unirio.ccet.bsi.model.Produto;
+import br.unirio.ccet.bsi.utils.Enums;
 import br.unirio.ccet.bsi.utils.Utils;
 import br.unirio.ccet.bsi.utils.XmlProduto;
 import java.io.File;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import org.apache.commons.lang3.StringUtils;
 
@@ -80,7 +82,7 @@ public class TelaAlterarProduto extends javax.swing.JInternalFrame {
             }
         });
 
-        campoTipoProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CINTO", "TERNO", "MEIA", "SAPATO", "GRAVATA" }));
+        campoTipoProduto.setModel(new DefaultComboBoxModel(Enums.TiposDeProduto.values()));
         campoTipoProduto.setEnabled(false);
         campoTipoProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

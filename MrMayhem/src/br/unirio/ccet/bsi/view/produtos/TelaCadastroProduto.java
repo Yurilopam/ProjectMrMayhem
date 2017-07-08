@@ -6,9 +6,11 @@
 package br.unirio.ccet.bsi.view.produtos;
 
 import br.unirio.ccet.bsi.model.Produto;
+import br.unirio.ccet.bsi.utils.Enums;
 import br.unirio.ccet.bsi.utils.Utils;
 import br.unirio.ccet.bsi.utils.XmlProduto;
 import java.io.File;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import org.apache.commons.lang3.StringUtils;
 
@@ -72,7 +74,7 @@ public class TelaCadastroProduto extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
-        campoTipoProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CINTO", "TERNO", "MEIA", "SAPATO" }));
+        campoTipoProduto.setModel(new DefaultComboBoxModel(Enums.TiposDeProduto.values()));
         campoTipoProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoTipoProdutoActionPerformed(evt);
@@ -86,6 +88,11 @@ public class TelaCadastroProduto extends javax.swing.JInternalFrame {
         }
 
         campoPreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        campoPreco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoPrecoActionPerformed(evt);
+            }
+        });
 
         campoQuantidadeInicial.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
@@ -248,6 +255,10 @@ public class TelaCadastroProduto extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoTipoProdutoActionPerformed
 
+    private void campoPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoPrecoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoPrecoActionPerformed
+
     private boolean formularioCadastroValidado() {
         boolean formularioValidado = false;
         if (!StringUtils.isEmpty(campoNome.getText())
@@ -259,7 +270,7 @@ public class TelaCadastroProduto extends javax.swing.JInternalFrame {
                 && !StringUtils.isEmpty(campoCodigo.getText())
                 && !StringUtils.isEmpty(campoDescricaoProduto.getText())
                 && verificarCodigoProdutoCadastrado()){
-            
+            formularioValidado = true;
         }
         return formularioValidado;
     }

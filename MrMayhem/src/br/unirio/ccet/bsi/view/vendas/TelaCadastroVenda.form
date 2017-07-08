@@ -262,11 +262,8 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="campoTipoEntrega">
           <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="2">
-                <StringItem index="0" value="Em Domic&#xed;lio"/>
-                <StringItem index="1" value="Em M&#xe3;os"/>
-              </StringArray>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new DefaultComboBoxModel(Enums.MeiosDeEntrega.values())" type="code"/>
             </Property>
           </Properties>
           <Events>

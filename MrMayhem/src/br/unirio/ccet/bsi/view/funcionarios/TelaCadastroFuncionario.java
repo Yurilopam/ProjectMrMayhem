@@ -5,8 +5,10 @@
  */
 package br.unirio.ccet.bsi.view.funcionarios;
 
-import br.unirio.ccet.bsi.model.FuncionarioLocal;
+import br.unirio.ccet.bsi.model.Funcionario;
+import br.unirio.ccet.bsi.utils.Enums;
 import br.unirio.ccet.bsi.utils.XmlFuncionario;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import org.apache.commons.lang3.StringUtils;
 
@@ -124,7 +126,7 @@ public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
             }
         });
 
-        campoEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SOLTEIRO(A)", "CASADO(A)", "DIVORCIADO(A)", "VIÚVO(A)", "SEPARADO(A)" }));
+        campoEstadoCivil.setModel(new DefaultComboBoxModel(Enums.EstadoCivil.values()));
 
         try {
             campoTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
@@ -157,7 +159,7 @@ public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
             }
         });
 
-        campoFuncao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SUPERVISOR", "ATENDENTE", "ENTREGADOR", "ALFAIATE" }));
+        campoFuncao.setModel(new DefaultComboBoxModel(Enums.TiposDeFuncionario.values()));
 
         campoSalario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
@@ -429,7 +431,7 @@ public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
 
     private void botaoCadastarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastarActionPerformed
         if (formularioCadastroValidado()) {
-            FuncionarioLocal novoFuncionarioLocal = new FuncionarioLocal();
+            Funcionario novoFuncionarioLocal = new Funcionario();
             novoFuncionarioLocal.setNome(campoNome.getText());
             novoFuncionarioLocal.setDataNascimento(campoDataNascimento.getText());
             novoFuncionarioLocal.setNacionalidade(campoNacionalidade.getText());

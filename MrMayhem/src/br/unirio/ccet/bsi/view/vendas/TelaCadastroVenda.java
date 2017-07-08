@@ -7,14 +7,18 @@ package br.unirio.ccet.bsi.view.vendas;
 
 import br.unirio.ccet.bsi.controller.Login;
 import br.unirio.ccet.bsi.model.Cliente;
+import br.unirio.ccet.bsi.model.Entrega;
 import br.unirio.ccet.bsi.model.Produto;
+import br.unirio.ccet.bsi.utils.Enums;
 import br.unirio.ccet.bsi.model.Venda;
 import br.unirio.ccet.bsi.utils.Utils;
 import br.unirio.ccet.bsi.utils.XmlCliente;
+import br.unirio.ccet.bsi.utils.XmlEntrega;
 import br.unirio.ccet.bsi.utils.XmlProduto;
 import br.unirio.ccet.bsi.utils.XmlVenda;
 import java.io.File;
 import java.text.DecimalFormat;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -115,7 +119,7 @@ public class TelaCadastroVenda extends javax.swing.JInternalFrame {
 
         campoQuantidadeProduto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
-        campoTipoEntrega.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Em Domicílio", "Em Mãos" }));
+        campoTipoEntrega.setModel(new DefaultComboBoxModel(Enums.MeiosDeEntrega.values()));
         campoTipoEntrega.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoTipoEntregaActionPerformed(evt);
@@ -379,6 +383,7 @@ public class TelaCadastroVenda extends javax.swing.JInternalFrame {
             novaVenda.setVendedor(Login.getIdUsuario());
             XmlVenda xml = new XmlVenda();
             xml.GerarXml(novaVenda);
+            gerarEntregaDaVenda(novaVenda);
             JOptionPane.showMessageDialog(TelaCadastroVenda.this, "Venda efetuada com sucesso!");
             resetarCampos();
         } else {
@@ -386,8 +391,34 @@ public class TelaCadastroVenda extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_botaoEfetuarVendaActionPerformed
 
+    private void gerarEntregaDaVenda(Venda novaVenda) {
+        if (!campoTipoEntrega.getSelectedItem().toString().equals("EM_MAOS")) {
+            XmlCliente xmlCliente = new XmlCliente();
+            Entrega novaEntrega = new Entrega();
+            XmlEntrega xmlEntrega = new XmlEntrega();
+            File arquivos = new File(Utils.recuperarPath("Clientes"));
+            String[] cpfsClientes = arquivos.list();
+            for (String cpfCliente : cpfsClientes) {
+                Cliente dadosCliente = xmlCliente.LerXml(cpfCliente);
+                if (dadosCliente.getCpf().equals(novaVenda.getCpfComprador())){
+                    novaEntrega.setNumeroPedido(novaVenda.getNumeroPedido());
+                    novaEntrega.setCpfComprador(novaVenda.getCpfComprador());
+                    novaEntrega.setRuaDestinatario(dadosCliente.getRua());
+                    novaEntrega.setNumeroCasaDestinatario(dadosCliente.getNumero());
+                    novaEntrega.setBairroDestinatario(dadosCliente.getBairro());
+                    novaEntrega.setCepDestinatario(dadosCliente.getCep());
+                    novaEntrega.setTelefoneDestinatario(dadosCliente.getTelefone());
+                    novaEntrega.setDataEntrega(novaVenda.getDataEntrega());
+                    novaEntrega.setDataPedido(novaVenda.getDataPedido());
+                    novaEntrega.setStatus(Enums.Status.PENDENTE);
+                    xmlEntrega.GerarXml(novaEntrega);
+                }
+            }
+        }
+    }
+
     private void campoTipoEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTipoEntregaActionPerformed
-        if (campoTipoEntrega.getSelectedItem().toString().equals("Em Mãos")) {
+        if (campoTipoEntrega.getSelectedItem().toString().equals("EM_MAOS")) {
             campoDataEntrega.setEnabled(false);
             campoDataEntrega.setText(null);
             campoDataEntrega.setValue(null);
@@ -442,7 +473,7 @@ public class TelaCadastroVenda extends javax.swing.JInternalFrame {
 
     private boolean formularioCadastroValidado() {
         boolean formularioValidado = false;
-        if(campoTipoEntrega.getSelectedItem().toString().equals("Em Mãos")) {
+        if(campoTipoEntrega.getSelectedItem().toString().equals("EM_MAOS")) {
             if (campoPrecoTotal.getText() != null && campoNumeroPedido.getValue() != null
                     && campoCpfComprador.getValue() != null && verificarClienteCadastrado()
                     && campoDataPedido.getValue() != null && verificarNumeroPedidoNaoConstaCadastro()

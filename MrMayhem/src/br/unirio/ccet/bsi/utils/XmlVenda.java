@@ -33,10 +33,10 @@ public class XmlVenda {
         }
     }
     
-    public Venda LerXml(String numeroVenda) {
+    public Venda LerXml(String numeroPedido ){
         
         Venda funcionarioLocalCadastrado = null;
-        String PATH = Utils.recuperarPath("Vendas")+"\\"+numeroVenda;
+        String PATH = Utils.recuperarPath("Vendas")+"\\"+numeroPedido;
         
         try {
             XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream(PATH)));

@@ -49,21 +49,22 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
+        jMenuItem14 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -111,15 +112,6 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem3);
 
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/zoom.png"))); // NOI18N
-        jMenuItem4.setText("Pesquisar");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem4);
-
         jMenuBar1.add(jMenu1);
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/group.png"))); // NOI18N
@@ -151,15 +143,6 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem7);
-
-        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/zoom.png"))); // NOI18N
-        jMenuItem8.setText("Pesquisar");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem8);
 
         jMenuBar1.add(jMenu2);
 
@@ -193,15 +176,6 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem11);
 
-        jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/zoom.png"))); // NOI18N
-        jMenuItem12.setText("Pesquisar");
-        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem12ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem12);
-
         jMenuBar1.add(jMenu3);
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/cart.png"))); // NOI18N
@@ -220,10 +194,43 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
 
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/report.png"))); // NOI18N
         jMenu5.setText("Relatórios");
+
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/zoom.png"))); // NOI18N
+        jMenuItem4.setText("Pesquisar Funcionários");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem4);
+
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/zoom.png"))); // NOI18N
+        jMenuItem8.setText("Pesquisar Clientes");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem8);
+
+        jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/zoom.png"))); // NOI18N
+        jMenuItem12.setText("Pesquisar Produtos");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem12);
+
         jMenuBar1.add(jMenu5);
 
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/calendar.png"))); // NOI18N
         jMenu6.setText("Agenda");
+
+        jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/car.png"))); // NOI18N
+        jMenuItem14.setText("Verificar Entregas");
+        jMenu6.add(jMenuItem14);
+
         jMenuBar1.add(jMenu6);
 
         jMenu9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/information.png"))); // NOI18N
@@ -378,6 +385,7 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

@@ -5,7 +5,7 @@
  */
 package br.unirio.ccet.bsi.view.funcionarios;
 
-import br.unirio.ccet.bsi.model.FuncionarioLocal;
+import br.unirio.ccet.bsi.model.Funcionario;
 import br.unirio.ccet.bsi.utils.Utils;
 import br.unirio.ccet.bsi.utils.XmlFuncionario;
 import java.io.File;
@@ -97,7 +97,7 @@ public class TelaPesquisaFuncionario extends javax.swing.JInternalFrame {
         File arquivos = new File(Utils.recuperarPath("Funcionarios"));
         String[] cpfsFuncionarios = arquivos.list();
         for (String cpfFuncionario : cpfsFuncionarios){
-            FuncionarioLocal dadosFuncionario = xml.LerXml(cpfFuncionario);
+            Funcionario dadosFuncionario = xml.LerXml(cpfFuncionario);
             Object[] dados = {dadosFuncionario.getNome(), dadosFuncionario.getCtps(), dadosFuncionario.getFuncao(), 
                 dadosFuncionario.getSalario(), dadosFuncionario.getDataCadastramento()};
             dtmFuncionarios.addRow(dados);
