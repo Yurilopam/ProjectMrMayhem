@@ -9,6 +9,7 @@ import br.unirio.ccet.bsi.model.Entrega;
 import br.unirio.ccet.bsi.utils.Enums;
 import br.unirio.ccet.bsi.utils.Utils;
 import br.unirio.ccet.bsi.utils.XmlEntrega;
+import br.unirio.ccet.bsi.view.TelaAgradecimentos;
 import br.unirio.ccet.bsi.view.entregas.TelaRequisicaoEntrega;
 import br.unirio.ccet.bsi.view.entregas.TelaVerificarEntregas;
 import java.awt.event.WindowEvent;
@@ -75,6 +76,7 @@ public class TelaPrincipalEntregador extends javax.swing.JFrame {
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
+        jMenuItem16 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MrMayhem");
@@ -116,6 +118,16 @@ public class TelaPrincipalEntregador extends javax.swing.JFrame {
 
         jMenu9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/information.png"))); // NOI18N
         jMenu9.setText("Sobre");
+
+        jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/thumb_up.png"))); // NOI18N
+        jMenuItem16.setText("Agradecimentos");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem16);
+
         jMenuBar1.add(jMenu9);
 
         setJMenuBar(jMenuBar1);
@@ -146,6 +158,12 @@ public class TelaPrincipalEntregador extends javax.swing.JFrame {
         jDesktopPane1.add(telaRequisicaoEntrega);
         telaRequisicaoEntrega.setVisible(true);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        TelaAgradecimentos telaAgradecimentos = new TelaAgradecimentos();
+        jDesktopPane1.add(telaAgradecimentos);
+        telaAgradecimentos.setVisible(true);
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -196,6 +214,7 @@ public class TelaPrincipalEntregador extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
     // End of variables declaration//GEN-END:variables
 
 }

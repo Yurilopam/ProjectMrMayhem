@@ -10,5 +10,16 @@ package br.unirio.ccet.bsi.controller;
  * @author Yuri Lopam
  */
 public class Estoque {
+
+    public Estoque() {
+    }
+    
+    public String reduzirQuantidade(String quantidadeAReduzir, String quantidadeAntiga) {
+        int numQuantidadeAReduzir = Integer.parseInt(quantidadeAReduzir);
+        int numQuantidadeAntiga = Integer.parseInt(quantidadeAntiga);
+        int quantidadeRestante = numQuantidadeAntiga - numQuantidadeAReduzir;
+        String quantidadeRestateString = String.valueOf(quantidadeRestante);      
+        return quantidadeRestateString;
+    }
     
 }

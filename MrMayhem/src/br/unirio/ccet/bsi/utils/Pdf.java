@@ -7,11 +7,8 @@ package br.unirio.ccet.bsi.utils;
 
 import com.lowagie.text.Document;
 import com.lowagie.text.PageSize;
-import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
-import java.awt.Graphics2D;
-import java.awt.Shape;
 import java.io.FileOutputStream;
 import javax.swing.JTable;
 

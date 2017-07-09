@@ -120,4 +120,25 @@ public class Enums {
         }
     }
     
+    public enum SituacoesDoAluguel{
+        ATRASADO("Atrasado"),
+        DEVOLVIDO("Devolvido"),
+        EM_DIA("Em Dia"),
+        PENDENTE("Pendente");
+
+        private final String situacoes;
+        
+        private SituacoesDoAluguel(String situacoes) {
+            this.situacoes = situacoes;
+        }
+
+        /**
+         * @return the situacoes
+         */
+        public String getSituacoes() {
+            return situacoes;
+        }
+        
+    }
+    
 }

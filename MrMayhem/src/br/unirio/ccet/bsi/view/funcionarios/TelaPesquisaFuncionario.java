@@ -18,8 +18,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.mail.MessagingException;
-import javax.mail.Part;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -161,11 +159,12 @@ public class TelaPesquisaFuncionario extends javax.swing.JInternalFrame {
         DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
         Date date = new Date();
         String nomeDoRelatorio = dateFormat.format(date);
-        Pdf pdf = new Pdf(jTable1, nomeDoRelatorio+".pdf");
+        String nomeDoRelatorioPdf = nomeDoRelatorio+"FUNCIONARIO.pdf";
+        Pdf pdf = new Pdf(jTable1, nomeDoRelatorioPdf);
         Mail mail = new Mail();
         try {
             mail.enviarEmail("supervisormrmayhem@gmail.com", "1wdvfe@3", "yurilopam@gmail.com", 
-                    "Testando Email", "Teste de email do projeto de PCS", nomeDoRelatorio+".pdf");
+                    "Testando Email", "Teste de email do projeto de PCS", nomeDoRelatorioPdf);
         } catch (IOException ex) {
             Logger.getLogger(TelaPesquisaFuncionario.class.getName()).log(Level.SEVERE, null, ex);
         }

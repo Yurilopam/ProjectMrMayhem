@@ -15,11 +15,15 @@ public class Login {
     
     public static boolean autenticar(String idUsuario, String senhaUsuario) {
         Login.idUsuario = idUsuario;
-        if (idUsuario.equals("admin") && senhaUsuario.equals("admin")) {
+        if (idUsuario.equals("gerente") && senhaUsuario.equals("1234")) {
+            return true;
+        } else if (idUsuario.equals("supervisor") && senhaUsuario.equals("1234")){
+            return true;
+        } else if (idUsuario.equals("atendente") && senhaUsuario.equals("1234")) {
             return true;
         } else if (idUsuario.equals("entregador") && senhaUsuario.equals("1234")) {
             return true;
-        }
+        } 
         return false;
     }
 

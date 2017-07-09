@@ -5,6 +5,7 @@
  */
 package br.unirio.ccet.bsi.view.vendas;
 
+import br.unirio.ccet.bsi.controller.Estoque;
 import br.unirio.ccet.bsi.controller.Login;
 import br.unirio.ccet.bsi.model.Cliente;
 import br.unirio.ccet.bsi.model.Entrega;
@@ -372,6 +373,24 @@ public class TelaCadastroVenda extends javax.swing.JInternalFrame {
 
     private void botaoEfetuarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEfetuarVendaActionPerformed
         if (formularioCadastroValidado()) {
+            Estoque controleEstoque = new Estoque();
+            Produto produtoAtualizado = new Produto();
+            XmlProduto xmlProduto = new XmlProduto();
+            File arquivos = new File(Utils.recuperarPath("Produtos"));
+            String[] codProdutos = arquivos.list();
+            for (String codProduto : codProdutos) {
+                Produto dadosProduto = xmlProduto.LerXml(codProduto);
+                if (dadosProduto.getCodigo().equals(campoCodigoProduto.getText())){
+                    produtoAtualizado.setCodigo(dadosProduto.getCodigo());
+                    produtoAtualizado.setDataCadastramento(dadosProduto.getDataCadastramento());
+                    produtoAtualizado.setDescricao(dadosProduto.getDescricao());
+                    produtoAtualizado.setNome(dadosProduto.getNome());
+                    produtoAtualizado.setQuantidade(controleEstoque.reduzirQuantidade(campoQuantidadeProduto.getText(), dadosProduto.getQuantidade()));
+                    produtoAtualizado.setTipo(dadosProduto.getTipo());
+                    produtoAtualizado.setValor(dadosProduto.getValor());
+                    xmlProduto.GerarXml(produtoAtualizado);
+                }
+            }
             Venda novaVenda = new Venda();
             novaVenda.setNumeroPedido(campoNumeroPedido.getText());
             novaVenda.setCpfComprador(campoCpfComprador.getText());

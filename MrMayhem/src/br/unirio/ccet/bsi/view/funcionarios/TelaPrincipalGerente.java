@@ -5,6 +5,10 @@
  */
 package br.unirio.ccet.bsi.view.funcionarios;
 
+import br.unirio.ccet.bsi.view.TelaAgradecimentos;
+import br.unirio.ccet.bsi.view.aluguel.TelaAtualizarAluguel;
+import br.unirio.ccet.bsi.view.aluguel.TelaCadastroAluguel;
+import br.unirio.ccet.bsi.view.aluguel.TelaVerificarAlugueis;
 import br.unirio.ccet.bsi.view.vendas.TelaCadastroVenda;
 import br.unirio.ccet.bsi.view.produtos.TelaAlterarProduto;
 import br.unirio.ccet.bsi.view.produtos.TelaCadastroProduto;
@@ -13,8 +17,6 @@ import br.unirio.ccet.bsi.view.clientes.TelaCadastroCliente;
 import br.unirio.ccet.bsi.view.clientes.TelaExcluirCliente;
 import br.unirio.ccet.bsi.view.clientes.TelaAlterarCliente;
 import br.unirio.ccet.bsi.view.clientes.TelaPesquisaCliente;
-import br.unirio.ccet.bsi.view.entregas.TelaRequisicaoEntrega;
-import br.unirio.ccet.bsi.view.entregas.TelaVerificarEntregas;
 import br.unirio.ccet.bsi.view.produtos.TelaPesquisaProduto;
 
 /**
@@ -52,14 +54,15 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem16 = new javax.swing.JMenuItem();
+        jMenuItem17 = new javax.swing.JMenuItem();
+        jMenuItem18 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
-        jMenuItem14 = new javax.swing.JMenuItem();
-        jMenuItem15 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
+        jMenuItem14 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MrMayhem");
@@ -185,6 +188,33 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem13);
 
+        jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/date_add.png"))); // NOI18N
+        jMenuItem16.setText("Cadastrar Aluguel");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem16);
+
+        jMenuItem17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/date_edit.png"))); // NOI18N
+        jMenuItem17.setText("Atualizar Aluguel");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem17);
+
+        jMenuItem18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/date_magnify.png"))); // NOI18N
+        jMenuItem18.setText("Verificar Alugueis");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem18ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem18);
+
         jMenuBar1.add(jMenu4);
 
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/report.png"))); // NOI18N
@@ -219,31 +249,18 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
-        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/calendar.png"))); // NOI18N
-        jMenu6.setText("Agenda");
+        jMenu9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/information.png"))); // NOI18N
+        jMenu9.setText("Sobre");
 
-        jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/lorry.png"))); // NOI18N
-        jMenuItem14.setText("Verificar Entregas");
+        jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/thumb_up.png"))); // NOI18N
+        jMenuItem14.setText("Agradecimentos");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem14ActionPerformed(evt);
             }
         });
-        jMenu6.add(jMenuItem14);
+        jMenu9.add(jMenuItem14);
 
-        jMenuItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/lorry_go.png"))); // NOI18N
-        jMenuItem15.setText("Alterar Estatus da Entrega");
-        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem15ActionPerformed(evt);
-            }
-        });
-        jMenu6.add(jMenuItem15);
-
-        jMenuBar1.add(jMenu6);
-
-        jMenu9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unirio/ccet/bsi/images/information.png"))); // NOI18N
-        jMenu9.setText("Sobre");
         jMenuBar1.add(jMenu9);
 
         setJMenuBar(jMenuBar1);
@@ -341,17 +358,29 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
         telaCadastroVendas.setVisible(true);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
-    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
-        TelaVerificarEntregas telaVerificarEntregas = new TelaVerificarEntregas();
-        jDesktopPane1.add(telaVerificarEntregas);
-        telaVerificarEntregas.setVisible(true);
-    }//GEN-LAST:event_jMenuItem14ActionPerformed
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        TelaCadastroAluguel telaCadastroAluguel = new TelaCadastroAluguel();
+        jDesktopPane1.add(telaCadastroAluguel);
+        telaCadastroAluguel.setVisible(true);
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
 
-    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-        TelaRequisicaoEntrega telaRequisicaoEntrega = new TelaRequisicaoEntrega();
-        jDesktopPane1.add(telaRequisicaoEntrega);
-        telaRequisicaoEntrega.setVisible(true);
-    }//GEN-LAST:event_jMenuItem15ActionPerformed
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        TelaAtualizarAluguel telaAtualizarAluguel = new TelaAtualizarAluguel();
+        jDesktopPane1.add(telaAtualizarAluguel);
+        telaAtualizarAluguel.setVisible(true);
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
+
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        TelaVerificarAlugueis telaVerificarAlugueis = new TelaVerificarAlugueis();
+        jDesktopPane1.add(telaVerificarAlugueis);
+        telaVerificarAlugueis.setVisible(true);
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        TelaAgradecimentos telaAgradecimentos = new TelaAgradecimentos();
+        jDesktopPane1.add(telaAgradecimentos);
+        telaAgradecimentos.setVisible(true);
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
@@ -360,7 +389,6 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -369,7 +397,9 @@ public class TelaPrincipalGerente extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
-    private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
+    private javax.swing.JMenuItem jMenuItem17;
+    private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

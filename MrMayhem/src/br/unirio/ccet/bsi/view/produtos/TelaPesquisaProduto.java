@@ -6,9 +6,19 @@
 package br.unirio.ccet.bsi.view.produtos;
 
 import br.unirio.ccet.bsi.model.Produto;
+import br.unirio.ccet.bsi.utils.Mail;
+import br.unirio.ccet.bsi.utils.Pdf;
 import br.unirio.ccet.bsi.utils.Utils;
 import br.unirio.ccet.bsi.utils.XmlProduto;
+import java.awt.print.PrinterException;
 import java.io.File;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -36,6 +46,8 @@ public class TelaPesquisaProduto extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         botaoPesquisar = new java.awt.Button();
+        botaoImprimir = new java.awt.Button();
+        botaoEncaminharPorEmail = new java.awt.Button();
 
         setClosable(true);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -45,11 +57,11 @@ public class TelaPesquisaProduto extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Código", "Nome", "Tipo", "Data de cadastramento"
+                "Código", "Nome", "Quantidade em estoque", "Tipo", "Data de cadastramento"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -65,6 +77,22 @@ public class TelaPesquisaProduto extends javax.swing.JInternalFrame {
             }
         });
 
+        botaoImprimir.setEnabled(false);
+        botaoImprimir.setLabel("Imprimir");
+        botaoImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoImprimirActionPerformed(evt);
+            }
+        });
+
+        botaoEncaminharPorEmail.setEnabled(false);
+        botaoEncaminharPorEmail.setLabel("Encaminhar por e-mail");
+        botaoEncaminharPorEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoEncaminharPorEmailActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,18 +102,25 @@ public class TelaPesquisaProduto extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(359, 359, 359)
+                .addGap(116, 116, 116)
                 .addComponent(botaoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botaoImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(114, 114, 114)
+                .addComponent(botaoEncaminharPorEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(111, 111, 111))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(botaoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botaoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoEncaminharPorEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         pack();
@@ -98,13 +133,44 @@ public class TelaPesquisaProduto extends javax.swing.JInternalFrame {
         String[] codProdutos = arquivos.list();
         for (String codProduto : codProdutos){
             Produto dadosProduto = xml.LerXml(codProduto);
-            Object[] dados = {dadosProduto.getCodigo(), dadosProduto.getNome(), dadosProduto.getTipo(), dadosProduto.getDataCadastramento()};
+            Object[] dados = {dadosProduto.getCodigo(), dadosProduto.getNome(), dadosProduto.getQuantidade(),
+                dadosProduto.getTipo(), dadosProduto.getDataCadastramento()};
             dtmProdutos.addRow(dados);
         }
         botaoPesquisar.setEnabled(false);
     }//GEN-LAST:event_botaoPesquisarActionPerformed
 
+    private void botaoImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoImprimirActionPerformed
+        try {
+            boolean impresso = jTable1.print();
+            if(impresso){
+                JOptionPane.showMessageDialog(TelaPesquisaProduto.this, "Impressão realizada com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(TelaPesquisaProduto.this, "Erro ao realizar impressão!");
+            }
+        } catch (PrinterException ex) {
+            Logger.getLogger(TelaPesquisaProduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_botaoImprimirActionPerformed
+
+    private void botaoEncaminharPorEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEncaminharPorEmailActionPerformed
+        DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        Date date = new Date();
+        String nomeDoRelatorio = dateFormat.format(date);
+        String nomeDoRelatorioPdf = nomeDoRelatorio+"PRODUTO.pdf";
+        Pdf pdf = new Pdf(jTable1, nomeDoRelatorioPdf);
+        Mail mail = new Mail();
+        try {
+            mail.enviarEmail("supervisormrmayhem@gmail.com", "1wdvfe@3", "yurilopam@gmail.com",
+                "Testando Email", "Teste de email do projeto de PCS", nomeDoRelatorioPdf);
+        } catch (IOException ex) {
+            Logger.getLogger(TelaPesquisaProduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_botaoEncaminharPorEmailActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.Button botaoEncaminharPorEmail;
+    private java.awt.Button botaoImprimir;
     private java.awt.Button botaoPesquisar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

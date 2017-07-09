@@ -6,8 +6,10 @@
 package br.unirio.ccet.bsi.view;
 
 import br.unirio.ccet.bsi.controller.Login;
+import br.unirio.ccet.bsi.view.funcionarios.TelaPrincipalAtendente;
 import br.unirio.ccet.bsi.view.funcionarios.TelaPrincipalEntregador;
 import br.unirio.ccet.bsi.view.funcionarios.TelaPrincipalGerente;
+import br.unirio.ccet.bsi.view.funcionarios.TelaPrincipalSupervisor;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 
@@ -159,16 +161,33 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoAutenticarActionPerformed
     
     private void redirecionarTelas(String idUsuario) {
-        if (idUsuario.equals("admin")){
-            campoIdUsuario.setText(null);
-            campoSenhaUsuario.setText(null);
-            TelaPrincipalGerente telaPrincipalGerente = new TelaPrincipalGerente();
-            telaPrincipalGerente.setVisible(true);
-        } else if (idUsuario.equals("entregador")){
-            campoIdUsuario.setText(null);
-            campoSenhaUsuario.setText(null);
-            TelaPrincipalEntregador telaPrincipalEntregador = new TelaPrincipalEntregador();
-            telaPrincipalEntregador.setVisible(true);
+        switch (idUsuario) {
+            case "gerente":
+                campoIdUsuario.setText(null);
+                campoSenhaUsuario.setText(null);
+                TelaPrincipalGerente telaPrincipalGerente = new TelaPrincipalGerente();
+                telaPrincipalGerente.setVisible(true);
+                break;
+            case "supervisor":
+                campoIdUsuario.setText(null);
+                campoSenhaUsuario.setText(null);
+                TelaPrincipalSupervisor telaPrincipalSupervisor = new TelaPrincipalSupervisor();
+                telaPrincipalSupervisor.setVisible(true);
+                break;
+            case "atendente":
+                campoIdUsuario.setText(null);
+                campoSenhaUsuario.setText(null);
+                TelaPrincipalAtendente telaPrincipalAtendente = new TelaPrincipalAtendente();
+                telaPrincipalAtendente.setVisible(true);
+                break;
+            case "entregador":
+                campoIdUsuario.setText(null);
+                campoSenhaUsuario.setText(null);
+                TelaPrincipalEntregador telaPrincipalEntregador = new TelaPrincipalEntregador();
+                telaPrincipalEntregador.setVisible(true);
+                break;
+            default:
+                break;
         }
     }
     
