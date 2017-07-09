@@ -5,19 +5,16 @@
  */
 package br.unirio.ccet.bsi.view.clientes;
 
+import br.unirio.ccet.bsi.controller.Login;
 import br.unirio.ccet.bsi.model.Cliente;
-import br.unirio.ccet.bsi.utils.Mail;
-import br.unirio.ccet.bsi.utils.Pdf;
 import br.unirio.ccet.bsi.utils.Utils;
 import br.unirio.ccet.bsi.utils.XmlCliente;
+import br.unirio.ccet.bsi.view.envios.TelaEnvioRelatorio;
 import java.awt.print.PrinterException;
 import java.io.File;
-import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,11 +24,17 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TelaPesquisaCliente extends javax.swing.JInternalFrame {
 
+    private final JDesktopPane desktop;
+
     /**
      * Creates new form TelaPesquisaFuncionario
      */
-    public TelaPesquisaCliente() {
+    public TelaPesquisaCliente(JDesktopPane desktop) {
         initComponents();
+        this.desktop = desktop;
+        if (!Login.getIdUsuario().equals("supervisor")){
+            botaoEncaminharPorEmail.setVisible(false);
+        }
     }
 
     /**
@@ -138,6 +141,8 @@ public class TelaPesquisaCliente extends javax.swing.JInternalFrame {
             dtmClientes.addRow(dados);
         }
         botaoPesquisar.setEnabled(false);
+        botaoImprimir.setEnabled(true);
+        botaoEncaminharPorEmail.setEnabled(true);
     }//GEN-LAST:event_botaoPesquisarActionPerformed
 
     private void botaoImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoImprimirActionPerformed
@@ -154,18 +159,9 @@ public class TelaPesquisaCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botaoImprimirActionPerformed
 
     private void botaoEncaminharPorEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEncaminharPorEmailActionPerformed
-        DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-        Date date = new Date();
-        String nomeDoRelatorio = dateFormat.format(date);
-        String nomeDoRelatorioPdf = nomeDoRelatorio+"CLIENTE.pdf";
-        Pdf pdf = new Pdf(jTable1, nomeDoRelatorioPdf);
-        Mail mail = new Mail();
-        try {
-            mail.enviarEmail("supervisormrmayhem@gmail.com", "1wdvfe@3", "yurilopam@gmail.com",
-                "Testando Email", "Teste de email do projeto de PCS", nomeDoRelatorioPdf);
-        } catch (IOException ex) {
-            Logger.getLogger(TelaPesquisaCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        TelaEnvioRelatorio telaEnvioRelatorioFuncionario = new TelaEnvioRelatorio(jTable1);
+        desktop.add(telaEnvioRelatorioFuncionario);
+        telaEnvioRelatorioFuncionario.setVisible(true);
     }//GEN-LAST:event_botaoEncaminharPorEmailActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -6,10 +6,10 @@
 package br.unirio.ccet.bsi.view;
 
 import br.unirio.ccet.bsi.controller.Login;
-import br.unirio.ccet.bsi.view.funcionarios.TelaPrincipalAtendente;
-import br.unirio.ccet.bsi.view.funcionarios.TelaPrincipalEntregador;
-import br.unirio.ccet.bsi.view.funcionarios.TelaPrincipalGerente;
-import br.unirio.ccet.bsi.view.funcionarios.TelaPrincipalSupervisor;
+import br.unirio.ccet.bsi.view.principais.TelaPrincipalAtendente;
+import br.unirio.ccet.bsi.view.principais.TelaPrincipalEntregador;
+import br.unirio.ccet.bsi.view.principais.TelaPrincipalGerente;
+import br.unirio.ccet.bsi.view.principais.TelaPrincipalSupervisor;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 

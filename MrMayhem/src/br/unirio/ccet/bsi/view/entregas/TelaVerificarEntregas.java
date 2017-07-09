@@ -8,7 +8,13 @@ package br.unirio.ccet.bsi.view.entregas;
 import br.unirio.ccet.bsi.model.Entrega;
 import br.unirio.ccet.bsi.utils.Utils;
 import br.unirio.ccet.bsi.utils.XmlEntrega;
+import br.unirio.ccet.bsi.view.envios.TelaEnvioRelatorio;
+import java.awt.print.PrinterException;
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,11 +23,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TelaVerificarEntregas extends javax.swing.JInternalFrame {
 
+    private final JDesktopPane desktop;
+
     /**
      * Creates new form TelaPesquisaFuncionario
      */
-    public TelaVerificarEntregas() {
+    public TelaVerificarEntregas(JDesktopPane desktop) {
         initComponents();
+        this.desktop = desktop;
     }
 
     /**
@@ -36,6 +45,8 @@ public class TelaVerificarEntregas extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         botaoPesquisar = new java.awt.Button();
+        botaoImprimir = new java.awt.Button();
+        botaoEncaminharPorEmail = new java.awt.Button();
 
         setClosable(true);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -70,6 +81,22 @@ public class TelaVerificarEntregas extends javax.swing.JInternalFrame {
             }
         });
 
+        botaoImprimir.setEnabled(false);
+        botaoImprimir.setLabel("Imprimir");
+        botaoImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoImprimirActionPerformed(evt);
+            }
+        });
+
+        botaoEncaminharPorEmail.setEnabled(false);
+        botaoEncaminharPorEmail.setLabel("Encaminhar por e-mail");
+        botaoEncaminharPorEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoEncaminharPorEmailActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,9 +106,13 @@ public class TelaVerificarEntregas extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(359, 359, 359)
+                .addGap(144, 144, 144)
                 .addComponent(botaoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(141, 141, 141)
+                .addComponent(botaoImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botaoEncaminharPorEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(110, 110, 110))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,7 +120,10 @@ public class TelaVerificarEntregas extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addComponent(botaoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botaoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoEncaminharPorEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(79, Short.MAX_VALUE))
         );
 
@@ -109,14 +143,37 @@ public class TelaVerificarEntregas extends javax.swing.JInternalFrame {
             dtmProdutos.addRow(dados);
         }
         botaoPesquisar.setEnabled(false);
+        botaoImprimir.setEnabled(true);
+        botaoEncaminharPorEmail.setEnabled(true);
     }//GEN-LAST:event_botaoPesquisarActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
     }//GEN-LAST:event_jTable1MouseClicked
 
+    private void botaoImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoImprimirActionPerformed
+        try {
+            boolean impresso = jTable1.print();
+            if(impresso){
+                JOptionPane.showMessageDialog(TelaVerificarEntregas.this, "Impressão realizada com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(TelaVerificarEntregas.this, "Erro ao realizar impressão!");
+            }
+        } catch (PrinterException ex) {
+            Logger.getLogger(TelaVerificarEntregas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_botaoImprimirActionPerformed
+
+    private void botaoEncaminharPorEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEncaminharPorEmailActionPerformed
+        TelaEnvioRelatorio telaEnvioRelatorioFuncionario = new TelaEnvioRelatorio(jTable1);
+        desktop.add(telaEnvioRelatorioFuncionario);
+        telaEnvioRelatorioFuncionario.setVisible(true);
+    }//GEN-LAST:event_botaoEncaminharPorEmailActionPerformed
+
         
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.Button botaoEncaminharPorEmail;
+    private java.awt.Button botaoImprimir;
     private java.awt.Button botaoPesquisar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
