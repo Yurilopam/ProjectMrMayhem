@@ -134,17 +134,21 @@ public class TelaVerificarEntregas extends javax.swing.JInternalFrame {
         DefaultTableModel dtmProdutos = (DefaultTableModel) jTable1.getModel();
         XmlEntrega xml = new XmlEntrega();
         File arquivos = new File(Utils.recuperarPath("Entregas"));
-        String[] numsPedidos = arquivos.list();
-        for (String numPedido : numsPedidos){
-            Entrega dadosEntrega = xml.LerXml(numPedido);
-            Object[] dados = {dadosEntrega.getCodigoPedido(), dadosEntrega.getNomeComprador(), 
-                dadosEntrega.getCepDestinatario(), dadosEntrega.getNumeroCasaDestinatario(),
-                dadosEntrega.getStatus(), dadosEntrega.getDataEntrega()};
-            dtmProdutos.addRow(dados);
+        if (arquivos.list().length == 0){
+            JOptionPane.showMessageDialog(TelaVerificarEntregas.this, "Não existem registros!");
+        } else {
+            String[] numsPedidos = arquivos.list();
+            for (String numPedido : numsPedidos){
+                Entrega dadosEntrega = xml.LerXml(numPedido);
+                Object[] dados = {dadosEntrega.getCodigoPedido(), dadosEntrega.getNomeComprador(), 
+                    dadosEntrega.getCepDestinatario(), dadosEntrega.getNumeroCasaDestinatario(),
+                    dadosEntrega.getStatus(), dadosEntrega.getDataEntrega()};
+                dtmProdutos.addRow(dados);
+            }
+            botaoPesquisar.setEnabled(false);
+            botaoImprimir.setEnabled(true);
+            botaoEncaminharPorEmail.setEnabled(true);
         }
-        botaoPesquisar.setEnabled(false);
-        botaoImprimir.setEnabled(true);
-        botaoEncaminharPorEmail.setEnabled(true);
     }//GEN-LAST:event_botaoPesquisarActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
