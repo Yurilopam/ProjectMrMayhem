@@ -117,15 +117,19 @@ public class TelaVerificarAlugueis extends javax.swing.JInternalFrame {
         DefaultTableModel dtmProdutos = (DefaultTableModel) jTable1.getModel();
         XmlAluguel xml = new XmlAluguel();
         File arquivos = new File(Utils.recuperarPath("Alugueis"));
-        String[] numsPedidos = arquivos.list();
-        for (String numPedido : numsPedidos){
-            Aluguel dadosAluguel = xml.LerXml(numPedido);
-            Object[] dados = {dadosAluguel.getCodigoPedido(), dadosAluguel.getCpfComprador(), 
-                dadosAluguel.getSituacao(), dadosAluguel.getDataDevolucao()};
-            dtmProdutos.addRow(dados);
+        if (arquivos.list().length == 0){
+            JOptionPane.showMessageDialog(TelaVerificarAlugueis.this, "Não existem registros!");
+        } else {
+            String[] numsPedidos = arquivos.list();
+            for (String numPedido : numsPedidos){
+                Aluguel dadosAluguel = xml.LerXml(numPedido);
+                Object[] dados = {dadosAluguel.getCodigoPedido(), dadosAluguel.getCpfComprador(), 
+                    dadosAluguel.getSituacao(), dadosAluguel.getDataDevolucao()};
+                dtmProdutos.addRow(dados);
+            }
+            botaoPesquisar.setEnabled(false);
+            botaoImprimir.setEnabled(true);
         }
-        botaoPesquisar.setEnabled(false);
-        botaoImprimir.setEnabled(true);
     }//GEN-LAST:event_botaoPesquisarActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
