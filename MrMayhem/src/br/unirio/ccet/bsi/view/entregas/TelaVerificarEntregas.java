@@ -137,7 +137,7 @@ public class TelaVerificarEntregas extends javax.swing.JInternalFrame {
         String[] numsPedidos = arquivos.list();
         for (String numPedido : numsPedidos){
             Entrega dadosEntrega = xml.LerXml(numPedido);
-            Object[] dados = {dadosEntrega.getNumeroPedido(), dadosEntrega.getNomeComprador(), 
+            Object[] dados = {dadosEntrega.getCodigoPedido(), dadosEntrega.getNomeComprador(), 
                 dadosEntrega.getCepDestinatario(), dadosEntrega.getNumeroCasaDestinatario(),
                 dadosEntrega.getStatus(), dadosEntrega.getDataEntrega()};
             dtmProdutos.addRow(dados);

@@ -468,15 +468,15 @@ public class TelaExcluirCliente extends javax.swing.JInternalFrame {
 
     private int recuperarEstadoCivil(Cliente dadosCliente) {
         switch(dadosCliente.getEstadoCivil()){
-            case "SOLTEIRO(A)":
+            case SOLTEIRO:
                 return 0;
-            case "CASADO(A)":
+            case CASADO:
                 return 1;
-            case "DIVORCIADO(A)":
+            case DIVORCIADO:
                 return 2;
-            case "VIÚVO(A)": 
+            case VIUVO: 
                 return 3;
-            case "SEPARADO(A)":
+            case SEPARADO:
                 return 4;
         } return -1;
     }

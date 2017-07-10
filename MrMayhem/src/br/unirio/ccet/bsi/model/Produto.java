@@ -1,11 +1,13 @@
 package br.unirio.ccet.bsi.model;
 
+import br.unirio.ccet.bsi.utils.Enums;
+
 public class Produto {
 
     private String nome;
     private String codigo;
     private String dataCadastramento;
-    private String tipo;
+    private Enums.TiposDeProduto tipoProduto;
     private String descricao;
     private String valor;
     private String quantidade;
@@ -53,17 +55,17 @@ public class Produto {
     }
 
     /**
-     * @return the tipo
+     * @return the tipoProduto
      */
-    public String getTipo() {
-        return tipo;
+    public Enums.TiposDeProduto getTipoProduto() {
+        return tipoProduto;
     }
 
     /**
-     * @param tipo the tipo to set
+     * @param tipoProduto the tipoProduto to set
      */
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setTipoProduto(Enums.TiposDeProduto tipoProduto) {
+        this.tipoProduto = tipoProduto;
     }
 
     /**

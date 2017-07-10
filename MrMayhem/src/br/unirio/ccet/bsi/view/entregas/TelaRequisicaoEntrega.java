@@ -9,7 +9,6 @@ import br.unirio.ccet.bsi.model.Entrega;
 import br.unirio.ccet.bsi.utils.Enums;
 import br.unirio.ccet.bsi.utils.Utils;
 import br.unirio.ccet.bsi.utils.XmlEntrega;
-import br.unirio.ccet.bsi.view.produtos.TelaAlterarProduto;
 import java.io.File;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -37,7 +36,7 @@ public class TelaRequisicaoEntrega extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        campoNumeroEntrega = new javax.swing.JFormattedTextField();
+        campoCodigoEntrega = new javax.swing.JFormattedTextField();
         campoNomeCliente = new javax.swing.JTextField();
         campoCep = new javax.swing.JFormattedTextField();
         campoNumero = new javax.swing.JFormattedTextField();
@@ -63,7 +62,7 @@ public class TelaRequisicaoEntrega extends javax.swing.JInternalFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         try {
-            campoNumeroEntrega.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########")));
+            campoCodigoEntrega.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########*")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -121,7 +120,7 @@ public class TelaRequisicaoEntrega extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Entregas");
 
-        jLabel2.setText("Número da entrega:");
+        jLabel2.setText("Código da entrega:");
 
         jLabel3.setText("Nome do cliente:");
 
@@ -174,7 +173,7 @@ public class TelaRequisicaoEntrega extends javax.swing.JInternalFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(campoNumeroEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(campoCodigoEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(botaoProcurarEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -184,7 +183,7 @@ public class TelaRequisicaoEntrega extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,7 +198,7 @@ public class TelaRequisicaoEntrega extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(campoNumeroEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(campoCodigoEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(botaoLimparBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -256,14 +255,14 @@ public class TelaRequisicaoEntrega extends javax.swing.JInternalFrame {
         File arquivos = new File(Utils.recuperarPath("Entregas"));
         File[] numsPedidos = arquivos.listFiles();
         for (File numPedido : numsPedidos){
-            if (numPedido.getName().equals(campoNumeroEntrega.getText()+".xml")){
+            if (numPedido.getName().equals(campoCodigoEntrega.getText()+".xml")){
                 Entrega dadosEntrega = xml.LerXml(numPedido.getName());
                 campoNomeCliente.setText(dadosEntrega.getNomeComprador());
                 campoCep.setText(dadosEntrega.getCepDestinatario());
                 campoNumero.setText(dadosEntrega.getNumeroCasaDestinatario());
                 campoEstatusEntrega.setSelectedIndex(recuperarEstatusEntrega(dadosEntrega));
                 campoObservacoes.setText(dadosEntrega.getObservacoes());
-                campoNumeroEntrega.setEnabled(false);
+                campoCodigoEntrega.setEnabled(false);
                 campoObservacoes.setEditable(true);
                 botaoAtualizarStatusEntrega.setEnabled(true);
             }
@@ -275,13 +274,22 @@ public class TelaRequisicaoEntrega extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botaoLimparBuscaActionPerformed
 
     private void botaoAtualizarStatusEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtualizarStatusEntregaActionPerformed
+        XmlEntrega xmlEntregaAntiga = new XmlEntrega();
+        Entrega entregaAntiga = xmlEntregaAntiga.LerXml(campoCodigoEntrega.getText());
         Entrega entregaAtualizada = new Entrega();
-        entregaAtualizada.setNumeroPedido(campoNumeroEntrega.getText());
+        entregaAtualizada.setCpfComprador(entregaAntiga.getCpfComprador());
+        entregaAtualizada.setDataPedido(entregaAntiga.getDataPedido());
+        entregaAtualizada.setDataEntrega(entregaAntiga.getDataEntrega());
+        entregaAtualizada.setCodigoPedido(campoCodigoEntrega.getText());
         entregaAtualizada.setNomeComprador(campoNomeCliente.getText());
         entregaAtualizada.setCepDestinatario(campoCep.getText());
         entregaAtualizada.setNumeroCasaDestinatario(campoNumero.getText());
         entregaAtualizada.setStatus((Enums.Status) campoEstatusEntrega.getSelectedItem());
         entregaAtualizada.setObservacoes(campoObservacoes.getText());
+        entregaAtualizada.setBairroDestinatario(entregaAntiga.getBairroDestinatario());
+        entregaAtualizada.setTelefoneDestinatario(entregaAntiga.getTelefoneDestinatario());
+        entregaAtualizada.setTipoTransacao(entregaAntiga.getTipoTransacao());
+        entregaAtualizada.setRuaDestinatario(entregaAntiga.getRuaDestinatario());
         XmlEntrega xml = new XmlEntrega();
         xml.GerarXml(entregaAtualizada);
         JOptionPane.showMessageDialog(TelaRequisicaoEntrega.this, "Entrega atualizada com sucesso!");
@@ -293,10 +301,10 @@ public class TelaRequisicaoEntrega extends javax.swing.JInternalFrame {
     private java.awt.Button botaoLimparBusca;
     private java.awt.Button botaoProcurarEntrega;
     private javax.swing.JFormattedTextField campoCep;
+    private javax.swing.JFormattedTextField campoCodigoEntrega;
     private javax.swing.JComboBox<String> campoEstatusEntrega;
     private javax.swing.JTextField campoNomeCliente;
     private javax.swing.JFormattedTextField campoNumero;
-    private javax.swing.JFormattedTextField campoNumeroEntrega;
     private javax.swing.JTextArea campoObservacoes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
@@ -327,9 +335,9 @@ public class TelaRequisicaoEntrega extends javax.swing.JInternalFrame {
     }
 
     private void limparPesquisa() {
-        campoNumeroEntrega.setText(null);
-        campoNumeroEntrega.setValue(null);
-        campoNumeroEntrega.setEnabled(true);
+        campoCodigoEntrega.setText(null);
+        campoCodigoEntrega.setValue(null);
+        campoCodigoEntrega.setEnabled(true);
         campoNomeCliente.setText(null);
         campoCep.setText(null);
         campoCep.setValue(null);
@@ -342,9 +350,9 @@ public class TelaRequisicaoEntrega extends javax.swing.JInternalFrame {
     }
 
     private void resetarCampos() {
-        campoNumeroEntrega.setText(null);
-        campoNumeroEntrega.setValue(null);
-        campoNumeroEntrega.setEnabled(true);
+        campoCodigoEntrega.setText(null);
+        campoCodigoEntrega.setValue(null);
+        campoCodigoEntrega.setEnabled(true);
         campoNomeCliente.setText(null);
         campoCep.setText(null);
         campoCep.setValue(null);

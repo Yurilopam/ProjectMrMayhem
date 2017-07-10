@@ -386,13 +386,13 @@ public class TelaCadastroVenda extends javax.swing.JInternalFrame {
                     produtoAtualizado.setDescricao(dadosProduto.getDescricao());
                     produtoAtualizado.setNome(dadosProduto.getNome());
                     produtoAtualizado.setQuantidade(controleEstoque.reduzirQuantidade(campoQuantidadeProduto.getText(), dadosProduto.getQuantidade()));
-                    produtoAtualizado.setTipo(dadosProduto.getTipo());
+                    produtoAtualizado.setTipoProduto(dadosProduto.getTipoProduto());
                     produtoAtualizado.setValor(dadosProduto.getValor());
                     xmlProduto.GerarXml(produtoAtualizado);
                 }
             }
             Venda novaVenda = new Venda();
-            novaVenda.setNumeroPedido(campoNumeroPedido.getText());
+            novaVenda.setCodigoPedido(campoNumeroPedido.getText());
             novaVenda.setCpfComprador(campoCpfComprador.getText());
             novaVenda.setDataPedido(campoDataPedido.getText());
             novaVenda.setDataEntrega(campoDataEntrega.getText());
@@ -420,7 +420,8 @@ public class TelaCadastroVenda extends javax.swing.JInternalFrame {
             for (String cpfCliente : cpfsClientes) {
                 Cliente dadosCliente = xmlCliente.LerXml(cpfCliente);
                 if (dadosCliente.getCpf().equals(novaVenda.getCpfComprador())){
-                    novaEntrega.setNumeroPedido(novaVenda.getNumeroPedido());
+                    novaEntrega.setTipoTransacao("V");
+                    novaEntrega.setCodigoPedido(novaVenda.getCodigoPedido()+novaEntrega.getTipoTransacao());
                     novaEntrega.setCpfComprador(novaVenda.getCpfComprador());
                     novaEntrega.setNomeComprador(dadosCliente.getNome());
                     novaEntrega.setRuaDestinatario(dadosCliente.getRua());
@@ -497,15 +498,14 @@ public class TelaCadastroVenda extends javax.swing.JInternalFrame {
             if (campoPrecoTotal.getText() != null && campoNumeroPedido.getValue() != null
                     && campoCpfComprador.getValue() != null && verificarClienteCadastrado()
                     && campoDataPedido.getValue() != null && verificarNumeroPedidoNaoConstaCadastro()
-                    && radioCartaoCredito.isSelected() || radioDinheiro.isSelected()) {
+                    && (radioCartaoCredito.isSelected() || radioDinheiro.isSelected())) {
                 formularioValidado = true;
             }
         } else {
             if (campoPrecoTotal.getText() != null && campoNumeroPedido.getValue() != null
                     && campoCpfComprador.getValue() != null && verificarClienteCadastrado() 
                     && campoDataPedido.getValue() != null && campoDataEntrega.getValue() != null
-                    && verificarNumeroPedidoNaoConstaCadastro()
-                    && radioCartaoCredito.isSelected() || radioDinheiro.isSelected()) {
+                    && verificarNumeroPedidoNaoConstaCadastro() && (radioCartaoCredito.isSelected() || radioDinheiro.isSelected())) {
                 formularioValidado = true;
             }
         }
@@ -540,7 +540,7 @@ public class TelaCadastroVenda extends javax.swing.JInternalFrame {
         String[] numPedidos = arquivos.list();
         for (String numPedido : numPedidos) {
             Venda dadosVenda = xml.LerXml(numPedido);
-            if (dadosVenda.getNumeroPedido().equals(campoNumeroPedido.getText())){
+            if (dadosVenda.getCodigoPedido().equals(campoNumeroPedido.getText())){
                 contadorCadastros++;
             }
         }

@@ -431,7 +431,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="N&#xfa;mero do Pedido:"/>
+            <Property name="text" type="java.lang.String" value="C&#xf3;digo do Pedido:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">

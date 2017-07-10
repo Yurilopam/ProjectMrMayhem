@@ -8,7 +8,7 @@ import java.io.Serializable;
  */
 public abstract class Pedido implements Serializable{
     
-    private String numeroPedido;
+    private String codigoPedido;
     private String nomeComprador;
     private String cpfComprador;
     private String dataPedido;
@@ -19,17 +19,17 @@ public abstract class Pedido implements Serializable{
     }
 
     /**
-     * @return the numeroPedido
+     * @return the codigoPedido
      */
-    public String getNumeroPedido() {
-        return numeroPedido;
+    public String getCodigoPedido() {
+        return codigoPedido;
     }
 
     /**
-     * @param numeroPedido the numeroPedido to set
+     * @param codigoPedido the codigoPedido to set
      */
-    public void setNumeroPedido(String numeroPedido) {
-        this.numeroPedido = numeroPedido;
+    public void setCodigoPedido(String codigoPedido) {
+        this.codigoPedido = codigoPedido;
     }
 
     /**

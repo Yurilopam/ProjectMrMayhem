@@ -120,7 +120,7 @@ public class TelaVerificarAlugueis extends javax.swing.JInternalFrame {
         String[] numsPedidos = arquivos.list();
         for (String numPedido : numsPedidos){
             Aluguel dadosAluguel = xml.LerXml(numPedido);
-            Object[] dados = {dadosAluguel.getNumeroPedido(), dadosAluguel.getCpfComprador(), 
+            Object[] dados = {dadosAluguel.getCodigoPedido(), dadosAluguel.getCpfComprador(), 
                 dadosAluguel.getSituacao(), dadosAluguel.getDataDevolucao()};
             dtmProdutos.addRow(dados);
         }

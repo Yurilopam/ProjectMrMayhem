@@ -138,7 +138,7 @@ public class TelaEnvioRelatorio extends javax.swing.JInternalFrame {
                 campoAssunto.setEditable(false);
                 campoMensagem.setEditable(false);
                 botaoEnviarEmail.setEnabled(false);
-                mail.enviarEmail(Login.getIdUsuario()+"mrmayhem@gmail.com", "1wdvfe@3", campoEmailDestinatario.getText(), 
+                mail.enviarEmailComAnexo(Login.getIdUsuario()+"mrmayhem@gmail.com", "1wdvfe@3", campoEmailDestinatario.getText(), 
                         campoAssunto.getText(), campoMensagem.getText(), nomeDoRelatorioPdf);
             } catch (IOException ex) {
                 Logger.getLogger(TelaPesquisaFuncionario.class.getName()).log(Level.SEVERE, null, ex);

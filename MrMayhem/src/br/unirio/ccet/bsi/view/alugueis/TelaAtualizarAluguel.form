@@ -91,7 +91,7 @@
                                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="campoDataDevolucao" pref="111" max="32767" attributes="0"/>
+                                  <Component id="campoDataDevolucao" pref="115" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
@@ -247,7 +247,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="N&#xfa;mero do Pedido:"/>
+            <Property name="text" type="java.lang.String" value="C&#xf3;digo do Pedido:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">

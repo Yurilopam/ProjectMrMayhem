@@ -215,7 +215,7 @@ public class TelaCadastroAluguel extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Cadastrar Aluguel");
 
-        jLabel2.setText("Número do Pedido:");
+        jLabel2.setText("Código do Pedido:");
 
         jLabel3.setText("Preço Total: R$");
 
@@ -402,13 +402,13 @@ public class TelaCadastroAluguel extends javax.swing.JInternalFrame {
                     produtoAtualizado.setDescricao(dadosProduto.getDescricao());
                     produtoAtualizado.setNome(dadosProduto.getNome());
                     produtoAtualizado.setQuantidade(controleEstoque.reduzirQuantidade(campoQuantidadeProduto.getText(), dadosProduto.getQuantidade()));
-                    produtoAtualizado.setTipo(dadosProduto.getTipo());
+                    produtoAtualizado.setTipoProduto(dadosProduto.getTipoProduto());
                     produtoAtualizado.setValor(dadosProduto.getValor());
                     xmlProduto.GerarXml(produtoAtualizado);
                 }
             }
             Aluguel novoAluguel = new Aluguel();
-            novoAluguel.setNumeroPedido(campoNumeroPedido.getText());
+            novoAluguel.setCodigoPedido(campoNumeroPedido.getText());
             novoAluguel.setCpfComprador(campoCpfComprador.getText());
             novoAluguel.setDataPedido(campoDataPedido.getText());
             novoAluguel.setDataEntrega(campoDataEntrega.getText());
@@ -438,7 +438,8 @@ public class TelaCadastroAluguel extends javax.swing.JInternalFrame {
             for (String cpfCliente : cpfsClientes) {
                 Cliente dadosCliente = xmlCliente.LerXml(cpfCliente);
                 if (dadosCliente.getCpf().equals(novoAluguel.getCpfComprador())){
-                    novaEntrega.setNumeroPedido(novoAluguel.getNumeroPedido());
+                    novaEntrega.setTipoTransacao("A");
+                    novaEntrega.setCodigoPedido(novoAluguel.getCodigoPedido()+novaEntrega.getTipoTransacao());
                     novaEntrega.setCpfComprador(novoAluguel.getCpfComprador());
                     novaEntrega.setNomeComprador(dadosCliente.getNome());
                     novaEntrega.setRuaDestinatario(dadosCliente.getRua());
@@ -532,7 +533,7 @@ public class TelaCadastroAluguel extends javax.swing.JInternalFrame {
             if (campoPrecoTotal.getText() != null && campoNumeroPedido.getValue() != null
                     && campoCpfComprador.getValue() != null && verificarClienteCadastrado()
                     && campoDataPedido.getValue() != null && verificarNumeroPedidoNaoConstaCadastro() && campoDataDevolucao.getValue() != null
-                    && radioCartaoCredito.isSelected() || radioDinheiro.isSelected()) {
+                    && (radioCartaoCredito.isSelected() || radioDinheiro.isSelected())) {
                 formularioValidado = true;
             }
         } else {
@@ -540,7 +541,7 @@ public class TelaCadastroAluguel extends javax.swing.JInternalFrame {
                     && campoCpfComprador.getValue() != null && verificarClienteCadastrado() 
                     && campoDataPedido.getValue() != null && campoDataEntrega.getValue() != null
                     && verificarNumeroPedidoNaoConstaCadastro() && campoDataDevolucao.getValue() != null
-                    && radioCartaoCredito.isSelected() || radioDinheiro.isSelected()) {
+                    && (radioCartaoCredito.isSelected() || radioDinheiro.isSelected())) {
                 formularioValidado = true;
             }
         }
@@ -575,7 +576,7 @@ public class TelaCadastroAluguel extends javax.swing.JInternalFrame {
         String[] numPedidos = arquivos.list();
         for (String numPedido : numPedidos) {
             Aluguel dadosVenda = xml.LerXml(numPedido);
-            if (dadosVenda.getNumeroPedido().equals(campoNumeroPedido.getText())){
+            if (dadosVenda.getCodigoPedido().equals(campoNumeroPedido.getText())){
                 contadorCadastros++;
             }
         }

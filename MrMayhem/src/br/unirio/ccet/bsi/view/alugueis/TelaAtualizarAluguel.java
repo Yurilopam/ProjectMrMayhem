@@ -6,11 +6,9 @@
 package br.unirio.ccet.bsi.view.alugueis;
 
 import br.unirio.ccet.bsi.model.Aluguel;
-import br.unirio.ccet.bsi.model.Entrega;
 import br.unirio.ccet.bsi.utils.Enums;
 import br.unirio.ccet.bsi.utils.Utils;
 import br.unirio.ccet.bsi.utils.XmlAluguel;
-import br.unirio.ccet.bsi.utils.XmlEntrega;
 import java.io.File;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -124,7 +122,7 @@ public class TelaAtualizarAluguel extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Cadastrar Aluguel");
 
-        jLabel2.setText("Número do Pedido:");
+        jLabel2.setText("Código do Pedido:");
 
         jLabel6.setText("Data do Pedido:");
 
@@ -191,7 +189,7 @@ public class TelaAtualizarAluguel extends javax.swing.JInternalFrame {
                                 .addGap(29, 29, 29)
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(campoDataDevolucao, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)))
+                                .addComponent(campoDataDevolucao, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)))
                         .addGap(30, 30, 30))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -273,7 +271,7 @@ public class TelaAtualizarAluguel extends javax.swing.JInternalFrame {
 
     private void botaoAtualizarEstatusDoAluguelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtualizarEstatusDoAluguelActionPerformed
         Aluguel aluguelAtualizado = new Aluguel();
-        aluguelAtualizado.setNumeroPedido(campoNumeroPedido.getText());
+        aluguelAtualizado.setCodigoPedido(campoNumeroPedido.getText());
         aluguelAtualizado.setDataPedido(campoDataPedido.getText());
         aluguelAtualizado.setDataEntrega(campoDataEntrega.getText());
         aluguelAtualizado.setDataDevolucao(campoDataDevolucao.getText());

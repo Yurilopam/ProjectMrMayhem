@@ -133,16 +133,20 @@ public class TelaPesquisaProduto extends javax.swing.JInternalFrame {
         DefaultTableModel dtmProdutos = (DefaultTableModel) jTable1.getModel();
         XmlProduto xml = new XmlProduto();
         File arquivos = new File(Utils.recuperarPath("Produtos"));
-        String[] codProdutos = arquivos.list();
-        for (String codProduto : codProdutos){
-            Produto dadosProduto = xml.LerXml(codProduto);
-            Object[] dados = {dadosProduto.getCodigo(), dadosProduto.getNome(), dadosProduto.getQuantidade(),
-                dadosProduto.getTipo(), dadosProduto.getDataCadastramento()};
-            dtmProdutos.addRow(dados);
+        if (arquivos.list().length == 0){
+            JOptionPane.showMessageDialog(TelaPesquisaProduto.this, "Não existem registros!");
+        } else {
+            String[] codProdutos = arquivos.list();
+            for (String codProduto : codProdutos){
+                Produto dadosProduto = xml.LerXml(codProduto);
+                Object[] dados = {dadosProduto.getCodigo(), dadosProduto.getNome(), dadosProduto.getQuantidade(),
+                    dadosProduto.getTipoProduto(), dadosProduto.getDataCadastramento()};
+                dtmProdutos.addRow(dados);
+            }
+            botaoPesquisar.setEnabled(false);
+            botaoImprimir.setEnabled(true);
+            botaoEncaminharPorEmail.setEnabled(true);
         }
-        botaoPesquisar.setEnabled(false);
-        botaoImprimir.setEnabled(true);
-        botaoEncaminharPorEmail.setEnabled(true);
     }//GEN-LAST:event_botaoPesquisarActionPerformed
 
     private void botaoImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoImprimirActionPerformed

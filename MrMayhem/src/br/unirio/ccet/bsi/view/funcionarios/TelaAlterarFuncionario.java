@@ -477,13 +477,13 @@ public class TelaAlterarFuncionario extends javax.swing.JInternalFrame {
             funcionarioLocalAlterado.setCpf(campoCpf.getText());
             funcionarioLocalAlterado.setRg(campoRg.getText());
             funcionarioLocalAlterado.setCtps(campoCtps.getText());
-            funcionarioLocalAlterado.setEstadoCivil(campoEstadoCivil.getSelectedItem().toString());
+            funcionarioLocalAlterado.setEstadoCivil((Enums.EstadoCivil) campoEstadoCivil.getSelectedItem());
             funcionarioLocalAlterado.setTelefone(campoTelefone.getText());
             funcionarioLocalAlterado.setRua(campoRua.getText());
             funcionarioLocalAlterado.setNumero(campoNumero.getText());
             funcionarioLocalAlterado.setBairro(campoBairro.getText());
             funcionarioLocalAlterado.setCep(campoCep.getText());
-            funcionarioLocalAlterado.setFuncao(campoFuncao.getSelectedItem().toString());
+            funcionarioLocalAlterado.setFuncao((Enums.TiposDeFuncionario) campoFuncao.getSelectedItem());
             funcionarioLocalAlterado.setSalario(campoSalario.getText());
             funcionarioLocalAlterado.setDataCadastramento(campoDataAdmissao.getText());
             XmlFuncionario xml = new XmlFuncionario();
@@ -537,29 +537,31 @@ public class TelaAlterarFuncionario extends javax.swing.JInternalFrame {
     
     private int recuperarEstadoCivil(Funcionario dadosFuncionario) {
         switch(dadosFuncionario.getEstadoCivil()){
-            case "SOLTEIRO(A)":
+            case SOLTEIRO:
                 return 0;
-            case "CASADO(A)":
+            case CASADO:
                 return 1;
-            case "DIVORCIADO(A)":
+            case DIVORCIADO:
                 return 2;
-            case "VIÚVO(A)": 
+            case VIUVO: 
                 return 3;
-            case "SEPARADO(A)":
+            case SEPARADO:
                 return 4;
         } return -1;
     }
     
     private int recuperarFuncao(Funcionario dadosFuncionario) {
         switch(dadosFuncionario.getFuncao()){
-            case "SUPERVISOR":
+            case SUPERVISOR:
                 return 0;
-            case "ATENDENTE":
+            case ATENDENTE:
                 return 1;
-            case "ENTREGADOR":
+            case GERENTE:
                 return 2;
-            case "ALFAIATE": 
+            case ENTREGADOR: 
                 return 3;
+            case ALFAIATE:
+                return 4;
         } return -1;
     }  
     

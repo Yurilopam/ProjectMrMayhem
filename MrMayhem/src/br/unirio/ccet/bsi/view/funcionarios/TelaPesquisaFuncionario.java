@@ -133,16 +133,21 @@ public class TelaPesquisaFuncionario extends javax.swing.JInternalFrame {
         DefaultTableModel dtmFuncionarios = (DefaultTableModel) jTable1.getModel();
         XmlFuncionario xml = new XmlFuncionario();
         File arquivos = new File(Utils.recuperarPath("Funcionarios"));
-        String[] cpfsFuncionarios = arquivos.list();
-        for (String cpfFuncionario : cpfsFuncionarios){
-            Funcionario dadosFuncionario = xml.LerXml(cpfFuncionario);
-            Object[] dados = {dadosFuncionario.getNome(), dadosFuncionario.getCtps(), dadosFuncionario.getFuncao(), 
-                dadosFuncionario.getSalario(), dadosFuncionario.getDataCadastramento()};
-            dtmFuncionarios.addRow(dados);
+        if (arquivos.list().length == 0){
+            JOptionPane.showMessageDialog(TelaPesquisaFuncionario.this, "Não existem registros!");
+        } else {
+            String[] cpfsFuncionarios = arquivos.list();
+            for (String cpfFuncionario : cpfsFuncionarios){
+                Funcionario dadosFuncionario = xml.LerXml(cpfFuncionario);
+                Object[] dados = {dadosFuncionario.getNome(), dadosFuncionario.getCtps(), dadosFuncionario.getFuncao(), 
+                    dadosFuncionario.getSalario(), dadosFuncionario.getDataCadastramento()};
+                dtmFuncionarios.addRow(dados);
+            }
+            botaoPesquisar.setEnabled(false);
+            botaoImprimir.setEnabled(true);
+            botaoEncaminharPorEmail.setEnabled(true);
         }
-        botaoPesquisar.setEnabled(false);
-        botaoImprimir.setEnabled(true);
-        botaoEncaminharPorEmail.setEnabled(true);
+        
     }//GEN-LAST:event_botaoPesquisarActionPerformed
 
     private void botaoImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoImprimirActionPerformed

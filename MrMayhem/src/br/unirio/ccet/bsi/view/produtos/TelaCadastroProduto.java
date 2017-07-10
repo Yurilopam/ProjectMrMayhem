@@ -237,7 +237,7 @@ public class TelaCadastroProduto extends javax.swing.JInternalFrame {
             Produto novoProduto = new Produto();
             novoProduto.setNome(campoNome.getText());
             novoProduto.setDataCadastramento(campoDataCadastramento.getText());
-            novoProduto.setTipo(campoTipoProduto.getSelectedItem().toString());
+            novoProduto.setTipoProduto((Enums.TiposDeProduto) campoTipoProduto.getSelectedItem());
             novoProduto.setCodigo(campoCodigo.getText());
             novoProduto.setDescricao(campoDescricaoProduto.getText());
             novoProduto.setValor(campoPreco.getText());

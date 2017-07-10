@@ -21,7 +21,7 @@ import java.io.FileOutputStream;
 public class XmlAluguel {
 
     public void GerarXml(Aluguel novoAluguel) {
-        String PATH = Utils.recuperarPath("Alugueis")+"\\"+novoAluguel.getNumeroPedido()+".xml";
+        String PATH = Utils.recuperarPath("Alugueis")+"\\"+novoAluguel.getCodigoPedido()+".xml";
         
         try {
             XMLEncoder encoder;

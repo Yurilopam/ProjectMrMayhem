@@ -1,12 +1,14 @@
 package br.unirio.ccet.bsi.model;
 
+import br.unirio.ccet.bsi.utils.Enums;
+
 /**
  *
  * @author yuri
  */
 public class Funcionario extends Usuario{
     
-    private String funcao;
+    private Enums.TiposDeFuncionario funcao;
     
     public Funcionario() {
         super();  
@@ -15,35 +17,15 @@ public class Funcionario extends Usuario{
     /**
      * @return the funcao
      */
-    public String getFuncao() {
+    public Enums.TiposDeFuncionario getFuncao() {
         return funcao;
     }
 
     /**
      * @param funcao the funcao to set
      */
-    public void setFuncao(String funcao) {
+    public void setFuncao(Enums.TiposDeFuncionario funcao) {
         this.funcao = funcao;
-    }
-    
-    public void realizarVenda() {
-        
-    }
-    
-    public void realizarAluguel() {
-        
-    }
-    
-    public void manterCliente() {
-        
-    }
-    
-    public void adicionarReservaExpressa() {
-        
-    }
-    
-    public void visualizarFuncionario() {
-        
     }
     
 }

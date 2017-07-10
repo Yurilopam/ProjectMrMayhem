@@ -1,5 +1,6 @@
 package br.unirio.ccet.bsi.model;
 
+import br.unirio.ccet.bsi.utils.Enums;
 import java.io.Serializable;
 
 /**
@@ -15,7 +16,7 @@ public abstract class Usuario implements Serializable{
     private String cpf;
     private String rg;
     private String ctps;
-    private String estadoCivil;
+    private Enums.EstadoCivil estadoCivil;
     private String telefone;
     private String rua;
     private String numero;
@@ -129,14 +130,14 @@ public abstract class Usuario implements Serializable{
     /**
      * @return the estadoCivil
      */
-    public String getEstadoCivil() {
+    public Enums.EstadoCivil getEstadoCivil() {
         return estadoCivil;
     }
 
     /**
      * @param estadoCivil the estadoCivil to set
      */
-    public void setEstadoCivil(String estadoCivil) {
+    public void setEstadoCivil(Enums.EstadoCivil estadoCivil) {
         this.estadoCivil = estadoCivil;
     }
 

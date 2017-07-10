@@ -4,6 +4,7 @@ import br.unirio.ccet.bsi.utils.Enums;
 
 public class Entrega extends Pedido{
 
+    private String tipoTransacao;
     private String ruaDestinatario;
     private String numeroCasaDestinatario;
     private String bairroDestinatario;
@@ -14,6 +15,20 @@ public class Entrega extends Pedido{
 
     public Entrega() {
         super();
+    }
+
+    /**
+     * @return the tipoTransacao
+     */
+    public String getTipoTransacao() {
+        return tipoTransacao;
+    }
+
+    /**
+     * @param tipoTransacao the tipoTransacao to set
+     */
+    public void setTipoTransacao(String tipoTransacao) {
+        this.tipoTransacao = tipoTransacao;
     }
     
     /**

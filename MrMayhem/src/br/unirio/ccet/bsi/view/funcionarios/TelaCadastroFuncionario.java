@@ -439,13 +439,13 @@ public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
             novoFuncionarioLocal.setCpf(campoCpf.getText());
             novoFuncionarioLocal.setRg(campoRg.getText());
             novoFuncionarioLocal.setCtps(campoCtps.getText());
-            novoFuncionarioLocal.setEstadoCivil(campoEstadoCivil.getSelectedItem().toString());
+            novoFuncionarioLocal.setEstadoCivil((Enums.EstadoCivil) campoEstadoCivil.getSelectedItem());
             novoFuncionarioLocal.setTelefone(campoTelefone.getText());
             novoFuncionarioLocal.setRua(campoRua.getText());
             novoFuncionarioLocal.setNumero(campoNumero.getText());
             novoFuncionarioLocal.setBairro(campoBairro.getText());
             novoFuncionarioLocal.setCep(campoCep.getText());
-            novoFuncionarioLocal.setFuncao(campoFuncao.getSelectedItem().toString());
+            novoFuncionarioLocal.setFuncao((Enums.TiposDeFuncionario) campoFuncao.getSelectedItem());
             novoFuncionarioLocal.setSalario(campoSalario.getText());
             novoFuncionarioLocal.setDataCadastramento(campoDataAdmissao.getText());
             XmlFuncionario xml = new XmlFuncionario();

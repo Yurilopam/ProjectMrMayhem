@@ -133,16 +133,20 @@ public class TelaPesquisaCliente extends javax.swing.JInternalFrame {
         DefaultTableModel dtmClientes = (DefaultTableModel) jTable1.getModel();
         XmlCliente xml = new XmlCliente();
         File arquivos = new File(Utils.recuperarPath("Clientes"));
-        String[] cpfsClientes = arquivos.list();
-        for (String cpfsCliente : cpfsClientes){
-            Cliente dadosCliente = xml.LerXml(cpfsCliente);
-            Object[] dados = {dadosCliente.getNome(), dadosCliente.getTelefone(), dadosCliente.getCpf(), 
-                dadosCliente.getDataNascimento(), dadosCliente.getDataCadastramento()};
-            dtmClientes.addRow(dados);
+        if (arquivos.list().length == 0){
+            JOptionPane.showMessageDialog(TelaPesquisaCliente.this, "Não existem registros!");
+        } else {
+            String[] cpfsClientes = arquivos.list();
+            for (String cpfsCliente : cpfsClientes){
+                Cliente dadosCliente = xml.LerXml(cpfsCliente);
+                Object[] dados = {dadosCliente.getNome(), dadosCliente.getTelefone(), dadosCliente.getCpf(), 
+                    dadosCliente.getDataNascimento(), dadosCliente.getDataCadastramento()};
+                dtmClientes.addRow(dados);
+            }
+            botaoPesquisar.setEnabled(false);
+            botaoImprimir.setEnabled(true);
+            botaoEncaminharPorEmail.setEnabled(true);
         }
-        botaoPesquisar.setEnabled(false);
-        botaoImprimir.setEnabled(true);
-        botaoEncaminharPorEmail.setEnabled(true);
     }//GEN-LAST:event_botaoPesquisarActionPerformed
 
     private void botaoImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoImprimirActionPerformed

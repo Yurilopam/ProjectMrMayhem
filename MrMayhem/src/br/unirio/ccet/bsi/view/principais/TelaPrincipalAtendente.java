@@ -6,11 +6,9 @@
 package br.unirio.ccet.bsi.view.principais;
 
 import br.unirio.ccet.bsi.model.Aluguel;
-import br.unirio.ccet.bsi.model.Entrega;
 import br.unirio.ccet.bsi.utils.Enums;
 import br.unirio.ccet.bsi.utils.Utils;
 import br.unirio.ccet.bsi.utils.XmlAluguel;
-import br.unirio.ccet.bsi.utils.XmlEntrega;
 import br.unirio.ccet.bsi.view.TelaAgradecimentos;
 import br.unirio.ccet.bsi.view.alugueis.TelaAtualizarAluguel;
 import br.unirio.ccet.bsi.view.alugueis.TelaCadastroAluguel;
@@ -21,6 +19,11 @@ import br.unirio.ccet.bsi.view.clientes.TelaExcluirCliente;
 import br.unirio.ccet.bsi.view.clientes.TelaAlterarCliente;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -44,10 +47,11 @@ public class TelaPrincipalAtendente extends javax.swing.JFrame {
             @Override
             public void run() {
                 XmlAluguel xml = new XmlAluguel();
-                File arquivos = new File(Utils.recuperarPath("Alugueis"));
-                String[] numsPedidos = arquivos.list();
+                validarDataDevolucao(xml);
                 while(avisar){
-                    for (String numPedido : numsPedidos){
+                    File arquivosDepois = new File(Utils.recuperarPath("Alugueis"));
+                    String[] numsPedidosDepois = arquivosDepois.list();
+                    for (String numPedido : numsPedidosDepois){
                         Aluguel dadosAluguel = xml.LerXml(numPedido);
                         if (dadosAluguel.getSituacao().equals(Enums.SituacoesDoAluguel.ATRASADO)){
                             JOptionPane.showMessageDialog(getParent(), "Existem aluguéis atrasados!");
@@ -60,6 +64,35 @@ public class TelaPrincipalAtendente extends javax.swing.JFrame {
                         Thread.sleep(10 * 1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
+                    }
+                }
+            }
+
+            private void validarDataDevolucao(XmlAluguel xml) {
+                File arquivos = new File(Utils.recuperarPath("Alugueis"));
+                String[] numsPedidos = arquivos.list();
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                Date date = new Date();
+                for (String numPedido : numsPedidos){
+                    Aluguel dadosAluguel = xml.LerXml(numPedido);
+                    try {
+                        Date dataAluguel = new Date(format.parse(dadosAluguel.getDataDevolucao()).getTime());
+                        if (dataAluguel.before(date)){
+                            dadosAluguel.setSituacao(Enums.SituacoesDoAluguel.ATRASADO);
+                            dadosAluguel.setCodigoPedido(dadosAluguel.getCodigoPedido());
+                            dadosAluguel.setCpfComprador(dadosAluguel.getCpfComprador());
+                            dadosAluguel.setDataDevolucao(dadosAluguel.getDataDevolucao());
+                            dadosAluguel.setDataEntrega(dadosAluguel.getDataEntrega());
+                            dadosAluguel.setDataPedido(dadosAluguel.getDataPedido());
+                            dadosAluguel.setFormaPagamento(dadosAluguel.getFormaPagamento());
+                            dadosAluguel.setNomeComprador(dadosAluguel.getNomeComprador());
+                            dadosAluguel.setObservacoes(dadosAluguel.getObservacoes());
+                            dadosAluguel.setPrecoTotal(dadosAluguel.getPrecoTotal());
+                            dadosAluguel.setVendedor(dadosAluguel.getVendedor());
+                            xml.GerarXml(dadosAluguel);
+                        }
+                    } catch (ParseException ex) {
+                        Logger.getLogger(TelaPrincipalAtendente.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             }

@@ -377,7 +377,7 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
             novoCliente.setCpf(campoCpf.getText());
             novoCliente.setRg(campoRg.getText());
             notificacoesCliente(novoCliente);
-            novoCliente.setEstadoCivil(campoEstadoCivil.getSelectedItem().toString());
+            novoCliente.setEstadoCivil((Enums.EstadoCivil) campoEstadoCivil.getSelectedItem());
             novoCliente.setTelefone(campoTelefone.getText());
             novoCliente.setRua(campoRua.getText());
             novoCliente.setNumero(campoNumero.getText());

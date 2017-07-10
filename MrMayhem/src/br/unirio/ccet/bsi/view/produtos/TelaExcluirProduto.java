@@ -53,6 +53,8 @@ public class TelaExcluirProduto extends javax.swing.JInternalFrame {
         campoCodigo = new javax.swing.JFormattedTextField();
         campoPreco = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        campoQuantidadeEmEstoque = new javax.swing.JFormattedTextField();
 
         setBackground(new java.awt.Color(2, 86, 112));
         setClosable(true);
@@ -125,6 +127,11 @@ public class TelaExcluirProduto extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Preço: R$");
 
+        jLabel7.setText("Quantidade:");
+
+        campoQuantidadeEmEstoque.setEditable(false);
+        campoQuantidadeEmEstoque.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -144,6 +151,10 @@ public class TelaExcluirProduto extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel4)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(campoPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(94, 94, 94)
+                                    .addComponent(jLabel7)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(campoQuantidadeEmEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(botaoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -207,7 +218,10 @@ public class TelaExcluirProduto extends javax.swing.JInternalFrame {
                     .addComponent(botaoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
-                        .addComponent(campoPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(campoPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(campoQuantidadeEmEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
 
@@ -251,6 +265,7 @@ public class TelaExcluirProduto extends javax.swing.JInternalFrame {
                 campoTipoProduto.setSelectedIndex(recuperarTipoProduto(dadosProduto));
                 campoDescricaoProduto.setText(dadosProduto.getDescricao());
                 campoPreco.setText(dadosProduto.getValor());
+                campoQuantidadeEmEstoque.setText(dadosProduto.getQuantidade());
                 botaoExcluir.setEnabled(true);
             }
         }
@@ -267,17 +282,25 @@ public class TelaExcluirProduto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botaoExcluirActionPerformed
 
     private int recuperarTipoProduto(Produto dadosProduto) {
-        switch(dadosProduto.getTipo()){
-            case "CINTO":
+        switch(dadosProduto.getTipoProduto()){
+            case CINTO:
                 return 0;
-            case "TERNO":
+            case MEIA:
                 return 1;
-            case "MEIA":
+            case SAPATO:
                 return 2;
-            case "SAPATO": 
+            case PALETO: 
                 return 3;
-            case "GRAVATA":
+            case COLETE:
                 return 4;
+            case BLUSAO:
+                return 5;
+            case CALCA:
+                return 6;
+            case SAPATENIS:
+                return 7;
+            case GRAVATA:
+                return 8;
         } return -1;
     }
     
@@ -291,6 +314,8 @@ public class TelaExcluirProduto extends javax.swing.JInternalFrame {
         campoDescricaoProduto.setText(null);
         campoPreco.setText(null);
         campoPreco.setValue(null);
+        campoQuantidadeEmEstoque.setText(null);
+        campoQuantidadeEmEstoque.setValue(null);
         botaoExcluir.setEnabled(false);
     }
 
@@ -302,6 +327,7 @@ public class TelaExcluirProduto extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea campoDescricaoProduto;
     private javax.swing.JTextField campoNome;
     private javax.swing.JFormattedTextField campoPreco;
+    private javax.swing.JFormattedTextField campoQuantidadeEmEstoque;
     private javax.swing.JComboBox<String> campoTipoProduto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
@@ -310,6 +336,7 @@ public class TelaExcluirProduto extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
