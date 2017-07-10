@@ -77,19 +77,21 @@ public class TelaPrincipalAtendente extends javax.swing.JFrame {
                     Aluguel dadosAluguel = xml.LerXml(numPedido);
                     try {
                         Date dataAluguel = new Date(format.parse(dadosAluguel.getDataDevolucao()).getTime());
-                        if (dataAluguel.before(date)){
-                            dadosAluguel.setSituacao(Enums.SituacoesDoAluguel.ATRASADO);
-                            dadosAluguel.setCodigoPedido(dadosAluguel.getCodigoPedido());
-                            dadosAluguel.setCpfComprador(dadosAluguel.getCpfComprador());
-                            dadosAluguel.setDataDevolucao(dadosAluguel.getDataDevolucao());
-                            dadosAluguel.setDataEntrega(dadosAluguel.getDataEntrega());
-                            dadosAluguel.setDataPedido(dadosAluguel.getDataPedido());
-                            dadosAluguel.setFormaPagamento(dadosAluguel.getFormaPagamento());
-                            dadosAluguel.setNomeComprador(dadosAluguel.getNomeComprador());
-                            dadosAluguel.setObservacoes(dadosAluguel.getObservacoes());
-                            dadosAluguel.setPrecoTotal(dadosAluguel.getPrecoTotal());
-                            dadosAluguel.setVendedor(dadosAluguel.getVendedor());
-                            xml.GerarXml(dadosAluguel);
+                        if (!dadosAluguel.getSituacao().equals(Enums.SituacoesDoAluguel.DEVOLVIDO)){
+                            if (dataAluguel.before(date)){
+                                dadosAluguel.setSituacao(Enums.SituacoesDoAluguel.ATRASADO);
+                                dadosAluguel.setCodigoPedido(dadosAluguel.getCodigoPedido());
+                                dadosAluguel.setCpfComprador(dadosAluguel.getCpfComprador());
+                                dadosAluguel.setDataDevolucao(dadosAluguel.getDataDevolucao());
+                                dadosAluguel.setDataEntrega(dadosAluguel.getDataEntrega());
+                                dadosAluguel.setDataPedido(dadosAluguel.getDataPedido());
+                                dadosAluguel.setFormaPagamento(dadosAluguel.getFormaPagamento());
+                                dadosAluguel.setNomeComprador(dadosAluguel.getNomeComprador());
+                                dadosAluguel.setObservacoes(dadosAluguel.getObservacoes());
+                                dadosAluguel.setPrecoTotal(dadosAluguel.getPrecoTotal());
+                                dadosAluguel.setVendedor(dadosAluguel.getVendedor());
+                                xml.GerarXml(dadosAluguel);
+                            }
                         }
                     } catch (ParseException ex) {
                         Logger.getLogger(TelaPrincipalAtendente.class.getName()).log(Level.SEVERE, null, ex);
