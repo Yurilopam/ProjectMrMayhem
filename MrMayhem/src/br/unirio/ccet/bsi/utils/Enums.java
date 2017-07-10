@@ -11,6 +11,9 @@ package br.unirio.ccet.bsi.utils;
  */
 public class Enums {
     
+    /**
+     * Enumerado correspondente aos estatus possiveis de um pedido de entrega
+     */
     public enum Status{
         PENDENTE("Pendente"),
         ACEITO("Aceito"),
@@ -32,6 +35,9 @@ public class Enums {
         
     }
     
+    /**
+     * Enumerado correspondente aos tipos de funcionarios da loja
+     */
     public enum TiposDeFuncionario{
         SUPERVISOR("Supervisor"),
         ATENDENTE("Atendente"),
@@ -54,6 +60,9 @@ public class Enums {
         
     }
     
+    /**
+     * Enumerado correspondente aos estatus civis possiveis em um cadastro
+     */
     public enum EstadoCivil{
         SOLTEIRO("Solteiro"),
         CASADO("Casado"),
@@ -76,6 +85,9 @@ public class Enums {
         
     }
     
+    /**
+     * Enumerado correspondente aos tipos de produtos possiveis 
+     */
     public enum TiposDeProduto{
         CINTO("Cinto"),
         MEIA("Meia"),
@@ -102,6 +114,9 @@ public class Enums {
 
     }
     
+    /**
+     * Enumerado correspondente aos meios de entrega possiveis
+     */
     public enum MeiosDeEntrega{
         EM_DOMICILIO("Em Domicílio"),
         EM_MAOS("Em Mãos");
@@ -120,6 +135,9 @@ public class Enums {
         }
     }
     
+    /**
+     * Enumerado correspondente as situacoes de alguel que um aluguel pode se encontrar
+     */
     public enum SituacoesDoAluguel{
         ATRASADO("Atrasado"),
         DEVOLVIDO("Devolvido"),

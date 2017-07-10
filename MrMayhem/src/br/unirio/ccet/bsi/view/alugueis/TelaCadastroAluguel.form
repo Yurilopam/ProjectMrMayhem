@@ -111,7 +111,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jScrollPane2" min="-2" pref="336" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="botaoEfetuarVenda" min="-2" max="-2" attributes="0"/>
+                          <Component id="botaoEfetuarAluguel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
@@ -209,7 +209,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="botaoEfetuarVenda" min="-2" max="-2" attributes="0"/>
+                          <Component id="botaoEfetuarAluguel" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
@@ -283,12 +283,12 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="java.awt.Button" name="botaoEfetuarVenda">
+        <Component class="java.awt.Button" name="botaoEfetuarAluguel">
           <Properties>
             <Property name="label" type="java.lang.String" value="Efetuar aluguel"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoEfetuarVendaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoEfetuarAluguelActionPerformed"/>
           </Events>
         </Component>
         <Component class="java.awt.Button" name="botaoAdicionarALista">

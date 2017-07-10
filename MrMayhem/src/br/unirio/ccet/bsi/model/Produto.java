@@ -2,6 +2,10 @@ package br.unirio.ccet.bsi.model;
 
 import br.unirio.ccet.bsi.utils.Enums;
 
+/**
+ *
+ * @author Yuri Lopam
+ */
 public class Produto {
 
     private String nome;

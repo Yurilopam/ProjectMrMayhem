@@ -19,7 +19,11 @@ import java.io.FileOutputStream;
  * @author Yuri Lopam
  */
 public class XmlAluguel {
-
+    
+    /**
+     * Gera o XML de uma entidade
+     * @param novoAluguel Parametro corresponde a nova entidade gerada
+     */
     public void GerarXml(Aluguel novoAluguel) {
         String PATH = Utils.recuperarPath("Alugueis")+"\\"+novoAluguel.getCodigoPedido()+".xml";
         
@@ -33,6 +37,11 @@ public class XmlAluguel {
         }
     }
     
+    /**
+     * Recupera a entidade lida de um XML
+     * @param numeroPedido Parametro correspondente ao nome do arquivo que sera lido
+     * @return A entidade 
+     */
     public Aluguel LerXml(String numeroPedido){
         
         Aluguel aluguelCadastrado = null;

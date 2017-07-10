@@ -20,6 +20,10 @@ import java.io.FileOutputStream;
  */
 public class XmlCliente {    
 
+    /**
+     * Gera o XML de uma entidade
+     * @param novoCliente Parametro corresponde a nova entidade gerada
+     */
     public void GerarXml(Cliente novoCliente) {
         String PATH = Utils.recuperarPath("Clientes")+"\\"+novoCliente.getCpf()+".xml";
         
@@ -33,6 +37,11 @@ public class XmlCliente {
         }
     }
     
+    /**
+     * Recupera a entidade lida de um XML
+     * @param cpfCliente Parametro correspondente ao nome do arquivo que sera lido
+     * @return A entidade 
+     */
     public Cliente LerXml(String cpfCliente) {
         
         Cliente clienteCadastrado = null;

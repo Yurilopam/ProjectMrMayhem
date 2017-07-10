@@ -55,7 +55,7 @@ public class TelaCadastroAluguel extends javax.swing.JInternalFrame {
         campoCodigoProduto = new javax.swing.JFormattedTextField();
         campoQuantidadeProduto = new javax.swing.JFormattedTextField();
         campoTipoEntrega = new javax.swing.JComboBox<>();
-        botaoEfetuarVenda = new java.awt.Button();
+        botaoEfetuarAluguel = new java.awt.Button();
         botaoAdicionarALista = new java.awt.Button();
         radioCartaoCredito = new javax.swing.JRadioButton();
         radioDinheiro = new javax.swing.JRadioButton();
@@ -135,10 +135,10 @@ public class TelaCadastroAluguel extends javax.swing.JInternalFrame {
             }
         });
 
-        botaoEfetuarVenda.setLabel("Efetuar aluguel");
-        botaoEfetuarVenda.addActionListener(new java.awt.event.ActionListener() {
+        botaoEfetuarAluguel.setLabel("Efetuar aluguel");
+        botaoEfetuarAluguel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoEfetuarVendaActionPerformed(evt);
+                botaoEfetuarAluguelActionPerformed(evt);
             }
         });
 
@@ -285,7 +285,7 @@ public class TelaCadastroAluguel extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoEfetuarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botaoEfetuarAluguel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(71, 71, 71))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -363,7 +363,7 @@ public class TelaCadastroAluguel extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoEfetuarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(botaoEfetuarAluguel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(70, 70, 70))
         );
 
@@ -387,26 +387,10 @@ public class TelaCadastroAluguel extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botaoEfetuarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEfetuarVendaActionPerformed
+    private void botaoEfetuarAluguelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEfetuarAluguelActionPerformed
         if (formularioCadastroValidado()) {
-            Estoque controleEstoque = new Estoque();
-            Produto produtoAtualizado = new Produto();
-            XmlProduto xmlProduto = new XmlProduto();
-            File arquivos = new File(Utils.recuperarPath("Produtos"));
-            String[] codProdutos = arquivos.list();
-            for (String codProduto : codProdutos) {
-                Produto dadosProduto = xmlProduto.LerXml(codProduto);
-                if (dadosProduto.getCodigo().equals(campoCodigoProduto.getText())){
-                    produtoAtualizado.setCodigo(dadosProduto.getCodigo());
-                    produtoAtualizado.setDataCadastramento(dadosProduto.getDataCadastramento());
-                    produtoAtualizado.setDescricao(dadosProduto.getDescricao());
-                    produtoAtualizado.setNome(dadosProduto.getNome());
-                    produtoAtualizado.setQuantidade(controleEstoque.reduzirQuantidade(campoQuantidadeProduto.getText(), dadosProduto.getQuantidade()));
-                    produtoAtualizado.setTipoProduto(dadosProduto.getTipoProduto());
-                    produtoAtualizado.setValor(dadosProduto.getValor());
-                    xmlProduto.GerarXml(produtoAtualizado);
-                }
-            }
+            Estoque estoque = new Estoque();
+            estoque.controleDaQuantidadeDoProduto(jTable1);
             Aluguel novoAluguel = new Aluguel();
             novoAluguel.setCodigoPedido(campoNumeroPedido.getText());
             novoAluguel.setCpfComprador(campoCpfComprador.getText());
@@ -418,6 +402,15 @@ public class TelaCadastroAluguel extends javax.swing.JInternalFrame {
             novoAluguel.setPrecoTotal(campoPrecoTotal.getText());
             novoAluguel.setVendedor(Login.getIdUsuario());
             configurarSituacaoAluguel(novoAluguel);
+            XmlCliente xmlCliente = new XmlCliente();
+            File arquivos = new File(Utils.recuperarPath("Clientes"));
+            String[] cpfsClientes = arquivos.list();
+            for (String cpfCliente : cpfsClientes) {
+                Cliente dadosCliente = xmlCliente.LerXml(cpfCliente);
+                if (dadosCliente.getCpf().equals(novoAluguel.getCpfComprador())){
+                    novoAluguel.setNomeComprador(dadosCliente.getNome());
+                }
+            }
             XmlAluguel xml = new XmlAluguel();
             xml.GerarXml(novoAluguel);
             gerarEntregaDoAluguel(novoAluguel);
@@ -426,7 +419,7 @@ public class TelaCadastroAluguel extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(TelaCadastroAluguel.this, "Não foi possível completar a operação!");
         }
-    }//GEN-LAST:event_botaoEfetuarVendaActionPerformed
+    }//GEN-LAST:event_botaoEfetuarAluguelActionPerformed
 
     private void gerarEntregaDoAluguel(Aluguel novoAluguel) {
         if (!campoTipoEntrega.getSelectedItem().toString().equals("EM_MAOS")) {
@@ -635,7 +628,7 @@ public class TelaCadastroAluguel extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button botaoAdicionarALista;
-    private java.awt.Button botaoEfetuarVenda;
+    private java.awt.Button botaoEfetuarAluguel;
     private javax.swing.ButtonGroup botoesFormaDePagamento;
     private javax.swing.JFormattedTextField campoCodigoProduto;
     private javax.swing.JFormattedTextField campoCpfComprador;

@@ -270,6 +270,7 @@ public class TelaAtualizarAluguel extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoAtualizarEstatusDoAluguelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtualizarEstatusDoAluguelActionPerformed
+        XmlAluguel xml = new XmlAluguel();
         Aluguel aluguelAtualizado = new Aluguel();
         aluguelAtualizado.setCodigoPedido(campoNumeroPedido.getText());
         aluguelAtualizado.setDataPedido(campoDataPedido.getText());
@@ -277,7 +278,18 @@ public class TelaAtualizarAluguel extends javax.swing.JInternalFrame {
         aluguelAtualizado.setDataDevolucao(campoDataDevolucao.getText());
         aluguelAtualizado.setSituacao((Enums.SituacoesDoAluguel) campoEstatusAluguel.getSelectedItem());
         aluguelAtualizado.setObservacoes(campoObservacoes.getText());
-        XmlAluguel xml = new XmlAluguel();
+        File arquivos = new File(Utils.recuperarPath("Alugueis"));
+        String[] codsPedidos = arquivos.list();
+        for (String codPedido : codsPedidos) {
+            Aluguel aluguelAntigo = xml.LerXml(codPedido);
+            if (aluguelAntigo.getCodigoPedido().equals(aluguelAtualizado.getCodigoPedido())){
+                aluguelAtualizado.setCpfComprador(aluguelAntigo.getCpfComprador());
+                aluguelAtualizado.setPrecoTotal(aluguelAntigo.getPrecoTotal());
+                aluguelAtualizado.setNomeComprador(aluguelAntigo.getNomeComprador());
+                aluguelAtualizado.setFormaPagamento(aluguelAntigo.getFormaPagamento());
+                aluguelAtualizado.setVendedor(aluguelAntigo.getVendedor()); 
+            }
+        }
         xml.GerarXml(aluguelAtualizado);
         JOptionPane.showMessageDialog(TelaAtualizarAluguel.this, "Aluguel atualizado com sucesso!");
         resetarCampos();                       

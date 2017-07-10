@@ -20,6 +20,10 @@ import java.io.FileOutputStream;
  */
 public class XmlFuncionario {    
 
+    /**
+     * Gera o XML de uma entidade
+     * @param novoFuncionario Parametro corresponde a nova entidade gerada
+     */
     public void GerarXml(Funcionario novoFuncionario) {
         String PATH = Utils.recuperarPath("Funcionarios")+"\\"+novoFuncionario.getCtps()+".xml";
         
@@ -33,20 +37,25 @@ public class XmlFuncionario {
         }
     }
     
+    /**
+     * Recupera a entidade lida de um XML
+     * @param cpfFuncionario Parametro correspondente ao nome do arquivo que sera lido
+     * @return A entidade 
+     */
     public Funcionario LerXml(String cpfFuncionario) {
         
-        Funcionario funcionarioLocalCadastrado = null;
+        Funcionario funcionarioCadastrado = null;
         String PATH = Utils.recuperarPath("Funcionarios")+"\\"+cpfFuncionario;
         
         try {
             XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream(PATH)));
-            funcionarioLocalCadastrado = (Funcionario) decoder.readObject();        
+            funcionarioCadastrado = (Funcionario) decoder.readObject();        
             decoder.close();            
-            return funcionarioLocalCadastrado;
+            return funcionarioCadastrado;
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         } 
-        return funcionarioLocalCadastrado;
+        return funcionarioCadastrado;
     }
     
 }

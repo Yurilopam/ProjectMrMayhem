@@ -160,6 +160,10 @@ public class TelaLogin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botaoAutenticarActionPerformed
     
+    /**
+     * Redireciona as tela dependendo de qual usuario que logou
+     * @param idUsuario Parametro correspondente ao identificador do usuario logado
+     */
     private void redirecionarTelas(String idUsuario) {
         switch (idUsuario) {
             case "gerente":
@@ -191,6 +195,9 @@ public class TelaLogin extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Fecha a tela de login para focar nas telas principais do sistema
+     */
     private void fecharTelaLogin() {
         WindowEvent fecharTela = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);    
     }

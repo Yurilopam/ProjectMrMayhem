@@ -2,7 +2,7 @@ package br.unirio.ccet.bsi.model;
 
 /**
  *
- * @author yuri
+ * @author Yuri Lopam
  */
 public class Cliente extends Usuario{
     

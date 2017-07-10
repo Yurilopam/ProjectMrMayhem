@@ -18,7 +18,7 @@ import java.nio.file.Paths;
 public class Utils {
     
     /**
-     * 
+     * Este metodo recupera o caminho baseado na entidade recebida
      * @param nomeEntidade Variavel recebida para gerar o nome da pasta que sera criada
      * @return o caminho da pasta onde o arquivo sera gravado
      */

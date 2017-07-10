@@ -20,6 +20,10 @@ import java.io.FileOutputStream;
  */
 public class XmlProduto {    
     
+    /**
+     * Gera o XML de uma entidade
+     * @param novoProduto Parametro corresponde a nova entidade gerada
+     */
     public void GerarXml(Produto novoProduto) {
         String PATH = Utils.recuperarPath("Produtos")+"\\"+novoProduto.getCodigo()+".xml";
         
@@ -33,6 +37,11 @@ public class XmlProduto {
         }
     }
     
+    /**
+     * Recupera a entidade lida de um XML
+     * @param idProduto Parametro correspondente ao nome do arquivo que sera lido
+     * @return A entidade 
+     */
     public Produto LerXml(String idProduto) {
         
         Produto produtoCadastrado = null;

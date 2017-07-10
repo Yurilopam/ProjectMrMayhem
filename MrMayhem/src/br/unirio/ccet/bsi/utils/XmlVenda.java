@@ -20,6 +20,10 @@ import java.io.FileOutputStream;
  */
 public class XmlVenda {
 
+    /**
+     * Gera o XML de uma entidade
+     * @param novaVenda Parametro corresponde a nova entidade gerada
+     */
     public void GerarXml(Venda novaVenda) {
         String PATH = Utils.recuperarPath("Vendas")+"\\"+novaVenda.getCodigoPedido()+".xml";
         
@@ -33,20 +37,25 @@ public class XmlVenda {
         }
     }
     
+    /**
+     * Recupera a entidade lida de um XML
+     * @param numeroPedido Parametro correspondente ao nome do arquivo que sera lido
+     * @return A entidade 
+     */
     public Venda LerXml(String numeroPedido ){
         
-        Venda funcionarioLocalCadastrado = null;
+        Venda vendaCadastrada = null;
         String PATH = Utils.recuperarPath("Vendas")+"\\"+numeroPedido;
         
         try {
             XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream(PATH)));
-            funcionarioLocalCadastrado = (Venda) decoder.readObject();        
+            vendaCadastrada = (Venda) decoder.readObject();        
             decoder.close();            
-            return funcionarioLocalCadastrado;
+            return vendaCadastrada;
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         } 
-        return funcionarioLocalCadastrado;
+        return vendaCadastrada;
     }
     
 }

@@ -4,7 +4,7 @@ import br.unirio.ccet.bsi.utils.Enums;
 
 /**
  *
- * @author yuri
+ * @author Yuri Lopam
  */
 public class Funcionario extends Usuario{
     

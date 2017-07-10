@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author yuri
+ * @author Yuri Lopam
  */
 public abstract class Pedido implements Serializable{
     

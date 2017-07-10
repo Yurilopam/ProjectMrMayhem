@@ -373,24 +373,8 @@ public class TelaCadastroVenda extends javax.swing.JInternalFrame {
 
     private void botaoEfetuarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEfetuarVendaActionPerformed
         if (formularioCadastroValidado()) {
-            Estoque controleEstoque = new Estoque();
-            Produto produtoAtualizado = new Produto();
-            XmlProduto xmlProduto = new XmlProduto();
-            File arquivos = new File(Utils.recuperarPath("Produtos"));
-            String[] codProdutos = arquivos.list();
-            for (String codProduto : codProdutos) {
-                Produto dadosProduto = xmlProduto.LerXml(codProduto);
-                if (dadosProduto.getCodigo().equals(campoCodigoProduto.getText())){
-                    produtoAtualizado.setCodigo(dadosProduto.getCodigo());
-                    produtoAtualizado.setDataCadastramento(dadosProduto.getDataCadastramento());
-                    produtoAtualizado.setDescricao(dadosProduto.getDescricao());
-                    produtoAtualizado.setNome(dadosProduto.getNome());
-                    produtoAtualizado.setQuantidade(controleEstoque.reduzirQuantidade(campoQuantidadeProduto.getText(), dadosProduto.getQuantidade()));
-                    produtoAtualizado.setTipoProduto(dadosProduto.getTipoProduto());
-                    produtoAtualizado.setValor(dadosProduto.getValor());
-                    xmlProduto.GerarXml(produtoAtualizado);
-                }
-            }
+            Estoque estoque = new Estoque();
+            estoque.controleDaQuantidadeDoProduto(jTable1);
             Venda novaVenda = new Venda();
             novaVenda.setCodigoPedido(campoNumeroPedido.getText());
             novaVenda.setCpfComprador(campoCpfComprador.getText());
@@ -409,7 +393,11 @@ public class TelaCadastroVenda extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(TelaCadastroVenda.this, "Não foi possível efetuar a venda!");
         }
     }//GEN-LAST:event_botaoEfetuarVendaActionPerformed
-
+    
+    /**
+     * Caso seja uma venda que precise de entrega é gerada uma entrega para o entregador
+     * @param novaVenda Parametro correspondente a nova venda
+     */
     private void gerarEntregaDaVenda(Venda novaVenda) {
         if (!campoTipoEntrega.getSelectedItem().toString().equals("EM_MAOS")) {
             XmlCliente xmlCliente = new XmlCliente();
@@ -492,6 +480,10 @@ public class TelaCadastroVenda extends javax.swing.JInternalFrame {
     private void campoPrecoTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoPrecoTotalActionPerformed
     }//GEN-LAST:event_campoPrecoTotalActionPerformed
 
+    /**
+     * Verifica se o formulario esta valido
+     * @return verdadeiro se o formulario estiver valido ou falso caso contrario
+     */
     private boolean formularioCadastroValidado() {
         boolean formularioValidado = false;
         if(campoTipoEntrega.getSelectedItem().toString().equals("EM_MAOS")) {

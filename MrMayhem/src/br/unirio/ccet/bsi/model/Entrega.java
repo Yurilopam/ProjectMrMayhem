@@ -2,6 +2,10 @@ package br.unirio.ccet.bsi.model;
 
 import br.unirio.ccet.bsi.utils.Enums;
 
+/**
+ *
+ * @author Yuri Lopam
+ */
 public class Entrega extends Pedido{
 
     private String tipoTransacao;

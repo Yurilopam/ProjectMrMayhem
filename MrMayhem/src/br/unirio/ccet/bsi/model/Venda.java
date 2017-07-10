@@ -1,5 +1,9 @@
 package br.unirio.ccet.bsi.model;
 
+/**
+ *
+ * @author Yuri Lopam
+ */
 public class Venda extends Pedido{
 
     private String observacoes;
