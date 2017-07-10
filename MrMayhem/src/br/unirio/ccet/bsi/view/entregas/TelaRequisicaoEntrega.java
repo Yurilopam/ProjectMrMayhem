@@ -275,7 +275,7 @@ public class TelaRequisicaoEntrega extends javax.swing.JInternalFrame {
 
     private void botaoAtualizarStatusEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtualizarStatusEntregaActionPerformed
         XmlEntrega xmlEntregaAntiga = new XmlEntrega();
-        Entrega entregaAntiga = xmlEntregaAntiga.LerXml(campoCodigoEntrega.getText());
+        Entrega entregaAntiga = xmlEntregaAntiga.LerXml(campoCodigoEntrega.getText()+".xml");
         Entrega entregaAtualizada = new Entrega();
         entregaAtualizada.setCpfComprador(entregaAntiga.getCpfComprador());
         entregaAtualizada.setDataPedido(entregaAntiga.getDataPedido());
